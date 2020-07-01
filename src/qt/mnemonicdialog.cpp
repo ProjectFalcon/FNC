@@ -89,9 +89,6 @@ void MnemonicDialog::on_btnImport_clicked()
 {
     QString sCommand = (ui->chkImportChain->checkState() == Qt::Unchecked)
         ? "extkeyimportmaster" : "extkeygenesisimport";
-    bool fLegacy = ui->useLegacyDerivationCheckBox->checkState() == Qt::Checked;
-    if(fLegacy)
-        sCommand += "legacy";
     sCommand += " \"" + ui->tbxMnemonic->toPlainText() + "\"";
 
     QString sPassword = ui->edtPassword->text();
