@@ -388,7 +388,7 @@ public:
         nTargetTimespan = 24 * 60;      // 24 mins
         consensus.nLWMADiffUpgradeHeight = 40863;
         consensus.nZawyLwmaAveragingWindow = 45;
-        nBlockReward = 6 * COIN;
+        nBlockReward = 2000 * COIN;
         nBlockPerc = {100, 100, 95, 90, 86, 81, 77, 74, 70, 66, 63, 60, 57, 54, 51, 49, 46, 44, 42, 40, 38, 36, 34, 32, 31, 29, 28, 26, 25, 24, 23, 21, 20, 19, 18, 17, 17, 16, 15, 14, 14, 13, 12, 12, 11, 10, 10};
 
         nPruneAfterHeight = 100000;
@@ -409,9 +409,9 @@ public:
         vSeeds.emplace_back("falconseeder.coldstake.io");
         vSeeds.emplace_back("falconseeder.falconofficial.com");
 
-        //DevFund settings before gvr addition
+        //TODO akshaynexus Set this to falcon devfund
         vDevFundSettings.emplace_back(0,
-            DevFundSettings("GQtToV2LnHGhHy4LRVapLDMaukdDgzZZZV", 33.00, 360));//Approx each 12 hr payment to dev fund
+            DevFundSettings("GQtToV2LnHGhHy4LRVapLDMaukdDgzZZZV", 15.00, 360));//Approx each 12 hr payment to dev fund
 
         base58Prefixes[PUBKEY_ADDRESS]     = {0x26}; // G
         base58Prefixes[SCRIPT_ADDRESS]     = {0x61}; // g
@@ -540,13 +540,15 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000713ab7611e91606dd");
+        //TODO akshaynexus fill this value once testnet is up
+        consensus.nMinimumChainWork = uint256S("0x0");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x516d16948ce3324dd14e11c5ef3f6cb6dc2ecb8289f4bc150586d060cb83ee0c");
+        //TODO akshaynexus fill this value once testnet is up
+        consensus.defaultAssumeValid = uint256S("0x0");
 
         consensus.nMinRCTOutputDepth = 12;
-
+        //TODO akshaynexus change pchmessage start,bip44id and p2p port
         pchMessageStart[0] = 0xfb;
         pchMessageStart[1] = 0xc1;
         pchMessageStart[2] = 0xb4;
@@ -559,14 +561,14 @@ public:
         nTargetSpacing = 120;           // 2 minutes
         nTargetTimespan = 24 * 60;      // 24 mins
         consensus.nZawyLwmaAveragingWindow = 45;
-        consensus.nLWMADiffUpgradeHeight = 49512;
-        nBlockReward = 6 * COIN;
+        consensus.nLWMADiffUpgradeHeight = 49512;//TODO akshaynexus set this around 100 blocks after genesis
+        nBlockReward = 2000 * COIN;
         nBlockPerc = {100, 100, 95, 90, 86, 81, 77, 74, 70, 66, 63, 60, 57, 54, 51, 49, 46, 44, 42, 40, 38, 36, 34, 32, 31, 29, 28, 26, 25, 24, 23, 21, 20, 19, 18, 17, 17, 16, 15, 14, 14, 13, 12, 12, 11, 10, 10};
 
         nPruneAfterHeight = 1000;
         m_assumed_blockchain_size = 1;
         m_assumed_chain_state_size = 1;
-
+        //TODO akshaynexus generate new genesis block for FNC testnet
         genesis = CreateGenesisBlockTestNet(1590703697, 13656, 0x1f00ffff);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock == uint256S("0x00006c035c00b305d0ca5b6e1e167bb3ce71aecb5a9a8db7515458f0090ca3e8"));
@@ -578,7 +580,7 @@ public:
         // nodes with support for servicebits filtering should be at the top
         vSeeds.emplace_back("falcon-testnetdns.mineit.io");
 
-        vDevFundSettings.push_back(std::make_pair(0, DevFundSettings("XHjYLwbVGbhr96HZqhT7j8crjEZJiGdZ1B", 33.00, 1440)));
+        vDevFundSettings.push_back(std::make_pair(0, DevFundSettings("XHjYLwbVGbhr96HZqhT7j8crjEZJiGdZ1B", 15.00, 1440)));
 
         base58Prefixes[PUBKEY_ADDRESS]     = {0x4B}; // X
         base58Prefixes[SCRIPT_ADDRESS]     = {0x89}; // x
