@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2020 The Bitcoin Core developers
-// Copyright (c) 2020 The Ghost Core developers
+// Copyright (c) 2020 The Falcon Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -174,7 +174,7 @@ protected:
     uint32_t nStakeTimestampMask = (1 << 4) -1; // 4 bits, every kernel stake hash will change every 16 seconds
     int64_t nCoinYearReward = 2 * CENT; // 2% per year
     std::array<int, 47> nBlockPerc; //reward percentage each year
-    uint32_t nLastImportHeight = 0;       // always 0 on ghost
+    uint32_t nLastImportHeight = 0;       // always 0 on falcon
 
     std::vector<std::pair<int64_t, DevFundSettings> > vDevFundSettings;
     std::vector<std::pair<int64_t, DevFundSettings> > vDevFundSettingsNew;

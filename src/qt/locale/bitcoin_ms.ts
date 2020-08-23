@@ -68,8 +68,8 @@ Alihkan fail data ke dalam tab semasa</translation>
         <translation>alamat-alamat penerimaan</translation>
     </message>
     <message>
-        <source>These are your Ghost addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Ini adalah alamat Ghost anda untuk pembayaran. Periksa jumlah dan alamat penerima sebelum membuat penghantaran koin sentiasa.</translation>
+        <source>These are your Falcon addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Ini adalah alamat Falcon anda untuk pembayaran. Periksa jumlah dan alamat penerima sebelum membuat penghantaran koin sentiasa.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -320,8 +320,8 @@ Alihkan fail data ke dalam tab semasa</translation>
         <translation>Reindexi blok pada cakera...</translation>
     </message>
     <message>
-        <source>Send coins to a Ghost address</source>
-        <translation>Menghantar koin kepada alamat Ghost</translation>
+        <source>Send coins to a Falcon address</source>
+        <translation>Menghantar koin kepada alamat Falcon</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -364,12 +364,12 @@ Alihkan fail data ke dalam tab semasa</translation>
         <translation>sulitkan kata laluan milik peribadi anda</translation>
     </message>
     <message>
-        <source>Sign messages with your Ghost addresses to prove you own them</source>
-        <translation>sahkan mesej bersama alamat ghost anda untuk menunjukkan alamat ini anda punya</translation>
+        <source>Sign messages with your Falcon addresses to prove you own them</source>
+        <translation>sahkan mesej bersama alamat falcon anda untuk menunjukkan alamat ini anda punya</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Ghost addresses</source>
-        <translation>Sahkan mesej untuk memastikan mereka telah ditandatangani dengan alamat Ghost yang ditentukan</translation>
+        <source>Verify messages to ensure they were signed with specified Falcon addresses</source>
+        <translation>Sahkan mesej untuk memastikan mereka telah ditandatangani dengan alamat Falcon yang ditentukan</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -389,8 +389,8 @@ Alihkan fail data ke dalam tab semasa</translation>
 </translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and ghost: URIs)</source>
-        <translation>Request payments (generates QR codes and ghost: URIs)
+        <source>Request payments (generates QR codes and falcon: URIs)</source>
+        <translation>Request payments (generates QR codes and falcon: URIs)
 </translation>
     </message>
     <message>
@@ -465,8 +465,8 @@ Alihkan fail data ke dalam tab semasa</translation>
 <context>
     <name>Intro</name>
     <message>
-        <source>Ghost</source>
-        <translation>Ghost</translation>
+        <source>Falcon</source>
+        <translation>Falcon</translation>
     </message>
     <message>
         <source>Error</source>

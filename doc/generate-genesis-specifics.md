@@ -44,4 +44,4 @@
 - Change nGenesisTime to match the genesis epoch.
 - Set 0x207fffff to the bits you want for genesis.
 - After that copy paste the modified code before the asserts.
-- Build daemon and execute ghostd,it will give the needed hash and specifics after run is over.
+- Build daemon and execute falcond,it will give the needed hash and specifics after run is over.

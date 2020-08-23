@@ -354,7 +354,7 @@ BOOST_AUTO_TEST_CASE(test_TxOutRingCT)
     CMutableTransaction tx;
     tx.vpout.emplace_back(txout);
     tx.nVersion = 2|GHOST_TXN_VERSION;
-    BOOST_CHECK_MESSAGE(tx.IsGhostVersion(), "failed IsGhostVersion");
+    BOOST_CHECK_MESSAGE(tx.IsFalconVersion(), "failed IsFalconVersion");
 
     //The peer that sends the block sets the version that the data stream will use!
     CDataStream ss(SER_NETWORK, PROTOCOL_VERSION|SERIALIZE_TRANSACTION_NO_WITNESS);

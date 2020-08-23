@@ -1,4 +1,4 @@
-Building Ghost
+Building Falcon
 ================
 
 See doc/build-*.md for instructions on building the various

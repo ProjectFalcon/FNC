@@ -7,11 +7,11 @@ User=particl
 Group=particl
 
 Type=forking
-PIDFile=/home/particl/.ghost/ghostd.pid
-ExecStart=/home/particl/Particl/ghostd -daemon -pid=/home/particl/.ghost/ghostd.pid \
--conf=/home/particl/.ghost/ghost.conf -datadir=/home/particl/.ghost
+PIDFile=/home/particl/.falcon/falcond.pid
+ExecStart=/home/particl/Particl/falcond -daemon -pid=/home/particl/.falcon/falcond.pid \
+-conf=/home/particl/.falcon/falcon.conf -datadir=/home/particl/.falcon
 
-ExecStop=/home/particl/Particl/ghost-cli -conf=/home/particl/.ghost/ghost.conf stop
+ExecStop=/home/particl/Particl/falcon-cli -conf=/home/particl/.falcon/falcon.conf stop
 ExecStop=/usr/bin/sleep 25
 
 Restart=no

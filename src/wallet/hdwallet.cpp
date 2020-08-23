@@ -2053,7 +2053,7 @@ CAmount CHDWallet::GetDebit(const CTxIn &txin, const isminefilter &filter) const
 
 CAmount CHDWallet::GetDebit(const CTransaction& tx, const isminefilter& filter) const
 {
-    if (!tx.IsGhostVersion())
+    if (!tx.IsFalconVersion())
         return CWallet::GetDebit(tx, filter);
 
     CAmount nDebit = 0;

@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2020 The Bitcoin Core developers
-// Copyright (c) 2020 The Ghost Core developers
+// Copyright (c) 2020 The Falcon Core developers
 
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -64,7 +64,7 @@
 #include <boost/thread.hpp>
 
 #if defined(NDEBUG)
-# error "Ghost cannot be compiled without assertions."
+# error "Falcon cannot be compiled without assertions."
 #endif
 
 #define MICRO 0.000001
@@ -458,7 +458,7 @@ static bool CheckInputsFromMempoolAndCache(const CTransaction& tx, CValidationSt
         if (txFrom) {
             assert(txFrom->GetHash() == txin.prevout.hash);
             assert(txFrom->GetNumVOuts() > txin.prevout.n);
-            if (txFrom->IsGhostVersion()) {
+            if (txFrom->IsFalconVersion()) {
                 assert(coin.Matches(txFrom->vpout[txin.prevout.n].get()));
             } else {
                 assert(txFrom->vout[txin.prevout.n] == coin.out);
@@ -2658,7 +2658,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
                                  REJECT_INVALID, "bad-txns-nonfinal");
             }
 
-            if (tx.IsGhostVersion()
+            if (tx.IsFalconVersion()
                 && (fAddressIndex || fSpentIndex)) {
                 // Update spent inputs for insight
                 for (size_t j = 0; j < tx.vin.size(); j++) {
@@ -4214,7 +4214,7 @@ static bool FindUndoPos(CValidationState &state, int nFile, FlatFilePos &pos, un
 static bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, const Consensus::Params& consensusParams, bool fCheckPOW = true)
 {
     if (fParticlMode
-        && !block.IsGhostVersion())
+        && !block.IsFalconVersion())
         return state.Invalid(ValidationInvalidReason::CONSENSUS, false, REJECT_INVALID, "block-version", "bad block version");
 
     // Check timestamp

@@ -1942,7 +1942,7 @@ static bool ScanBlock(CSMSG &smsg, const CBlock &block, SecMsgDB &addrpkdb,
     for (const auto &tx : block.vtx) {
         // Harvest public keys from coinstake txns
 
-        if (!tx->IsGhostVersion()) {
+        if (!tx->IsFalconVersion()) {
             continue;
         }
 

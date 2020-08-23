@@ -1,5 +1,5 @@
 ---
-name: "ghost-desktop"
+name: "falcon-desktop"
 sudo: true
 suites:
 - "bionic"
@@ -23,8 +23,8 @@ packages:
 - "apt-transport-https"
 - "libjpeg-dev"
 remotes:
-- "url": "https://github.com/ghost/ghost-desktop"
-  "dir": "ghost-desktop"
+- "url": "https://github.com/falcon/falcon-desktop"
+  "dir": "falcon-desktop"
 files: []
 script: |
   # prepare
@@ -97,13 +97,13 @@ script: |
   source /home/ubuntu/.bashrc
   nvm install 10.21.0
   nvm use 10.21.0
-  cd ghost-desktop
+  cd falcon-desktop
   yarn install
 
   yarn run package:linux
-  tar -cvzf packages/ghost-desktop_test.tar.gz packages/linux-unpacked/
+  tar -cvzf packages/falcon-desktop_test.tar.gz packages/linux-unpacked/
   yarn run package:win
   # yarn run package:mac
 
   mkdir -p $OUTDIR
-  cp packages/ghost-desktop* $OUTDIR
+  cp packages/falcon-desktop* $OUTDIR

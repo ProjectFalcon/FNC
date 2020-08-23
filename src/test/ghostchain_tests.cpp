@@ -18,7 +18,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-BOOST_FIXTURE_TEST_SUITE(ghostchain_tests, ParticlBasicTestingSetup)
+BOOST_FIXTURE_TEST_SUITE(falconchain_tests, ParticlBasicTestingSetup)
 
 
 BOOST_AUTO_TEST_CASE(oldversion_test)
@@ -79,7 +79,7 @@ BOOST_AUTO_TEST_CASE(signature_test)
     BOOST_CHECK(serror == SCRIPT_ERR_OK);
 }
 
-BOOST_AUTO_TEST_CASE(ghostchain_test)
+BOOST_AUTO_TEST_CASE(falconchain_test)
 {
     SeedInsecureRand();
     FillableSigningProvider keystore;
@@ -176,7 +176,7 @@ BOOST_AUTO_TEST_CASE(mixed_input_types)
 {
     CMutableTransaction txn;
     txn.nVersion = GHOST_TXN_VERSION;
-    BOOST_CHECK(txn.IsGhostVersion());
+    BOOST_CHECK(txn.IsFalconVersion());
 
     CAmount txfee;
     int nSpendHeight = 1;
@@ -185,7 +185,7 @@ BOOST_AUTO_TEST_CASE(mixed_input_types)
 
     CMutableTransaction txnPrev;
     txnPrev.nVersion = GHOST_TXN_VERSION;
-    BOOST_CHECK(txnPrev.IsGhostVersion());
+    BOOST_CHECK(txnPrev.IsFalconVersion());
 
     CScript scriptPubKey;
     txnPrev.vpout.push_back(MAKE_OUTPUT<CTxOutStandard>(1 * COIN, scriptPubKey));

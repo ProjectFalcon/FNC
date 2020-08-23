@@ -1033,7 +1033,7 @@ void SendCoinsDialog::coinControlChangeEdited(const QString& text)
         }
         else if (!IsValidDestination(dest)) // Invalid address
         {
-            ui->labelCoinControlChangeLabel->setText(tr("Warning: Invalid Ghost address"));
+            ui->labelCoinControlChangeLabel->setText(tr("Warning: Invalid Falcon address"));
         }
         else // Valid address
         {

@@ -142,7 +142,7 @@ void MnemonicDialog::on_btnImportFromHwd_clicked()
 
     m_thread = new RPCThread(sCommand, walletModel->getWalletName(), &m_rv);
     connect(m_thread, &RPCThread::complete, this, &MnemonicDialog::hwImportComplete);
-    m_thread->setObjectName("ghost-hwImport");
+    m_thread->setObjectName("falcon-hwImport");
     m_thread->start();
 
     return;
@@ -172,7 +172,7 @@ void MnemonicDialog::hwImportComplete(bool passed)
             ui->tbxHwdOut->appendPlainText("Have you added a udev rule for your device?");
 #endif
 #endif
-            ui->tbxHwdOut->appendPlainText("The Ghost app on your device must be open before importing.");
+            ui->tbxHwdOut->appendPlainText("The Falcon app on your device must be open before importing.");
         }
     } else {
         UniValue rv;

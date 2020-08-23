@@ -197,7 +197,7 @@ void RunDeriveTests()
         DeriveTestData(0,
             std::string("XGHSTPgtqERy21V7QzFk4zmx5aUdcDZzfY7D99B8X4kuQZdHq1pJzDg9KtMCoPixi1z6wzdyzGBnX84BgPU4RXXjP2nj4itNagLZ5FULLqCamzng"),
             std::string("PGHSTWq7QxGFUTBgiPNvZ5KSZcsASoJLZwi5sCYCh86qRsPJFTP3nYaFnQHnwvWBeCxoQx1VSmSnXBy1So9tocovqop7VxkSE7W5paCnixDgYmsH")),
-        /* TODO port this test to mainnet ghost
+        /* TODO port this test to mainnet falcon
         DeriveTestData(350,
             std::string("XGHSTPgQfAN8aDi1FYMy1PeqJXNcbQQvvDaGHjxSP7RHHohaJU8Sx52uqD2Zy4JytGVo2939kg1ypr5RwZSRRj7NiuNyVrgnHiDZggD5yyimnURC"),
             std::string("PGHSTWpdEtCR2fQaYwV9VUCKnZm9Rz9GpdB91oKWZAmDK7TaiuhBkPw2HiyA7b6Z4z5k1rLTj6NHBGJTwPd32wfntvuS81PBhmiZsF4pNUjsAfpG")),

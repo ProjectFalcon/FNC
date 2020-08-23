@@ -1,6 +1,6 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2020 The Bitcoin Core developers
-// Copyright (c) 2020 The Ghost Core developers
+// Copyright (c) 2020 The Falcon Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -423,8 +423,8 @@ public:
         // This is fine at runtime as we'll fall back to using them as a oneshot if they don't support the
         // service bits we want, but we should get them updated to support all service bits wanted by any
         // release ASAP to avoid it where possible.
-        vSeeds.emplace_back("ghostseeder.coldstake.io");
-        vSeeds.emplace_back("ghostseeder.ghostbyjohnmcafee.com");
+        vSeeds.emplace_back("falconseeder.coldstake.io");
+        vSeeds.emplace_back("falconseeder.falconbyjohnmcafee.com");
 
         //DevFund settings before gvr addition
         vDevFundSettings.emplace_back(0,
@@ -601,7 +601,7 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.emplace_back("ghost-testnetdns.mineit.io");
+        vSeeds.emplace_back("falcon-testnetdns.mineit.io");
 
         vDevFundSettings.push_back(std::make_pair(0, DevFundSettings("XHjYLwbVGbhr96HZqhT7j8crjEZJiGdZ1B", 33.00, 1440)));
         vDevFundSettingsNew.push_back(std::make_pair(0, DevFundSettings("XHjYLwbVGbhr96HZqhT7j8crjEZJiGdZ1B", 66.67, 100)));
@@ -621,7 +621,7 @@ public:
 
         {
             std::map<int, std::string> bech32PrefixesMap{
-                {PUBKEY_ADDRESS, "tghost"},
+                {PUBKEY_ADDRESS, "tfalcon"},
                 {SCRIPT_ADDRESS,"tw"},
                 {PUBKEY_ADDRESS_256,"tl"},
                 {SCRIPT_ADDRESS_256,"tj"},
@@ -783,7 +783,7 @@ public:
         base58Prefixes[EXT_PUBLIC_KEY_BTC] = {0x04, 0x35, 0x87, 0xCF}; // tpub
         base58Prefixes[EXT_SECRET_KEY_BTC] = {0x04, 0x35, 0x83, 0x94}; // tprv
 
-        bech32Prefixes[PUBKEY_ADDRESS].assign       ("rghost",(const char*)"rghost"+6);
+        bech32Prefixes[PUBKEY_ADDRESS].assign       ("rfalcon",(const char*)"rfalcon"+6);
         bech32Prefixes[SCRIPT_ADDRESS].assign       ("tpr",(const char*)"tpr"+3);
         bech32Prefixes[PUBKEY_ADDRESS_256].assign   ("tpl",(const char*)"tpl"+3);
         bech32Prefixes[SCRIPT_ADDRESS_256].assign   ("tpj",(const char*)"tpj"+3);

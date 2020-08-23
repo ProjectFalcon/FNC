@@ -62,8 +62,8 @@
         <translation>Færslugildi sem þiggja til sín</translation>
     </message>
     <message>
-        <source>These are your Ghost addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Þetta eru Ghost færslugildin sem senda greiðslur. Skoðið ævinlega vel upphæðina og færslugildin sem þiggja greiðslur áður en mynt er send.</translation>
+        <source>These are your Falcon addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Þetta eru Falcon færslugildin sem senda greiðslur. Skoðið ævinlega vel upphæðina og færslugildin sem þiggja greiðslur áður en mynt er send.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -310,8 +310,8 @@
         <translation>Endurraða blokkum á drifi...</translation>
     </message>
     <message>
-        <source>Send coins to a Ghost address</source>
-        <translation>Senda mynt í Ghost færslugildi</translation>
+        <source>Send coins to a Falcon address</source>
+        <translation>Senda mynt í Falcon færslugildi</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -354,12 +354,12 @@
         <translation>Dulkóða einkalyklana sem tilheyra veskinu þínu</translation>
     </message>
     <message>
-        <source>Sign messages with your Ghost addresses to prove you own them</source>
-        <translation>Kvitta undir skilaboð með Ghost færslugildunum þínum til að sanna að þú eigir þau</translation>
+        <source>Sign messages with your Falcon addresses to prove you own them</source>
+        <translation>Kvitta undir skilaboð með Falcon færslugildunum þínum til að sanna að þú eigir þau</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Ghost addresses</source>
-        <translation>Yfirfara skilaboð til að tryggja að kvittað hafi verið fyrir þau með tilteknum Ghost færslugildum</translation>
+        <source>Verify messages to ensure they were signed with specified Falcon addresses</source>
+        <translation>Yfirfara skilaboð til að tryggja að kvittað hafi verið fyrir þau með tilteknum Falcon færslugildum</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -378,8 +378,8 @@
         <translation>Tólaborð flipa</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and ghost: URIs)</source>
-        <translation>Óska eftir greiðslum (býr til QR kóða og ghost: URI)</translation>
+        <source>Request payments (generates QR codes and falcon: URIs)</source>
+        <translation>Óska eftir greiðslum (býr til QR kóða og falcon: URI)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -390,8 +390,8 @@
         <translation>Sýna færslugildi sem notuð hafa verið til að taka við mynt og merkingar þeirra</translation>
     </message>
     <message>
-        <source>Open a ghost: URI or payment request</source>
-        <translation>Opna ghost: URI eða greiðslubeiðni</translation>
+        <source>Open a falcon: URI or payment request</source>
+        <translation>Opna falcon: URI eða greiðslubeiðni</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
@@ -434,8 +434,8 @@
         <translation>Uppfært</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible Ghost command-line options</source>
-        <translation>Sýna %1 hjálparskilaboðin til að fá lista yfir valkosti Ghost aðgerðir í skipanalínu</translation>
+        <source>Show the %1 help message to get a list with possible Falcon command-line options</source>
+        <translation>Sýna %1 hjálparskilaboðin til að fá lista yfir valkosti Falcon aðgerðir í skipanalínu</translation>
     </message>
     <message>
         <source>%1 client</source>
@@ -504,8 +504,8 @@
         <translation>Veskið er &lt;b&gt;dulkóðað&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>A fatal error occurred. Ghost can no longer continue safely and will quit.</source>
-        <translation>Alvarleg villa átti sér stað. Ghost getur ekki haldið áfram með öruggum hætti og stoppar hér.</translation>
+        <source>A fatal error occurred. Falcon can no longer continue safely and will quit.</source>
+        <translation>Alvarleg villa átti sér stað. Falcon getur ekki haldið áfram með öruggum hætti og stoppar hér.</translation>
     </message>
 </context>
 <context>
@@ -624,8 +624,8 @@
         <translation>Breyta sendingarfærslugildi</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Ghost address.</source>
-        <translation>Færslugildið sem slegið var inn "%1" er ekki leyfilegt Ghost færslugildi.</translation>
+        <source>The entered address "%1" is not a valid Falcon address.</source>
+        <translation>Færslugildið sem slegið var inn "%1" er ekki leyfilegt Falcon færslugildi.</translation>
     </message>
     </context>
 <context>
@@ -637,8 +637,8 @@
 <context>
     <name>Intro</name>
     <message>
-        <source>Ghost</source>
-        <translation>Ghost</translation>
+        <source>Falcon</source>
+        <translation>Falcon</translation>
     </message>
     <message>
         <source>Error</source>

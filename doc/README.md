@@ -1,30 +1,30 @@
-Ghost Core
+Falcon Core
 =============
 
 Setup
 ---------------------
-Ghost Core is the original Ghost client and it builds the backbone of the network. It downloads and, by default, stores the entire history of Ghost transactions, which requires a few gigabytes of disk space. Depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more.
+Falcon Core is the original Falcon client and it builds the backbone of the network. It downloads and, by default, stores the entire history of Falcon transactions, which requires a few gigabytes of disk space. Depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more.
 
-To download Ghost Core, visit [ghostbyjohnmcafee.com](https://ghostbyjohnmcafee.com/downloads/).
+To download Falcon Core, visit [falconbyjohnmcafee.com](https://falconbyjohnmcafee.com/downloads/).
 
 Running
 ---------------------
-The following are some helpful notes on how to run Ghost Core on your native platform.
+The following are some helpful notes on how to run Falcon Core on your native platform.
 
 ### Unix
 
 Unpack the files into a directory and run:
 
-- `bin/ghost-qt` (GUI) or
-- `bin/ghostd` (headless)
+- `bin/falcon-qt` (GUI) or
+- `bin/falcond` (headless)
 
 ### Windows
 
-Unpack the files into a directory, and then run ghost-qt.exe.
+Unpack the files into a directory, and then run falcon-qt.exe.
 
 ### macOS
 
-Drag Ghost Core to your applications folder, and then run Ghost Core.
+Drag Falcon Core to your applications folder, and then run Falcon Core.
 
 ### Need Help?
 for help and more information.
@@ -32,7 +32,7 @@ for help and more information.
 
 Building
 ---------------------
-The following are developer notes on how to build Ghost Core on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
+The following are developer notes on how to build Falcon Core on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
 
 - [Dependencies](dependencies.md)
 - [macOS Build Notes](build-osx.md)
@@ -45,7 +45,7 @@ The following are developer notes on how to build Ghost Core on your native plat
 
 Development
 ---------------------
-The Ghost repo's [root README](/README.md) contains relevant information on the development process and automated testing.
+The Falcon repo's [root README](/README.md) contains relevant information on the development process and automated testing.
 
 - [Developer Notes](developer-notes.md)
 - [Productivity Notes](productivity.md)

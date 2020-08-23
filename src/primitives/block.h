@@ -41,7 +41,7 @@ public:
         READWRITE(nVersion);
         READWRITE(hashPrevBlock);
         READWRITE(hashMerkleRoot);
-        if (IsGhostVersion()) {
+        if (IsFalconVersion()) {
             READWRITE(hashWitnessMerkleRoot);
         }
         READWRITE(nTime);
@@ -67,7 +67,7 @@ public:
 
     uint256 GetHash() const;
 
-    bool IsGhostVersion() const
+    bool IsFalconVersion() const
     {
         return nVersion == GHOST_BLOCK_VERSION;
     }

@@ -66,12 +66,12 @@
         <translation>Helbideak jasotzen</translation>
     </message>
     <message>
-        <source>These are your Ghost addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Hauek dira zuk dirua jaso dezaketen Ghost helbideak. Egiaztatu beti diru-kopurua eta dirua jasoko duen helbidea zuzen egon daitezen, txanponak bidali baino lehen.</translation>
+        <source>These are your Falcon addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Hauek dira zuk dirua jaso dezaketen Falcon helbideak. Egiaztatu beti diru-kopurua eta dirua jasoko duen helbidea zuzen egon daitezen, txanponak bidali baino lehen.</translation>
     </message>
     <message>
-        <source>These are your Ghost addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
-        <translation>Hauek dira ordainketak jasotzeko zure Ghost helbideak. Jaso taulako 'Jasotzeko helbide berri bat sortu' botoia erabili helbide berri bat sortzeko.</translation>
+        <source>These are your Falcon addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
+        <translation>Hauek dira ordainketak jasotzeko zure Falcon helbideak. Jaso taulako 'Jasotzeko helbide berri bat sortu' botoia erabili helbide berri bat sortzeko.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -188,8 +188,8 @@
         <translation>Diruzorroaren pasahitz zahar zein berria sartu.</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your ghost from being stolen by malware infecting your computer.</source>
-        <translation>Gogoan izan diruzorroaren enkripzioak ezin dituela zure ghostak zure ordenagailuan izan dezakezun malware batengandik lapurtuak izatetik guztiz babestu .</translation>
+        <source>Remember that encrypting your wallet cannot fully protect your falcon from being stolen by malware infecting your computer.</source>
+        <translation>Gogoan izan diruzorroaren enkripzioak ezin dituela zure falconak zure ordenagailuan izan dezakezun malware batengandik lapurtuak izatetik guztiz babestu .</translation>
     </message>
     <message>
         <source>Wallet to be encrypted</source>
