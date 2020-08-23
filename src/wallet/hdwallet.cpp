@@ -12668,18 +12668,6 @@ bool CHDWallet::CreateCoinStake(unsigned int nBits, int64_t nTime, int nBlockHei
         }
 
         CAmount nDevCfwd = nDevBfwd + nDevPart;
-        if(nBlockHeight == consensusParams.nOneTimeGVRPayHeight){
-            // Place gvr one time pay
-            OUTPUT_PTR<CTxOutStandard> outDevSplit = MAKE_OUTPUT<CTxOutStandard>();
-            outDevSplit->nValue = consensusParams.nGVRPayOnetimeAmt;
-            CTxDestination dfDest = DecodeDestination(pDevFundSettings->sDevFundAddresses);
-            if (dfDest.type() == typeid(CNoDestination)) {
-                return werror("%s: Failed to get foundation fund destination: %s.", __func__, pDevFundSettings->sDevFundAddresses);
-            }
-            outDevSplit->scriptPubKey = GetScriptForDestination(dfDest);
-
-            txNew.vpout.insert(txNew.vpout.begin()+1, outDevSplit);
-        }
         if (nBlockHeight % pDevFundSettings->nDevOutputPeriod == 0) {
             // Place dev fund output
             OUTPUT_PTR<CTxOutStandard> outDevSplit = MAKE_OUTPUT<CTxOutStandard>();

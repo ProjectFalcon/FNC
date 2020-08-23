@@ -170,14 +170,12 @@ protected:
     uint32_t nTargetSpacing;            // targeted number of seconds between blocks
     uint32_t nTargetTimespan;
     CAmount nBlockReward;               // Block reward for PoS blocks,static
-    CAmount nBlockRewardIncrease;               // Block reward for PoS blocks,static
     uint32_t nStakeTimestampMask = (1 << 4) -1; // 4 bits, every kernel stake hash will change every 16 seconds
     int64_t nCoinYearReward = 2 * CENT; // 2% per year
     std::array<int, 47> nBlockPerc; //reward percentage each year
     uint32_t nLastImportHeight = 0;       // always 0 on falcon
 
     std::vector<std::pair<int64_t, DevFundSettings> > vDevFundSettings;
-    std::vector<std::pair<int64_t, DevFundSettings> > vDevFundSettingsNew;
 
 
     uint64_t nPruneAfterHeight;

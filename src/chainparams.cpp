@@ -45,8 +45,6 @@ CAmount CChainParams::GetProofOfStakeRewardAtHeight(const int nHeight) const
     const CAmount nBlocksInAYear = (365 * 24 * 60 * 60) / GetTargetSpacing();
     const int currYear = nHeight / nBlocksInAYear;
     CAmount nSubsidy = GetProofOfStakeRewardAtYear(currYear);
-    if(nHeight >= consensus.nBlockRewardIncreaseHeight)
-        nSubsidy *= nBlockRewardIncrease;
 
     return nSubsidy;
 }
@@ -64,19 +62,9 @@ int64_t CChainParams::GetMaxSmsgFeeRateDelta(int64_t smsg_fee_prev) const
 
 const DevFundSettings *CChainParams::GetDevFundSettings(int64_t nTime,int nHeight) const
 {
-    //TODO akshaynexus cleanup this code
-    if(nHeight >= consensus.nBlockRewardIncreaseHeight){
-        for (auto i = vDevFundSettingsNew.rbegin(); i != vDevFundSettingsNew.rend(); ++i) {
-            if (nTime > i->first) {
-                return &i->second;
-            }
-        }
-    }
-    else{
-        for (auto i = vDevFundSettings.rbegin(); i != vDevFundSettings.rend(); ++i) {
-            if (nTime > i->first) {
-                return &i->second;
-            }
+    for (auto i = vDevFundSettings.rbegin(); i != vDevFundSettings.rend(); ++i) {
+        if (nTime > i->first) {
+            return &i->second;
         }
     }
 
@@ -402,10 +390,6 @@ public:
         consensus.nLWMADiffUpgradeHeight = 40863;
         consensus.nZawyLwmaAveragingWindow = 45;
         nBlockReward = 6 * COIN;
-        consensus.nBlockRewardIncreaseHeight = 40862;
-        consensus.nGVRPayOnetimeAmt = 129000 * COIN;
-        consensus.nOneTimeGVRPayHeight = 40861;
-        nBlockRewardIncrease = 2;       // Times to increase blockreward
         nBlockPerc = {100, 100, 95, 90, 86, 81, 77, 74, 70, 66, 63, 60, 57, 54, 51, 49, 46, 44, 42, 40, 38, 36, 34, 32, 31, 29, 28, 26, 25, 24, 23, 21, 20, 19, 18, 17, 17, 16, 15, 14, 14, 13, 12, 12, 11, 10, 10};
 
         nPruneAfterHeight = 100000;
@@ -429,10 +413,6 @@ public:
         //DevFund settings before gvr addition
         vDevFundSettings.emplace_back(0,
             DevFundSettings("GQtToV2LnHGhHy4LRVapLDMaukdDgzZZZV", 33.00, 360));//Approx each 12 hr payment to dev fund
-
-        //Dev fee new settings
-        vDevFundSettingsNew.emplace_back(0,
-            DevFundSettings("Ga7ECMeX8QUJTTvf9VUnYgTQUFxPChDqqU", 66.67, 5040));//Approx each week to GVR Funds addr
 
         base58Prefixes[PUBKEY_ADDRESS]     = {0x26}; // G
         base58Prefixes[SCRIPT_ADDRESS]     = {0x61}; // g
@@ -582,10 +562,6 @@ public:
         consensus.nZawyLwmaAveragingWindow = 45;
         consensus.nLWMADiffUpgradeHeight = 49512;
         nBlockReward = 6 * COIN;
-        consensus.nBlockRewardIncreaseHeight = 46864;// Set at 1k so that it doesnt get activated during regtest tests
-        nBlockRewardIncrease = 2;       // Times to increase blockreward
-        consensus.nGVRPayOnetimeAmt = 129000 * COIN;
-        consensus.nOneTimeGVRPayHeight = 46863; //Change this height if you want to test gvr one time pay
         nBlockPerc = {100, 100, 95, 90, 86, 81, 77, 74, 70, 66, 63, 60, 57, 54, 51, 49, 46, 44, 42, 40, 38, 36, 34, 32, 31, 29, 28, 26, 25, 24, 23, 21, 20, 19, 18, 17, 17, 16, 15, 14, 14, 13, 12, 12, 11, 10, 10};
 
         nPruneAfterHeight = 1000;
@@ -604,7 +580,6 @@ public:
         vSeeds.emplace_back("falcon-testnetdns.mineit.io");
 
         vDevFundSettings.push_back(std::make_pair(0, DevFundSettings("XHjYLwbVGbhr96HZqhT7j8crjEZJiGdZ1B", 33.00, 1440)));
-        vDevFundSettingsNew.push_back(std::make_pair(0, DevFundSettings("XHjYLwbVGbhr96HZqhT7j8crjEZJiGdZ1B", 66.67, 100)));
 
         base58Prefixes[PUBKEY_ADDRESS]     = {0x4B}; // X
         base58Prefixes[SCRIPT_ADDRESS]     = {0x89}; // x
@@ -730,19 +705,13 @@ public:
         nTargetTimespan = 16 * 60;      // 16 mins
         nStakeTimestampMask = 0;
         nBlockReward = 6 * COIN;
-        consensus.nBlockRewardIncreaseHeight = 1000;// Set at 1k so that it doesnt get activated during regtest tests
-        nBlockRewardIncrease = 2;       // Times to increase blockreward
-        consensus.nGVRPayOnetimeAmt = 129000 * COIN;
         consensus.nLWMADiffUpgradeHeight = INT_MAX;//TODO akshaynexus set regtest height
         consensus.nZawyLwmaAveragingWindow = 45;
-        consensus.nOneTimeGVRPayHeight = INT_MAX; //Change this height if you want to test gvr one time pay
         nBlockPerc = {100, 100, 95, 90, 86, 81, 77, 74, 70, 66, 63, 60, 57, 54, 51, 49, 46, 44, 42, 40, 38, 36, 34, 32, 31, 29, 28, 26, 25, 24, 23, 21, 20, 19, 18, 17, 17, 16, 15, 14, 14, 13, 12, 12, 11, 10, 10};
         //DevFund settings before gvr addition
         //Commented out regtest,uncomment to test gvr one time pay
             //     vDevFundSettings.emplace_back(0,
             // DevFundSettings("pZT7cC5oPiadxPkM6u2WDBrRN19oG1ZsNF", 33.00, 2));//Approx each 12 hr payment to dev fund
-            //     vDevFundSettingsNew.emplace_back(0,
-            // DevFundSettings("pZT7cC5oPiadxPkM6u2WDBrRN19oG1ZsNF", 66.67, 1));
 
         nPruneAfterHeight = 1000;
         m_assumed_blockchain_size = 0;
