@@ -12,7 +12,7 @@ Versions of Falcon Core that are currently supported with security updates:
 
 ## Reporting a Vulnerability
 
-To report security issues send an email to contact@falconbyjohnmcafee.com
+To report security issues send an email to contact@falconofficial.com
 Please note this email address is not for support and is only for issues directly affecting Falcon Core.
 
 **For support and general questions**

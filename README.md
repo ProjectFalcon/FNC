@@ -2,7 +2,7 @@ Falcon Core integration/staging tree
 =====================================
 
 
-https://www.falconbyjohnmcafee.com/
+https://www.falconofficial.com/
 
 What is Falcon?
 ----------------
@@ -11,7 +11,7 @@ An open source, privacy focused, anonymous and
 decentralised network that uses proof of stake 
 consensus algorithm with incentivized stakers.
 
-For more information, see https://www.falconbyjohnmcafee.com/
+For more information, see https://www.falconofficial.com/
 
 
 Getting Started
