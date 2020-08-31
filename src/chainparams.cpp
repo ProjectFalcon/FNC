@@ -397,10 +397,11 @@ public:
 
         genesis = CreateGenesisBlockMainNet(1592430039, 96427, 0x1f00ffff); // 2017-07-17 13:00:00
         consensus.hashGenesisBlock = genesis.GetHash();
+        /* TODO akshaynexus fix this on new genesis on mainnet
         assert(consensus.hashGenesisBlock == uint256S("0x00001e92daa9a7c945afdf3ce2736862b128f95c8966d3cda112caea98dd95f0"));
         assert(genesis.hashMerkleRoot == uint256S("0x3365ed8b8758ef69f7edeae23c1ec4bc7a893df9b7d3ff49e4846a1c29a2121f"));
         assert(genesis.hashWitnessMerkleRoot == uint256S("0x9b4cee449a778b349408c8d3200c1e45dbf097926a69276240d2b767305bfac3"));
-
+        */
         // Note that of those which support the service bits prefix, most only support a subset of
         // possible options.
         // This is fine at runtime as we'll fall back to using them as a oneshot if they don't support the
