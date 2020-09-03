@@ -536,6 +536,7 @@ libfalcon_common_a_SOURCES = \
   base58.cpp \
   bech32.cpp \
   bloom.cpp \
+  progressbar.hpp \
   chainparams.cpp \
   coins.cpp \
   compressor.cpp \

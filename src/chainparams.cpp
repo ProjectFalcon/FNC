@@ -8,6 +8,7 @@
 
 #include <chainparamsseeds.h>
 #include <consensus/merkle.h>
+// #include <progressbar.hpp>
 #include <tinyformat.h>
 #include <util/system.h>
 #include <util/strencodings.h>
@@ -318,8 +319,93 @@ static CBlock CreateGenesisBlockMainNet(uint32_t nTime, uint32_t nNonce, uint32_
 
     return genesis;
 }
+/* Helper functions to simplify new genesis block finding*/
 
+static CBlock CreateGenesisBlockForNet(std::string net,uint32_t nTime, uint32_t nNonce, uint32_t nBits){
+    if(net == "mainnet")
+        return CreateGenesisBlockMainNet(nTime,nNonce,nBits);
+    else if (net == "testnet")
+        return CreateGenesisBlockTestNet(nTime,nNonce,nBits);
+    else if (net == "regtest")
+        return CreateGenesisBlockRegTest(nTime,nNonce,nBits);
+    else
+        throw std::runtime_error("Invalid network given");
+}
 
+std::string getCreteGenStringForNetwork(std::string net){
+    if(net == "mainnet")
+        return "CreateGenesisBlockMainNet";
+    else if (net == "testnet")
+        return "CreateGenesisBlockTestNet";
+    else if (net == "regtest")
+        return "CreateGenesisBlockRegTest";
+    else
+        throw std::runtime_error("Invalid network given");
+}
+
+std::string enclosestringinquotes(std::string str){
+    return "\"" + str + "\"";
+}
+
+std::string generateGenesisCode(std::string net,CBlock genesisblock){
+    std::string createfunc = getCreteGenStringForNetwork(net);
+    std::string gensiscode  = "genesis = " + createfunc + "(" + std::to_string(genesisblock.nTime) + ", " + std::to_string(genesisblock.nNonce) + ", " + std::to_string(genesisblock.nBits) + ");\n";
+    gensiscode += "consensus.hashGenesisBlock = genesis.GetHash();\n";
+    gensiscode += "assert(consensus.hashGenesisBlock == uint256S(" + enclosestringinquotes(genesisblock.GetHash().ToString())     +"));\n" ;
+    gensiscode += "assert(genesis.hashMerkleRoot == uint256S(" + enclosestringinquotes(genesisblock.hashMerkleRoot.ToString())  +"));\n" ;
+    gensiscode += "assert(genesis.hashWitnessMerkleRoot == uint256S(" + enclosestringinquotes(genesisblock.hashWitnessMerkleRoot.ToString())  +"));\n" ;
+    return gensiscode;
+}
+
+void FindGenesis(std::string network,Consensus::Params consensus,CBlock genesisblock,uint32_t nGenesisTime,uint32_t nBits,bool fExitOnSol){
+        arith_uint256 test;
+        bool fNegative;
+        bool fOverflow;
+        test.SetCompact(nBits, &fNegative, &fOverflow);
+        std::cout << "Test threshold: " << test.GetHex() << "\n\n";
+        int genesisNonce = 0;
+        uint256 TempHashHolding = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");
+        uint256 BestBlockHash = uint256S("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+        std::cout << "Finding genesis block for network " << network << "\n";
+        int nMaxNonce = 40000000;
+        // progressbar bar(nMaxNonce);
+
+        for (int i=0;i<nMaxNonce;i++) {
+            // bar.update();
+            genesisblock = CreateGenesisBlockForNet(network,nGenesisTime, i, nBits);
+            consensus.hashGenesisBlock = genesisblock.GetHash();
+            arith_uint256 BestBlockHashArith = UintToArith256(BestBlockHash);
+            if (UintToArith256(consensus.hashGenesisBlock) < BestBlockHashArith) {
+                BestBlockHash = consensus.hashGenesisBlock;
+                std::cout << "Nonce testing is" << i << " \n";
+                /*
+                std::cout << BestBlockHash.GetHex() << " Nonce: " << i << "\n";
+                std::cout << "   PrevBlockHash: " << genesisblock.hashPrevBlock.GetHex() << "\n";
+        	std::cout << "hashGenesisBlock to 0x" << BestBlockHash.GetHex() << std::endl;
+        	std::cout << "Genesis Nonce to " << genesisNonce << std::endl;
+        	std::cout << "Genesis Merkle " << genesisblock.hashMerkleRoot.GetHex() << std::endl;
+            */
+            }
+            TempHashHolding = consensus.hashGenesisBlock;
+            std::cout.clear();
+            if (BestBlockHashArith < test) {
+                // bar.reset();
+                genesisNonce = i - 1;
+                genesisblock = CreateGenesisBlockForNet(network,nGenesisTime, genesisNonce, nBits);
+                break;
+            }
+        }
+        std::cout << "\n";
+        std::cout << "\n";
+        std::cout << "\n";
+        std::cout << "Genesis Block details for " << network << "\n";
+        std::cout << generateGenesisCode(network,genesisblock);
+        std::cout << "\n";
+        if(fExitOnSol)
+            std::exit(0);
+}
+
+/* End helpers */
 /**
  * Main network
  */
@@ -395,8 +481,11 @@ public:
         m_assumed_blockchain_size = 1;
         m_assumed_chain_state_size = 1;
 
-        genesis = CreateGenesisBlockMainNet(1592430039, 96427, 0x1f00ffff); // 2017-07-17 13:00:00
+        genesis = CreateGenesisBlockMainNet(1599162592, 151414, 520159231);
         consensus.hashGenesisBlock = genesis.GetHash();
+        assert(consensus.hashGenesisBlock == uint256S("00002911ba0a17930598f78c6e927ee61744f3447c63dead6a68ba2bf01e0f9a"));
+        assert(genesis.hashMerkleRoot == uint256S("d0de5cdaffa7ea4e2a83138b185d42c5fed825209d382cc2ad619c6b600f0047"));
+        assert(genesis.hashWitnessMerkleRoot == uint256S("7aa8afd272c9cdefbe196fc39d9e15d636a6cb7c6a014b3b05819c25570ae180"));
         /* TODO akshaynexus fix this on new genesis on mainnet
         assert(consensus.hashGenesisBlock == uint256S("0x00001e92daa9a7c945afdf3ce2736862b128f95c8966d3cda112caea98dd95f0"));
         assert(genesis.hashMerkleRoot == uint256S("0x3365ed8b8758ef69f7edeae23c1ec4bc7a893df9b7d3ff49e4846a1c29a2121f"));
@@ -414,7 +503,7 @@ public:
         vDevFundSettings.emplace_back(0,
             DevFundSettings("GQtToV2LnHGhHy4LRVapLDMaukdDgzZZZV", 15.00, 360));//Approx each 12 hr payment to dev fund
 
-        base58Prefixes[PUBKEY_ADDRESS]     = {0x26}; // G
+        base58Prefixes[PUBKEY_ADDRESS]     = {0x23}; // F
         base58Prefixes[SCRIPT_ADDRESS]     = {0x61}; // g
         base58Prefixes[PUBKEY_ADDRESS_256] = {0x39};
         base58Prefixes[SCRIPT_ADDRESS_256] = {0x3d};
@@ -569,13 +658,15 @@ public:
         nPruneAfterHeight = 1000;
         m_assumed_blockchain_size = 1;
         m_assumed_chain_state_size = 1;
+        /*
         //TODO akshaynexus generate new genesis block for FNC testnet
-        genesis = CreateGenesisBlockTestNet(1590703697, 13656, 0x1f00ffff);
+        FindGenesis("testnet",consensus,genesis,GetTime(),0x1f00ffff,false);
+*/
+        genesis = CreateGenesisBlockTestNet(1599162594, 23491, 520159231);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x00006c035c00b305d0ca5b6e1e167bb3ce71aecb5a9a8db7515458f0090ca3e8"));
-        assert(genesis.hashMerkleRoot == uint256S("0xa4ac827e3f40b55d69013e74f29fac184dbcd4b5e2f726c4273ffbc8c0779475"));
-        assert(genesis.hashWitnessMerkleRoot == uint256S("0x08917a20ac55e83d7d860b7daf0cb3c25114d00338deab02f77af9eea20c06e1"));
-
+        assert(consensus.hashGenesisBlock == uint256S("0000cebf2f3839cfb67780100d2ce398b0baaf7fc3475612e02bdfcc56e6b310"));
+        assert(genesis.hashMerkleRoot == uint256S("6b8d7961d8c93a9acd56ba9b1311d983c484dda8fdedd26fed0d1006b64b8104"));
+        assert(genesis.hashWitnessMerkleRoot == uint256S("d1545c5df85cd0131bfbc65b9dc045f61a316bec05a82e9a242dc708155aa8be"));
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
@@ -720,12 +811,11 @@ public:
 
         UpdateActivationParametersFromArgs(args);
 
-        genesis = CreateGenesisBlockRegTest(1543578342, 1, 0x207fffff);
+        genesis = CreateGenesisBlockRegTest(1599162848, 3, 545259519);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x0df42459b6ced4f7c9ec8c7d4c4efe1a9ca89441f17e8c2485a80c247d0544b2"));
-        assert(genesis.hashMerkleRoot == uint256S("0xf89653c7208af2c76a3070d436229fb782acbd065bd5810307995b9982423ce7"));
-        assert(genesis.hashWitnessMerkleRoot == uint256S("0x36b66a1aff91f34ab794da710d007777ef5e612a320e1979ac96e5f292399639"));
-
+        assert(consensus.hashGenesisBlock == uint256S("247e1611c2984f1cf112e87ee6110d4c6c792571fbaaaef05e38f640c8ce4ee1"));
+        assert(genesis.hashMerkleRoot == uint256S("58ab4ddab41e00daf145b8e79a056438ce082276e41bad2b8eebc553dd7258e2"));
+        assert(genesis.hashWitnessMerkleRoot == uint256S("fda61aaa709f4ae34f893e5b30e81e308e90a2479bbb00c00fb6e6dcb0a9e292"));
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();      //!< Regtest mode doesn't have any DNS seeds.
