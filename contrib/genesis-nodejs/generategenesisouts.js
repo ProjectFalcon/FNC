@@ -60,7 +60,7 @@ function SetupFalconParams(){
     bitcore.Networks.add({
         name: 'mainnet-falcon',
         alias: 'main-falcon',
-        pubkeyhash: 0x26,
+        pubkeyhash: 0x23,
         privatekey: 0xA6,
         scripthash: 0x61,
         bech32prefix: 'falcon',
