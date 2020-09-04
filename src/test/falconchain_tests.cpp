@@ -50,7 +50,7 @@ BOOST_AUTO_TEST_CASE(signature_test)
     CKeyID id = pk.GetID();
 
     CMutableTransaction txn;
-    txn.nVersion = GHOST_TXN_VERSION;
+    txn.nVersion = FALCON_TXN_VERSION;
     txn.nLockTime = 0;
 
     int nBlockHeight = 22;
@@ -65,7 +65,7 @@ BOOST_AUTO_TEST_CASE(signature_test)
     txn.vpout.push_back(out1);
 
     CMutableTransaction txn2;
-    txn2.nVersion = GHOST_TXN_VERSION;
+    txn2.nVersion = FALCON_TXN_VERSION;
     txn2.vin.push_back(CTxIn(txn.GetHash(), 0));
 
     std::vector<uint8_t> vchAmount(8);
@@ -94,11 +94,11 @@ BOOST_AUTO_TEST_CASE(falconchain_test)
     CScript script = CScript() << OP_DUP << OP_HASH160 << ToByteVector(id) << OP_EQUALVERIFY << OP_CHECKSIG;
 
     CBlock blk;
-    blk.nVersion = GHOST_BLOCK_VERSION;
+    blk.nVersion = FALCON_BLOCK_VERSION;
     blk.nTime = 1487406900;
 
     CMutableTransaction txn;
-    txn.nVersion = GHOST_TXN_VERSION;
+    txn.nVersion = FALCON_TXN_VERSION;
     txn.SetType(TXN_COINBASE);
     txn.nLockTime = 0;
     OUTPUT_PTR<CTxOutStandard> out0 = MAKE_OUTPUT<CTxOutStandard>();
@@ -128,7 +128,7 @@ BOOST_AUTO_TEST_CASE(falconchain_test)
 
     CMutableTransaction txnSpend;
 
-    txnSpend.nVersion = GHOST_BLOCK_VERSION;
+    txnSpend.nVersion = FALCON_BLOCK_VERSION;
 }
 
 BOOST_AUTO_TEST_CASE(varints)
@@ -175,7 +175,7 @@ BOOST_AUTO_TEST_CASE(varints)
 BOOST_AUTO_TEST_CASE(mixed_input_types)
 {
     CMutableTransaction txn;
-    txn.nVersion = GHOST_TXN_VERSION;
+    txn.nVersion = FALCON_TXN_VERSION;
     BOOST_CHECK(txn.IsFalconVersion());
 
     CAmount txfee;
@@ -184,7 +184,7 @@ BOOST_AUTO_TEST_CASE(mixed_input_types)
     CCoinsViewCache inputs(&viewDummy);
 
     CMutableTransaction txnPrev;
-    txnPrev.nVersion = GHOST_TXN_VERSION;
+    txnPrev.nVersion = FALCON_TXN_VERSION;
     BOOST_CHECK(txnPrev.IsFalconVersion());
 
     CScript scriptPubKey;
@@ -239,7 +239,7 @@ BOOST_AUTO_TEST_CASE(mixed_input_types)
         }
     }
 }
-//Test block reward over the years on GHOST
+//Test block reward over the years on FNC
 BOOST_AUTO_TEST_CASE(blockreward_at_height_test)
 {
     const int64_t nBlocksPerYear = (365 * 24 * 60 * 60) / Params().GetTargetSpacing();

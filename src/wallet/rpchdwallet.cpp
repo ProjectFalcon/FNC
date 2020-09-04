@@ -6839,7 +6839,7 @@ static UniValue createrawfalcontransaction(const JSONRPCRequest& request)
     UniValue outputs = request.params[1].get_array();
 
     CMutableTransaction rawTx;
-    rawTx.nVersion = GHOST_TXN_VERSION;
+    rawTx.nVersion = FALCON_TXN_VERSION;
 
 
     if (!request.params[2].isNull()) {
@@ -7316,7 +7316,7 @@ static UniValue fundrawtransactionfrom(const JSONRPCRequest& request)
 
     // parse hex string from parameter
     CMutableTransaction tx;
-    tx.nVersion = GHOST_TXN_VERSION;
+    tx.nVersion = FALCON_TXN_VERSION;
     if (!DecodeHexTx(tx, request.params[1].get_str(), true)) {
         throw JSONRPCError(RPC_DESERIALIZATION_ERROR, "TX decode failed");
     }

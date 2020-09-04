@@ -3297,7 +3297,7 @@ void UpdateTip(const CBlockIndex* pindexNew, const CChainParams& chainParams)
         {
             if (fParticlMode)
             {
-                if (pindex->nVersion > GHOST_BLOCK_VERSION)
+                if (pindex->nVersion > FALCON_BLOCK_VERSION)
                     ++nUpgraded;
             } else
             {

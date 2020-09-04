@@ -69,7 +69,7 @@ public:
 
     bool IsFalconVersion() const
     {
-        return nVersion == GHOST_BLOCK_VERSION;
+        return nVersion == FALCON_BLOCK_VERSION;
     }
 
     int64_t GetBlockTime() const
@@ -134,7 +134,7 @@ public:
     inline void SerializationOp(Stream& s, Operation ser_action) {
         READWRITEAS(CBlockHeader, *this);
         READWRITE(vtx);
-        if (nVersion == GHOST_BLOCK_VERSION) {
+        if (nVersion == FALCON_BLOCK_VERSION) {
             READWRITE(vchBlockSig);
         }
     }

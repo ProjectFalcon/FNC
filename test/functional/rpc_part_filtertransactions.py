@@ -44,12 +44,12 @@ class FilterTransactionsTest(ParticlTestFramework):
         #targetExternal = nodes[1].getnewextaddress('target external')
         stakingAddress = nodes[2].getnewaddress('staking')
 
-        # simple GHOST transaction
+        # simple FNC transaction
         nodes[0].sendtoaddress(targetAddress, 10)
         self.stakeBlocks(1)
         nodes[1].sendtoaddress(selfAddress, 8)
 
-        # GHOST to BLIND
+        # FNC to BLIND
         nodes[0].sendfalcontoblind(
             selfStealth,          # address
             20,                   # amount
@@ -59,7 +59,7 @@ class FilterTransactionsTest(ParticlTestFramework):
             'node0 -> node0 p->b' # narrative
         )
 
-        # GHOST to ANON
+        # FNC to ANON
         nodes[0].sendfalcontoanon(
             targetStealth,        # address
             20,                   # amount

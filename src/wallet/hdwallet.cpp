@@ -3647,7 +3647,7 @@ int CHDWallet::AddStandardInputs(interfaces::Chain::Lock& locked_chain, CWalletT
     wtx.BindWallet(this);
     wtx.fFromMe = true;
     CMutableTransaction txNew;
-    txNew.nVersion = GHOST_TXN_VERSION;
+    txNew.nVersion = FALCON_TXN_VERSION;
     txNew.vout.clear();
 
     // Discourage fee sniping. See CWallet::CreateTransaction
@@ -4223,7 +4223,7 @@ int CHDWallet::AddBlindedInputs(interfaces::Chain::Lock& locked_chain, CWalletTx
     wtx.BindWallet(this);
     wtx.fFromMe = true;
     CMutableTransaction txNew;
-    txNew.nVersion = GHOST_TXN_VERSION;
+    txNew.nVersion = FALCON_TXN_VERSION;
     txNew.vout.clear();
 
     // Discourage fee sniping. See CWallet::CreateTransaction
@@ -4967,7 +4967,7 @@ int CHDWallet::AddAnonInputs(interfaces::Chain::Lock& locked_chain, CWalletTx &w
     wtx.BindWallet(this);
     wtx.fFromMe = true;
     CMutableTransaction txNew;
-    txNew.nVersion = GHOST_TXN_VERSION;
+    txNew.nVersion = FALCON_TXN_VERSION;
     txNew.vout.clear();
 
     txNew.nLockTime = 0;
@@ -12540,7 +12540,7 @@ bool CHDWallet::CreateCoinStake(unsigned int nBits, int64_t nTime, int nBlockHei
             txNew.vpout.clear();
 
             // Mark as coin stake transaction
-            txNew.nVersion = GHOST_TXN_VERSION;
+            txNew.nVersion = FALCON_TXN_VERSION;
             txNew.SetType(TXN_COINSTAKE);
 
             txNew.vin.push_back(CTxIn(pcoin.first->GetHash(), pcoin.second));
@@ -12864,7 +12864,7 @@ bool CHDWallet::SignBlock(CBlockTemplate *pblocktemplate, int nHeight, int64_t n
     CBlockIndex *pindexPrev = ::ChainActive().Tip();
 
     CKey key;
-    pblock->nVersion = GHOST_BLOCK_VERSION;
+    pblock->nVersion = FALCON_BLOCK_VERSION;
     pblock->nBits = GetNextTargetRequired(pindexPrev,pblock);
     if (LogAcceptCategory(BCLog::POS)) {
         WalletLogPrintf("%s, nBits %d\n", __func__, pblock->nBits);

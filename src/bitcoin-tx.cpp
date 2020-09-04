@@ -1012,7 +1012,7 @@ static int CommandLineRawTx(int argc, char* argv[])
         }
 
         CMutableTransaction tx;
-        tx.nVersion = CTransaction::CURRENT_GHOST_VERSION;
+        tx.nVersion = CTransaction::CURRENT_FALCON_VERSION;
         int startArg;
 
         if (!fCreateBlank) {

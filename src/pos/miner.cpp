@@ -148,7 +148,7 @@ bool ImportOutputs(CBlockTemplate *pblocktemplate, int nHeight)
     }
 
     CMutableTransaction txn;
-    txn.nVersion = GHOST_TXN_VERSION;
+    txn.nVersion = FALCON_TXN_VERSION;
     txn.SetType(TXN_COINBASE);
     txn.nLockTime = 0;
     txn.vin.push_back(CTxIn()); // null prevout

@@ -18,9 +18,9 @@
 
 static const int SERIALIZE_TRANSACTION_NO_WITNESS = 0x40000000;
 
-static const uint8_t GHOST_BLOCK_VERSION = 0xA0;
-static const uint8_t GHOST_TXN_VERSION = 0xA0;
-static const uint8_t MAX_GHOST_TXN_VERSION = 0xBF;
+static const uint8_t FALCON_BLOCK_VERSION = 0xA0;
+static const uint8_t FALCON_TXN_VERSION = 0xA0;
+static const uint8_t MAX_FALCON_TXN_VERSION = 0xBF;
 static const uint8_t BTC_TXN_VERSION = 0x02;
 
 
@@ -60,7 +60,7 @@ bool ExtractCoinStakeUint32(const std::vector<uint8_t> &vData, DataOutputTypes g
 
 inline bool IsFalconTxVersion(int nVersion)
 {
-    return (nVersion & 0xFF) >= GHOST_TXN_VERSION;
+    return (nVersion & 0xFF) >= FALCON_TXN_VERSION;
 }
 
 /** An outpoint - a combination of a transaction hash and an index n into its vout */
@@ -626,7 +626,7 @@ inline void UnserializeTransaction(TxType& tx, Stream& s) {
     tx.nVersion = 0;
     s >> bv;
 
-    if (bv >= GHOST_TXN_VERSION) {
+    if (bv >= FALCON_TXN_VERSION) {
         tx.nVersion = bv;
 
         s >> bv;
@@ -775,7 +775,7 @@ class CTransaction
 public:
     // Default transaction version.
     static const int32_t CURRENT_VERSION=2;
-    static const int32_t CURRENT_GHOST_VERSION=0xA0;
+    static const int32_t CURRENT_FALCON_VERSION=0xA0;
 
     // Changing the default transaction version requires a two step process: first
     // adapting relay policy by bumping MAX_STANDARD_VERSION, and then later date
