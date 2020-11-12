@@ -482,8 +482,8 @@ public:
         // This is fine at runtime as we'll fall back to using them as a oneshot if they don't support the
         // service bits we want, but we should get them updated to support all service bits wanted by any
         // release ASAP to avoid it where possible.
-        vSeeds.emplace_back("falconseeder.coldstake.io");
-        vSeeds.emplace_back("falconseeder.falconofficial.com");
+        vSeeds.emplace_back("45.81.224.174");
+        vSeeds.emplace_back("45.81.224.217");
 /*
         //TODO akshaynexus Set this to falcon devfund
         vDevFundSettings.emplace_back(0,
