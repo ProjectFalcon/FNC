@@ -350,7 +350,8 @@ std::string enclosestringinquotes(std::string str){
 
 std::string generateGenesisCode(std::string net,CBlock genesisblock){
     std::string createfunc = getCreteGenStringForNetwork(net);
-    std::string gensiscode  = "        genesis = " + createfunc + "(" + std::to_string(genesisblock.nTime) + ", " + std::to_string(genesisblock.nNonce) + ", " + std::to_string(genesisblock.nBits) + ");\n";
+    std::string gensiscode = "";
+    gensiscode += "        genesis = " + createfunc + "(" + std::to_string(genesisblock.nTime) + ", " + std::to_string(genesisblock.nNonce) + ", " + std::to_string(genesisblock.nBits) + ");\n";
     gensiscode += "        consensus.hashGenesisBlock = genesis.GetHash();\n";
     gensiscode += "        assert(consensus.hashGenesisBlock == uint256S(" + enclosestringinquotes(genesisblock.GetHash().ToString())     +"));\n" ;
     gensiscode += "        assert(genesis.hashMerkleRoot == uint256S(" + enclosestringinquotes(genesisblock.hashMerkleRoot.ToString())  +"));\n" ;
