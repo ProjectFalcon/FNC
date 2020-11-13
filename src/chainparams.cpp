@@ -172,26 +172,27 @@ const std::pair<const char*, CAmount> regTestOutputs[] = {
 const size_t nGenesisOutputsRegtest = sizeof(regTestOutputs) / sizeof(regTestOutputs[0]);
 
 const std::pair<const char*, CAmount> genesisOutputs[] = {
-    std::make_pair("4b6a64d7724c3bf0472cb2ad31a4919518db3db5", 4500000000 * COIN),//FChsbZrdCzEwC9bGHvbgEyM5QbcFFiv9JN
-    std::make_pair("931277b1d98ff493fb66bfb675263df59dd86f88", 4500000000 * COIN),//FKEkv9ax9nDVn8YqwWWTNfZctPpv6QRVKw
-    std::make_pair("19cc2eab8250534540f2aa91a5890303ff2f12d9", 4500000000 * COIN),//F8BWxS2jfcr5CEtNUofCDVM4VwDJQBMjBQ
-    std::make_pair("c92e4f6debc5027a33a8eb0dc76d504a6c542c01", 4500000000 * COIN),//FQArm43f8VteM9mrNUNMhARHpkmXG61t3P
-    std::make_pair("cd1701d1ae7c1b58b50b8f2c4e1358ac34a0d17f", 4500000000 * COIN),//FQXXYgsqpFYmTCzzGd1VkQbyyi7vEVyVku
-    std::make_pair("2b23db20ab80dc597c8c5e118615d1f700135e6a", 4500000000 * COIN),//F9mDUNChtpfBnd5C2H44S69DuAdFHgDxMG
-    std::make_pair("6eacb6cd70dc90e166d1bdf1aba03fb285bd3116", 4500000000 * COIN),//FFvJhHbCfr6fo4ZfaCTMCfwTV8ETdZD2WD
-    std::make_pair("beb2d44d1d9c092225b04d0b6279e9401741b796", 4500000000 * COIN),//FPDS5XWdrVLLjCnYQFLTwM9BqE4ZHfN5zW
-    std::make_pair("3f3b8eabb0835107afca399f0bcdf4559319144d", 4500000000 * COIN),//FBbTP11SiJXpHgZnUKXVTcbWksFiRFNFbv
-    std::make_pair("92d6af81abe5f567d4000cbb9e1239767d019b27", 4500000000 * COIN),//FKDXJRXZBH4EEUtFkZccpKEywdz6VWQhTa
-    std::make_pair("2f3d041b40ee911c1872f87972b419f58f817f30", 4500000000 * COIN),//FA8tKHZC5RStUmNJwcFhHiHNAZeFwxePLw
-    std::make_pair("525f1784b3463e1bd7d53dda961bfb9e317cb649", 4500000000 * COIN),//FDLendWgrUfoJNvNKhVDrKZTYhD6c1Zr3v
-    std::make_pair("06e8ad2ef5d8bbda925dcbf76850b2a3e81c871d", 4500000000 * COIN),//F6TeFbgmvjndFRfCuP65fahTuLHvddbSFh
-    std::make_pair("9896a34a996f02970d9aa4573329ae75676e4631", 4500000000 * COIN),//FKjvdTiPx8q6NVsxGW5JWuqWj12D47AJdF
-    std::make_pair("4e6513a75901e37705a75242878bbad644ba4936", 4500000000 * COIN),//FCydFhdndFRNpsb4Fcv3UVTPPDj1wbiH7T
-    std::make_pair("314efe5604b0ee95566f0afdc2887f2e78371311", 4500000000 * COIN),//FAKqCmMyBpkBXvqyjYJF45eZGEdJmnaG4T
-    std::make_pair("c5389d76d9603a2643528b89ba86d54a7daf6ecb", 4500000000 * COIN),//FPovQH4V2vWHSib9zGJcCcMfVUriEdG9UX
-    std::make_pair("ee311d94898b2dc8b0ac2397571aeffea81e84a0", 4500000000 * COIN),//FTYZ84jFfipv9PGdCKakvJPKm59ej9QuhJ
-    std::make_pair("ef690e85884a3e5f0bc072244284246f9e196c10", 4500000000 * COIN),//FTezp7oSkkbGBPLqqiykLvHreU4LX2dXgc
-    std::make_pair("e7678c318a231e2904ab6ae5417be5e4e9f14965", 4500000000 * COIN),//FSvfbjH4egR2Gdn6JUJ1Nm4oKXWxkqjDcW
+    std::make_pair("46792e37c1bbe44294a9a020395f38c13cb791c4", 4500000000 * COIN),//FCFjw11L3ApZWcLM2ZLWQc9Qjv8SQp5Lgz
+    std::make_pair("830e35ce278978b618577ab8c582aecee72134f7", 4500000000 * COIN),//FHn51Ghnrzp56xAEuWXsfL42SLBN19uaiS
+    std::make_pair("8a4ea720ee6f73ad59617a120907c4bc970b0174", 4500000000 * COIN),//FJSQwAnaU4yKEbZV77Bxqd3daHCwcLwJC7
+    std::make_pair("3e7b7237774ee02e43996c7d2212540c142b6e5c", 4500000000 * COIN),//FBXVEtFCSpiFaadoKLWG1BGWz9TUj4FKP8
+    std::make_pair("2f2959e006ad885ec557a0c38986049677aaed34", 4500000000 * COIN),//FA8UkwVtmuAe1NB1ShYb7f6vV8c8GCDvQf
+    std::make_pair("f447ffeaa316f5ea9475dc9b50e881a66c8e47cf", 4500000000 * COIN),//FU6kbEUEy2MhPT7VmXv24sbQUFkRct1d8j
+    std::make_pair("5ec9c41efa472f7baec523dce8c933138ae871fb", 4500000000 * COIN),//FEUJgndysB1vzyg3VDhX9oQs1jKq3GAtLa
+    std::make_pair("3b41c382d00004435475d170654b05ea243f5f6b", 4500000000 * COIN),//FBES7TmhjTsrAUP69RnK7cFyoJkykpRYda
+    std::make_pair("16c52c929034ca169e8b223634d8bf188d0a2b6b", 4500000000 * COIN),//F7uWXvG39YNgv1Chr2zNumAZcae4efSKAL
+    std::make_pair("0ef161911b81430d5262b2b40c303168fd470183", 4500000000 * COIN),//F7C85wYh9zrxF4R1dcRdmdcfpnnUBZuDfX
+    std::make_pair("abe4453cd7d39d14c8f855d9610ffd0c246ed20f", 4500000000 * COIN),//FMVzU7Ze7tHwMfsWfUbqQQuBcaGh1WtV3n
+    std::make_pair("be7f5ac23942e474a16373c82b0c9766ad811de9", 4500000000 * COIN),//FPCNQzmMVbTb4B3PMydhfSXQX5BiJpvxnz
+    std::make_pair("332a2002e2bfc6c3133488a6190b370fe306b624", 4500000000 * COIN),//FAVePV2mG8oKDp58YxMKoMZPCbV3KRD4a1
+    std::make_pair("6943b1df58bab603c12b583966cb55d30cf6e2f9", 4500000000 * COIN),//FFRhWTjVLEWS6XXKfzXJTyfDLBV6uGpbJh
+    std::make_pair("cec904717020c95731f1487e5af1d7e479dc3a63", 4500000000 * COIN),//FQgVUFQXXvXuhNuaaV9oMcYPhN7oBk911b
+    std::make_pair("6adc90736bc109ee8c52d99f7616572b8cdd22dd", 4500000000 * COIN),//FFa9KD57KoX9VstLRyjEXPMugjqYeBbrFE
+    std::make_pair("4f31f359515dfaa1253b239e50e79a313c24b9f6", 4500000000 * COIN),//FD3rganFx3hqRnm7QddMnDSxQaAQGDyvGp
+    std::make_pair("f9fc64b05dc8b544f66c5551c2e5c339ace17f1f", 4500000000 * COIN),//FUcv5AMsYdv2bLnKC4xR5Cixotp6U6JZ3v
+    std::make_pair("9f95629b8cff68cb00b0fb1b5e051ad839d258a3", 4500000000 * COIN),//FLNurmSnTjvyKR1vMQve5PEvSywHjWsZMe
+    std::make_pair("f507e5220d807fb643d5d6fbe99744ca9d8c471d", 4500000000 * COIN),//FUAiUMh9j9K9gjFfUYEnmewKR2a7SXWJc9
+
 };
 const size_t nGenesisOutputs = sizeof(genesisOutputs) / sizeof(genesisOutputs[0]);
 
@@ -472,11 +473,11 @@ public:
 
         // FindGenesis("mainnet",consensus,genesis,GetTime(),520159231,false);
 
-        genesis = CreateGenesisBlockMainNet(1599239256, 30984, 520159231);
+        genesis = CreateGenesisBlockMainNet(1605234748, 20386, 520159231);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("00003e2e6126708e793ae93ab0564cd3ca828aca65ffbacd3a2642505128561f"));
-        assert(genesis.hashMerkleRoot == uint256S("8e720434e8d250a52a05572fdba3bfb1024fdd4d8c116f78a11667757ba74f1f"));
-        assert(genesis.hashWitnessMerkleRoot == uint256S("290a2b14db9d51e56631fd6cb73ac1524f5accd12e8b0fe4932462d989eede98"));
+        assert(consensus.hashGenesisBlock == uint256S("0000e33f7a794e4aee1ed9ba169faa375f89fd0f507d8d60649f1c7079ecec40"));
+        assert(genesis.hashMerkleRoot == uint256S("cb0fb1e2526c122647576f6ba4c24b1558e87a8466b1dfcbd80b0b1b60ac0b09"));
+        assert(genesis.hashWitnessMerkleRoot == uint256S("4520e844b45e808aaa3c848bccc15fc1481331f9d745e83002a52e51c14e0597"));
 
         // Note that of those which support the service bits prefix, most only support a subset of
         // possible options.
