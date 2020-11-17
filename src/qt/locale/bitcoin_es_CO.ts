@@ -66,8 +66,8 @@
         <translation>Recibiendo direcciones</translation>
     </message>
     <message>
-        <source>These are your Ghost addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Estas son tus direcciones de Ghost para recibir pagos. Siempre revise el monto y la dirección de envío antes de enviar criptomonedas.</translation>
+        <source>These are your Falcon addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Estas son tus direcciones de Falcon para recibir pagos. Siempre revise el monto y la dirección de envío antes de enviar criptomonedas.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -160,8 +160,8 @@
         <translation>Confirmar cifrado del monedero</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR GHOST&lt;/b&gt;!</source>
-        <translation>Advertencia: Si encriptas tu billetera y pierdes tu contraseña, vas a ¡&lt;b&gt;PERDER TODOS TUS GHOST&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR FNC&lt;/b&gt;!</source>
+        <translation>Advertencia: Si encriptas tu billetera y pierdes tu contraseña, vas a ¡&lt;b&gt;PERDER TODOS TUS FNC&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -322,8 +322,8 @@
         <translation>Proxy &lt;b&gt;habilitado&lt;/b&gt;: %1</translation>
     </message>
     <message>
-        <source>Send coins to a Ghost address</source>
-        <translation>Enviar monedas a una dirección ghost</translation>
+        <source>Send coins to a Falcon address</source>
+        <translation>Enviar monedas a una dirección falcon</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -366,12 +366,12 @@
         <translation>Cifrar las claves privadas de su monedero</translation>
     </message>
     <message>
-        <source>Sign messages with your Ghost addresses to prove you own them</source>
+        <source>Sign messages with your Falcon addresses to prove you own them</source>
         <translation>Firmar un mensaje para provar que usted es dueño de esta dirección</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Ghost addresses</source>
-        <translation>Verificar mensajes comprobando que están firmados con direcciones Ghost concretas</translation>
+        <source>Verify messages to ensure they were signed with specified Falcon addresses</source>
+        <translation>Verificar mensajes comprobando que están firmados con direcciones Falcon concretas</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -390,8 +390,8 @@
         <translation>Barra de pestañas</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and ghost: URIs)</source>
-        <translation>Pide pagos (genera codigos QR and ghost: URls)</translation>
+        <source>Request payments (generates QR codes and falcon: URIs)</source>
+        <translation>Pide pagos (genera codigos QR and falcon: URls)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -402,16 +402,16 @@
         <translation>Mostrar la lista de direcciones de recepción y etiquetas</translation>
     </message>
     <message>
-        <source>Open a ghost: URI or payment request</source>
-        <translation>Abrir un identificador URI ghost o una petición de pago</translation>
+        <source>Open a falcon: URI or payment request</source>
+        <translation>Abrir un identificador URI falcon o una petición de pago</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
         <translation>&amp;Opciones de linea de comando</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Ghost network</source>
-        <translation><numerusform>%n conexión activa hacia la red Ghost</numerusform><numerusform>%n conexiones activas hacia la red Ghost</numerusform></translation>
+        <source>%n active connection(s) to Falcon network</source>
+        <translation><numerusform>%n conexión activa hacia la red Falcon</numerusform><numerusform>%n conexiones activas hacia la red Falcon</numerusform></translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -454,8 +454,8 @@
         <translation>Actualizado</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible Ghost command-line options</source>
-        <translation>Mostrar el mensaje de ayuda %1 para obtener una lista de los posibles comandos de Ghost</translation>
+        <source>Show the %1 help message to get a list with possible Falcon command-line options</source>
+        <translation>Mostrar el mensaje de ayuda %1 para obtener una lista de los posibles comandos de Falcon</translation>
     </message>
     <message>
         <source>&amp;Window</source>
@@ -550,8 +550,8 @@
         <translation>La billetera esta &lt;b&gt;codificada&lt;/b&gt; y actualmente &lt;b&gt;bloqueda&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>A fatal error occurred. Ghost can no longer continue safely and will quit.</source>
-        <translation>Ha ocurrido un error fatal. Ghost no puede seguir seguro y se cerrará.</translation>
+        <source>A fatal error occurred. Falcon can no longer continue safely and will quit.</source>
+        <translation>Ha ocurrido un error fatal. Falcon no puede seguir seguro y se cerrará.</translation>
     </message>
 </context>
 <context>
@@ -747,8 +747,8 @@
         <translation>Editar dirección de envio</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Ghost address.</source>
-        <translation>La dirección introducida "%1" no es una dirección Ghost valida.</translation>
+        <source>The entered address "%1" is not a valid Falcon address.</source>
+        <translation>La dirección introducida "%1" no es una dirección Falcon valida.</translation>
     </message>
     <message>
         <source>Could not unlock wallet.</source>
@@ -836,8 +836,8 @@
         <translation>usar un directorio de datos personalizado:</translation>
     </message>
     <message>
-        <source>Ghost</source>
-        <translation>Ghost</translation>
+        <source>Falcon</source>
+        <translation>Falcon</translation>
     </message>
     <message>
         <source>At least %1 GB of data will be stored in this directory, and it will grow over time.</source>
@@ -848,8 +848,8 @@
         <translation>Aproximadamente %1 GB de información será almacenado en este directorio.</translation>
     </message>
     <message>
-        <source>%1 will download and store a copy of the Ghost block chain.</source>
-        <translation>%1 descargará y almacenará una copia del blockchain de Ghost.</translation>
+        <source>%1 will download and store a copy of the Falcon block chain.</source>
+        <translation>%1 descargará y almacenará una copia del blockchain de Falcon.</translation>
     </message>
     <message>
         <source>The wallet will also be stored in this directory.</source>
@@ -879,12 +879,12 @@
         <translation>Formulario</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the ghost network, as detailed below.</source>
-        <translation>Las transacciones recientes aún no pueden ser visibles, y por lo tanto el saldo de su monedero podría ser incorrecto. Esta información será correcta cuando su monedero haya terminado de sincronizarse con la red de ghost, como se detalla abajo.</translation>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the falcon network, as detailed below.</source>
+        <translation>Las transacciones recientes aún no pueden ser visibles, y por lo tanto el saldo de su monedero podría ser incorrecto. Esta información será correcta cuando su monedero haya terminado de sincronizarse con la red de falcon, como se detalla abajo.</translation>
     </message>
     <message>
-        <source>Attempting to spend ghost that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
-        <translation>La red no aceptará el intentar gastar ghosts que están afectados por transacciones aún no mostradas.</translation>
+        <source>Attempting to spend falcon that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+        <translation>La red no aceptará el intentar gastar falcons que están afectados por transacciones aún no mostradas.</translation>
     </message>
     <message>
         <source>Number of blocks left</source>
@@ -1048,8 +1048,8 @@
         <translation>Gastar cambio sin confirmar</translation>
     </message>
     <message>
-        <source>Automatically open the Ghost client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Abre automáticamente el puerto del cliente Ghost en el router. Esto funciona solo cuando tu router es compatible con UPnP y está habilitado.</translation>
+        <source>Automatically open the Falcon client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Abre automáticamente el puerto del cliente Falcon en el router. Esto funciona solo cuando tu router es compatible con UPnP y está habilitado.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -1064,8 +1064,8 @@
         <translation>Permitir conexiones entrantes</translation>
     </message>
     <message>
-        <source>Connect to the Ghost network through a SOCKS5 proxy.</source>
-        <translation>Conectar a la red de Ghost a través de un proxy SOCKS5</translation>
+        <source>Connect to the Falcon network through a SOCKS5 proxy.</source>
+        <translation>Conectar a la red de Falcon a través de un proxy SOCKS5</translation>
     </message>
     <message>
         <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
@@ -1100,8 +1100,8 @@
         <translation>Tor</translation>
     </message>
     <message>
-        <source>Connect to the Ghost network through a separate SOCKS5 proxy for Tor hidden services.</source>
-        <translation>Conectar a la red de Ghost a través de un proxy SOCKS5 diferente para los servicios anónimos de Tor.</translation>
+        <source>Connect to the Falcon network through a separate SOCKS5 proxy for Tor hidden services.</source>
+        <translation>Conectar a la red de Falcon a través de un proxy SOCKS5 diferente para los servicios anónimos de Tor.</translation>
     </message>
     <message>
         <source>&amp;Window</source>
@@ -1208,8 +1208,8 @@
         <translation>Formulario</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Ghost network after a connection is established, but this process has not completed yet.</source>
-        <translation>La información entregada puede estar desactualizada. Tu billetera se sincroniza automáticamente con la red de Ghost después de establecer una conexión, pero este proceso aún no se ha completado.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Falcon network after a connection is established, but this process has not completed yet.</source>
+        <translation>La información entregada puede estar desactualizada. Tu billetera se sincroniza automáticamente con la red de Falcon después de establecer una conexión, pero este proceso aún no se ha completado.</translation>
     </message>
     <message>
         <source>Watch-only:</source>
@@ -1283,8 +1283,8 @@
         <translation>Error en la solicitud de pago</translation>
     </message>
     <message>
-        <source>Cannot start ghost: click-to-pay handler</source>
-        <translation>No se puede iniciar Ghost: controlador de clic para pagar</translation>
+        <source>Cannot start falcon: click-to-pay handler</source>
+        <translation>No se puede iniciar Falcon: controlador de clic para pagar</translation>
     </message>
     <message>
         <source>URI handling</source>
@@ -1299,8 +1299,8 @@
         <translation>Dirección de pago inválida %1</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid Ghost address or malformed URI parameters.</source>
-        <translation>¡URI no puede ser analizado! Esto puede deberse a una dirección de Ghost no válida o a parámetros de URI mal formados.</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid Falcon address or malformed URI parameters.</source>
+        <translation>¡URI no puede ser analizado! Esto puede deberse a una dirección de Falcon no válida o a parámetros de URI mal formados.</translation>
     </message>
     <message>
         <source>Payment request file handling</source>
@@ -1401,8 +1401,8 @@
         <translation>Cantidad</translation>
     </message>
     <message>
-        <source>Enter a Ghost address (e.g. %1)</source>
-        <translation>Ingresa una dirección de Ghost (Ejemplo: %1)</translation>
+        <source>Enter a Falcon address (e.g. %1)</source>
+        <translation>Ingresa una dirección de Falcon (Ejemplo: %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -1819,8 +1819,8 @@
         <translation>&amp;mensaje</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Ghost network.</source>
-        <translation>Mensaje opcional adjunto a la solicitud de pago, que será mostrado cuando la solicitud sea abierta. Nota: Este mensaje no será enviado con el pago a través de la red Ghost.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Falcon network.</source>
+        <translation>Mensaje opcional adjunto a la solicitud de pago, que será mostrado cuando la solicitud sea abierta. Nota: Este mensaje no será enviado con el pago a través de la red Falcon.</translation>
     </message>
     <message>
         <source>An optional label to associate with the new receiving address.</source>
@@ -2165,8 +2165,8 @@
         <translation>Solicitud de pago expirada</translation>
     </message>
     <message>
-        <source>Warning: Invalid Ghost address</source>
-        <translation>Peligro: Dirección de Ghost inválida</translation>
+        <source>Warning: Invalid Falcon address</source>
+        <translation>Peligro: Dirección de Falcon inválida</translation>
     </message>
     <message>
         <source>Warning: Unknown change address</source>
@@ -2208,8 +2208,8 @@
         <translation>Este es un pago normal</translation>
     </message>
     <message>
-        <source>The Ghost address to send the payment to</source>
-        <translation>Dirección Ghost a enviar el pago</translation>
+        <source>The Falcon address to send the payment to</source>
+        <translation>Dirección Falcon a enviar el pago</translation>
     </message>
     <message>
         <source>Alt+A</source>
@@ -2289,8 +2289,8 @@
         <translation>&amp;Firmar Mensaje</translation>
     </message>
     <message>
-        <source>The Ghost address to sign the message with</source>
-        <translation>Dirección Ghost con la que firmar el mensaje</translation>
+        <source>The Falcon address to sign the message with</source>
+        <translation>Dirección Falcon con la que firmar el mensaje</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2321,7 +2321,7 @@
         <translation>Copiar la firma actual al portapapeles del sistema</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Ghost address</source>
+        <source>Sign the message to prove you own this Falcon address</source>
         <translation>Firmar un mensjage para probar que usted es dueño de esta dirección</translation>
     </message>
     <message>
@@ -2341,12 +2341,12 @@
         <translation>&amp;Firmar Mensaje</translation>
     </message>
     <message>
-        <source>The Ghost address the message was signed with</source>
-        <translation>La dirección Ghost con la que se firmó el mensaje</translation>
+        <source>The Falcon address the message was signed with</source>
+        <translation>La dirección Falcon con la que se firmó el mensaje</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Ghost address</source>
-        <translation>Verifica el mensaje para asegurar que fue firmado con la dirección de Ghost especificada.</translation>
+        <source>Verify the message to ensure it was signed with the specified Falcon address</source>
+        <translation>Verifica el mensaje para asegurar que fue firmado con la dirección de Falcon especificada.</translation>
     </message>
     <message>
         <source>Verify &amp;Message</source>

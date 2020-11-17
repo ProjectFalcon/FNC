@@ -63,7 +63,7 @@ enum class WalletCreationStatus {
     ENCRYPTION_FAILED
 };
 
-WalletCreationStatus CreateWallet(interfaces::Chain& chain, const SecureString& passphrase, uint64_t wallet_creation_flags, const std::string& name, std::string& error, std::string& warning, std::shared_ptr<CWallet>& result, bool fLegacy = false);
+WalletCreationStatus CreateWallet(interfaces::Chain& chain, const SecureString& passphrase, uint64_t wallet_creation_flags, const std::string& name, std::string& error, std::string& warning, std::shared_ptr<CWallet>& result);
 
 //! Default for -keypool
 static const unsigned int DEFAULT_KEYPOOL_SIZE = 1000;
@@ -635,7 +635,7 @@ public:
     // Get the marginal bytes if spending the specified output from this transaction
     int GetSpendSize(unsigned int out, bool use_max_sig = false) const
     {
-        if (tx->IsGhostVersion()) {
+        if (tx->IsFalconVersion()) {
             assert(tx->vpout[out]->IsStandardOutput());
             CTxOut txout;
             txout.nValue = tx->vpout[out]->GetValue();

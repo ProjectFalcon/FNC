@@ -167,7 +167,7 @@
 <context>
     <name>Intro</name>
     <message>
-        <source>Ghost</source>
+        <source>Falcon</source>
         <translation>Биткоин</translation>
     </message>
     <message>

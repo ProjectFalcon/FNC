@@ -571,7 +571,7 @@ Cold Staking Features in QT
 - #13791 `2c14c1f` Reject dialogs if key escape is pressed (promag)
 
 ### Build system
-- #12371 `c9ca4f6` Add gitian PGP key: akx20000 (ghost)
+- #12371 `c9ca4f6` Add gitian PGP key: akx20000 (falcon)
 - #11966 `f4f4f51` clientversion: Use full commit hash for commit-based version descriptions (luke-jr)
 - #12417 `ae0fbf0` Upgrade `mac_alias` to 2.0.7 (droark)
 - #12444 `1f055ef` gitian: Bump descriptors for (0.)17 (theuni)
@@ -809,7 +809,7 @@ Cold Staking Features in QT
 - #13031 `826acc9` Fix for utiltime to compile with msvc (sipsorcery)
 - #13119 `81743b5` Remove script to clean up datadirs (MarcoFalke)
 - #12954 `5a66642` util: Refactor logging code into a global object (jimpo)
-- #12769 `35eb9d6` Add systemd service to particld in debian package (ghost)
+- #12769 `35eb9d6` Add systemd service to particld in debian package (falcon)
 - #13146 `0bc980b` rpcauth: Make it possible to provide a custom password (laanwj)
 - #13148 `b62b437` logging: Fix potential use-after-free in logprintstr(…) (practicalswift)
 - #13214 `0612d96` Enable Travis checking for two Python linting rules we are currently not violating (practicalswift)

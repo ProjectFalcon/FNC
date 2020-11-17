@@ -1,5 +1,5 @@
 // Copyright (c) 2017-2020 The Particl Core developers
-// Copyright (c) 2020 The Ghost Core developers
+// Copyright (c) 2020 The Falcon Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -148,7 +148,7 @@ bool ImportOutputs(CBlockTemplate *pblocktemplate, int nHeight)
     }
 
     CMutableTransaction txn;
-    txn.nVersion = GHOST_TXN_VERSION;
+    txn.nVersion = FALCON_TXN_VERSION;
     txn.SetType(TXN_COINBASE);
     txn.nLockTime = 0;
     txn.vin.push_back(CTxIn()); // null prevout

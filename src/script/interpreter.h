@@ -166,7 +166,7 @@ public:
         return false;
     }
 
-    virtual bool IsGhostVersion() const
+    virtual bool IsFalconVersion() const
     {
         return false;
     }
@@ -198,9 +198,9 @@ public:
         return txTo && txTo->IsCoinStake();
     }
 
-    bool IsGhostVersion() const override
+    bool IsFalconVersion() const override
     {
-        return txTo && txTo->IsGhostVersion();
+        return txTo && txTo->IsFalconVersion();
     }
 };
 

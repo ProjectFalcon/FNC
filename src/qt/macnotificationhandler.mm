@@ -13,7 +13,7 @@
 - (NSString *)__bundleIdentifier
 {
     if (self == [NSBundle mainBundle]) {
-        return @"io.ghostfoundation.Ghost-Qt";
+        return @"io.falconfoundation.Falcon-Qt";
     } else {
         return [self __bundleIdentifier];
     }

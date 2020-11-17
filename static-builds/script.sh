@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Set DISTNAME, BRANCH and MAKEOPTS to the desired settings
 export LC_ALL=C
-DISTNAME=ghost-0.20.99.1
+DISTNAME=falcon-0.20.99.1
 MAKEOPTS="-j31"
 BRANCH='contd-testnet'
 export SKIP_AUTO_DEPS=true
@@ -35,10 +35,10 @@ sudo apt-get install g++-mingw-w64-i686
 cd ~/
 
 # Removes any existing builds and starts clean WARNING
-# rm -rf ~/sign-ghost ~/release-ghost
+# rm -rf ~/sign-falcon ~/release-falcon
 
-git clone git@github.com:ghost-coin/ghost-private.git ghost
-cd ~/ghost
+git clone git@github.com:falcon-coin/falcon-private.git falcon
+cd ~/falcon
 git checkout $BRANCH
 git pull
 
@@ -46,10 +46,10 @@ echo @@@
 echo @@@"Building linux 64 binaries"
 echo @@@
 
-mkdir -p ~/release-ghost
-cd ~/ghost/depends
+mkdir -p ~/release-falcon
+cd ~/falcon/depends
 make HOST=x86_64-linux-gnu $MAKEOPTS
-cd ~/ghost
+cd ~/falcon
 export PATH=$PWD/depends/x86_64-linux-gnu/native/bin:$PATH
 ./autogen.sh
 CONFIG_SITE=$PWD/depends/x86_64-linux-gnu/share/config.site ./configure --prefix=/ --disable-ccache --disable-maintainer-mode --disable-dependency-tracking --enable-glibc-back-compat --enable-reduce-exports --disable-bench --disable-gui-tests CFLAGS="-O2 -g" CXXFLAGS="-O2 -g" LDFLAGS="-static-libstdc++"
@@ -62,10 +62,10 @@ cd ~/linux64
 find . -name "lib*.la" -delete
 find . -name "lib*.a" -delete
 rm -rf $DISTNAME/lib/pkgconfig
-find ${DISTNAME}/bin -type f -executable -exec ../ghost/contrib/devtools/split-debug.sh {} {} {}.dbg \;
-find ${DISTNAME}/lib -type f -exec ../ghost/contrib/devtools/split-debug.sh {} {} {}.dbg \;
-find $DISTNAME/ -not -name "*.dbg" | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ~/release-ghost/$DISTNAME-x86_64-linux-gnu.tar.gz
-cd ~/ghost
+find ${DISTNAME}/bin -type f -executable -exec ../falcon/contrib/devtools/split-debug.sh {} {} {}.dbg \;
+find ${DISTNAME}/lib -type f -exec ../falcon/contrib/devtools/split-debug.sh {} {} {}.dbg \;
+find $DISTNAME/ -not -name "*.dbg" | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ~/release-falcon/$DISTNAME-x86_64-linux-gnu.tar.gz
+cd ~/falcon
 rm -rf ~/linux64
 make clean
 export PATH=$PATH_orig
@@ -75,18 +75,18 @@ echo @@@
 echo @@@"Building general sourcecode"
 echo @@@
 
-cd ~/ghost
+cd ~/falcon
 export PATH=$PWD/depends/x86_64-linux-gnu/native/bin:$PATH
 ./autogen.sh
 CONFIG_SITE=$PWD/depends/x86_64-linux-gnu/share/config.site ./configure --prefix=/
 make dist
-SOURCEDIST='echo ghost-*.tar.gz'
-mkdir -p ~/ghost/temp
-cd ~/ghost/temp
+SOURCEDIST='echo falcon-*.tar.gz'
+mkdir -p ~/falcon/temp
+cd ~/falcon/temp
 tar xf ../$SOURCEDIST
-find ghost-* | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ../$SOURCEDIST
-cd ~/ghost
-mv $SOURCEDIST ~/release-ghost
+find falcon-* | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ../$SOURCEDIST
+cd ~/falcon
+mv $SOURCEDIST ~/release-falcon
 rm -rf temp
 make clean
 export PATH=$PATH_orig
@@ -120,10 +120,10 @@ export PATH=$PATH_orig
 
 # export PATH=$PWD/wrapped:$PATH
 # export HOST_ID_SALT="$PWD/wrapped/extra_includes/i386-linux-gnu"
-# cd ~/ghost/depends
+# cd ~/falcon/depends
 # make HOST=i686-pc-linux-gnu $MAKEOPTS
 # unset HOST_ID_SALT
-# cd ~/ghost
+# cd ~/falcon
 # export PATH=$PWD/depends/i686-pc-linux-gnu/native/bin:$PATH
 # ./autogen.sh
 # CONFIG_SITE=$PWD/depends/i686-pc-linux-gnu/share/config.site ./configure --prefix=/ --disable-ccache --disable-maintainer-mode --disable-dependency-tracking --enable-glibc-back-compat --enable-reduce-exports --disable-bench --disable-gui-tests CFLAGS="-O2 -g" CXXFLAGS="-O2 -g" LDFLAGS="-static-libstdc++"
@@ -136,10 +136,10 @@ export PATH=$PATH_orig
 # find . -name "lib*.la" -delete
 # find . -name "lib*.a" -delete
 # rm -rf $DISTNAME/lib/pkgconfig
-# find ${DISTNAME}/bin -type f -executable -exec ../ghost/contrib/devtools/split-debug.sh {} {} {}.dbg \;
-# find ${DISTNAME}/lib -type f -exec ../ghost/contrib/devtools/split-debug.sh {} {} {}.dbg \;
-# find $DISTNAME/ -not -name "*.dbg" | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ~/release-ghost/$DISTNAME-i686-pc-linux-gnu.tar.gz
-# cd ~/ghost
+# find ${DISTNAME}/bin -type f -executable -exec ../falcon/contrib/devtools/split-debug.sh {} {} {}.dbg \;
+# find ${DISTNAME}/lib -type f -exec ../falcon/contrib/devtools/split-debug.sh {} {} {}.dbg \;
+# find $DISTNAME/ -not -name "*.dbg" | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ~/release-falcon/$DISTNAME-i686-pc-linux-gnu.tar.gz
+# cd ~/falcon
 # rm -rf ~/linux32
 # rm -rf ~/wrapped
 # make clean
@@ -150,9 +150,9 @@ export PATH=$PATH_orig
 # echo @@@ "Building linux ARM binaries"
 # echo @@@
 
-# cd ~/ghost/depends
+# cd ~/falcon/depends
 # make HOST=arm-linux-gnueabihf $MAKEOPTS
-# cd ~/ghost
+# cd ~/falcon
 # export PATH=$PWD/depends/arm-linux-gnueabihf/native/bin:$PATH
 # ./autogen.sh
 # CONFIG_SITE=$PWD/depends/arm-linux-gnueabihf/share/config.site ./configure --prefix=/ --disable-ccache --disable-maintainer-mode --disable-dependency-tracking --enable-glibc-back-compat --enable-reduce-exports --disable-bench --disable-gui-tests CFLAGS="-O2 -g" CXXFLAGS="-O2 -g" LDFLAGS="-static-libstdc++"
@@ -164,10 +164,10 @@ export PATH=$PATH_orig
 # find . -name "lib*.la" -delete
 # find . -name "lib*.a" -delete
 # rm -rf $DISTNAME/lib/pkgconfig
-# find ${DISTNAME}/bin -type f -executable -exec ../ghost/contrib/devtools/split-debug.sh {} {} {}.dbg \;
-# find ${DISTNAME}/lib -type f -exec ../ghost/contrib/devtools/split-debug.sh {} {} {}.dbg \;
-# find $DISTNAME/ -not -name "*.dbg" | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ~/release-ghost/$DISTNAME-arm-linux-gnueabihf.tar.gz
-# cd ~/ghost
+# find ${DISTNAME}/bin -type f -executable -exec ../falcon/contrib/devtools/split-debug.sh {} {} {}.dbg \;
+# find ${DISTNAME}/lib -type f -exec ../falcon/contrib/devtools/split-debug.sh {} {} {}.dbg \;
+# find $DISTNAME/ -not -name "*.dbg" | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ~/release-falcon/$DISTNAME-arm-linux-gnueabihf.tar.gz
+# cd ~/falcon
 # rm -rf ~/linuxARM
 # make clean
 # export PATH=$PATH_orig
@@ -177,9 +177,9 @@ export PATH=$PATH_orig
 # echo @@@ "Building linux aarch64 binaries"
 # echo @@@
 
-# cd ~/ghost/depends
+# cd ~/falcon/depends
 # make HOST=aarch64-linux-gnu $MAKEOPTS
-# cd ~/ghost
+# cd ~/falcon
 # export PATH=$PWD/depends/aarch64-linux-gnu/native/bin:$PATH
 # ./autogen.sh
 # CONFIG_SITE=$PWD/depends/aarch64-linux-gnu/share/config.site ./configure --prefix=/ --disable-ccache --disable-maintainer-mode --disable-dependency-tracking --enable-glibc-back-compat --enable-reduce-exports --disable-bench --disable-gui-tests CFLAGS="-O2 -g" CXXFLAGS="-O2 -g" LDFLAGS="-static-libstdc++"
@@ -191,10 +191,10 @@ export PATH=$PATH_orig
 # find . -name "lib*.la" -delete
 # find . -name "lib*.a" -delete
 # rm -rf $DISTNAME/lib/pkgconfig
-# find ${DISTNAME}/bin -type f -executable -exec ../ghost/contrib/devtools/split-debug.sh {} {} {}.dbg \;
-# find ${DISTNAME}/lib -type f -exec ../ghost/contrib/devtools/split-debug.sh {} {} {}.dbg \;
-# find $DISTNAME/ -not -name "*.dbg" | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ~/release-ghost/$DISTNAME-aarch64-linux-gnu.tar.gz
-# cd ~/ghost
+# find ${DISTNAME}/bin -type f -executable -exec ../falcon/contrib/devtools/split-debug.sh {} {} {}.dbg \;
+# find ${DISTNAME}/lib -type f -exec ../falcon/contrib/devtools/split-debug.sh {} {} {}.dbg \;
+# find $DISTNAME/ -not -name "*.dbg" | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ~/release-falcon/$DISTNAME-aarch64-linux-gnu.tar.gz
+# cd ~/falcon
 # rm -rf ~/linuxaarch64
 # make clean
 # export PATH=$PATH_orig
@@ -205,12 +205,12 @@ echo @@@ "Building windows 64 binaries"
 echo @@@
 
 update-alternatives --set x86_64-w64-mingw32-g++ /usr/bin/x86_64-w64-mingw32-g++-posix 
-mkdir -p ~/release-ghost/unsigned/
-mkdir -p ~/sign-ghost/win64
+mkdir -p ~/release-falcon/unsigned/
+mkdir -p ~/sign-falcon/win64
 PATH=$(echo "$PATH" | sed -e 's/:\/mnt.*//g') # strip out problematic Windows %PATH% imported var
-cd ~/ghost/depends
+cd ~/falcon/depends
 make HOST=x86_64-w64-mingw32 $MAKEOPTS
-cd ~/ghost
+cd ~/falcon
 export PATH=$PWD/depends/x86_64-w64-mingw32/native/bin:$PATH
 ./autogen.sh
 CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=/ --disable-ccache --disable-maintainer-mode --disable-dependency-tracking --enable-reduce-exports --disable-bench --disable-gui-tests CFLAGS="-O2 -g" CXXFLAGS="-O2 -g"
@@ -218,7 +218,7 @@ make $MAKEOPTS
 make -C src check-security
 make deploy
 rename 's/-setup\.exe$/-setup-unsigned.exe/' -- *setup*
-cp -f ghost-*setup*.exe ~/release-ghost/unsigned/
+cp -f falcon-*setup*.exe ~/release-falcon/unsigned/
 mkdir -p ~/win64
 make install DESTDIR=~/win64/$DISTNAME
 cd ~/win64
@@ -228,18 +228,18 @@ find . -name "lib*.a" -delete
 rm -rf $DISTNAME/lib/pkgconfig
 find $DISTNAME/bin -type f -executable -exec x86_64-w64-mingw32-objcopy --only-keep-debug {} {}.dbg \; -exec x86_64-w64-mingw32-strip -s {} \; -exec x86_64-w64-mingw32-objcopy --add-gnu-debuglink={}.dbg {} \;
 find ./$DISTNAME -not -name "*.dbg"  -type f | sort | zip -X@ ./$DISTNAME-x86_64-w64-mingw32.zip
-mv ./$DISTNAME-x86_64-*.zip ~/release-ghost/$DISTNAME-win64.zip
+mv ./$DISTNAME-x86_64-*.zip ~/release-falcon/$DISTNAME-win64.zip
 cd ~/
 rm -rf win64
-cp -rf ghost/contrib/windeploy ~/sign-ghost/win64
-cd ~/sign-ghost/win64/windeploy
+cp -rf falcon/contrib/windeploy ~/sign-falcon/win64
+cd ~/sign-falcon/win64/windeploy
 mkdir -p unsigned
-mv ~/ghost/ghost-*setup-unsigned.exe unsigned/
-find . | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ~/sign-ghost/$DISTNAME-win64-unsigned.tar.gz
-cd ~/sign-ghost
+mv ~/falcon/falcon-*setup-unsigned.exe unsigned/
+find . | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ~/sign-falcon/$DISTNAME-win64-unsigned.tar.gz
+cd ~/sign-falcon
 rm -rf win64
-cd ~/ghost
-rm -rf release-ghost
+cd ~/falcon
+rm -rf release-falcon
 make clean
 export PATH=$PATH_orig
 
@@ -249,11 +249,11 @@ export PATH=$PATH_orig
 # echo @@@
 
 # update-alternatives --set i686-w64-mingw32-g++ /usr/bin/i686-w64-mingw32-g++-posix 
-# mkdir -p ~/sign-ghost/win32
+# mkdir -p ~/sign-falcon/win32
 # PATH=$(echo "$PATH" | sed -e 's/:\/mnt.*//g') 
-# cd ~/ghost/depends
+# cd ~/falcon/depends
 # make HOST=i686-w64-mingw32 $MAKEOPTS
-# cd ~/ghost
+# cd ~/falcon
 # export PATH=$PWD/depends/i686-w64-mingw32/native/bin:$PATH
 # ./autogen.sh
 # CONFIG_SITE=$PWD/depends/i686-w64-mingw32/share/config.site ./configure --prefix=/ --disable-ccache --disable-maintainer-mode --disable-dependency-tracking --enable-reduce-exports --disable-bench --disable-gui-tests CFLAGS="-O2 -g" CXXFLAGS="-O2 -g"
@@ -261,7 +261,7 @@ export PATH=$PATH_orig
 # make -C src check-security
 # make deploy
 # rename 's/-setup\.exe$/-setup-unsigned.exe/' *setup.exe
-# cp -f ghost-*setup*.exe ~/release-ghost/unsigned/
+# cp -f falcon-*setup*.exe ~/release-falcon/unsigned/
 # mkdir -p ~/win32
 # make install DESTDIR=~/win32/$DISTNAME
 # cd ~/win32
@@ -271,18 +271,18 @@ export PATH=$PATH_orig
 # rm -rf $DISTNAME/lib/pkgconfig
 # find $DISTNAME/bin -type f -executable -exec i686-w64-mingw32-objcopy --only-keep-debug {} {}.dbg \; -exec i686-w64-mingw32-strip -s {} \; -exec i686-w64-mingw32-objcopy --add-gnu-debuglink={}.dbg {} \;
 # find ./$DISTNAME -not -name "*.dbg"  -type f | sort | zip -X@ ./$DISTNAME-i686-w64-mingw32.zip
-# mv ./$DISTNAME-i686-w64-*.zip ~/release-ghost/$DISTNAME-win32.zip
+# mv ./$DISTNAME-i686-w64-*.zip ~/release-falcon/$DISTNAME-win32.zip
 # cd ~/
 # rm -rf win32
-# cp -rf ghost/contrib/windeploy ~/sign-ghost/win32
-# cd ~/sign-ghost/win32/windeploy
+# cp -rf falcon/contrib/windeploy ~/sign-falcon/win32
+# cd ~/sign-falcon/win32/windeploy
 # mkdir -p unsigned
-# mv ~/ghost/ghost-*setup-unsigned.exe unsigned/
-# find . | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ~/sign-ghost/$DISTNAME-win32-unsigned.tar.gz
-# cd ~/sign-ghost
+# mv ~/falcon/falcon-*setup-unsigned.exe unsigned/
+# find . | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ~/sign-falcon/$DISTNAME-win32-unsigned.tar.gz
+# cd ~/sign-falcon
 # rm -rf win32
-# cd ~/ghost
-# rm -rf release-ghost
+# cd ~/falcon
+# rm -rf release-falcon
 # make clean
 # export PATH=$PATH_orig
 
@@ -291,13 +291,13 @@ echo @@@
 echo @@@ "Building OSX binaries"
 echo @@@
 
-mkdir -p ~/ghost/depends/SDKs
-cp ~/MacOSX10.14.sdk.tar.gz ~/ghost/depends/SDKs/MacOSX10.14.sdk.tar.gz
-cd ~/ghost/depends/SDKs && tar -xf MacOSX10.14.sdk.tar.gz 
+mkdir -p ~/falcon/depends/SDKs
+cp ~/MacOSX10.14.sdk.tar.gz ~/falcon/depends/SDKs/MacOSX10.14.sdk.tar.gz
+cd ~/falcon/depends/SDKs && tar -xf MacOSX10.14.sdk.tar.gz 
 rm -rf MacOSX10.14.sdk.tar.gz 
-cd ~/ghost/depends
+cd ~/falcon/depends
 make $MAKEOPTS HOST="x86_64-apple-darwin14"
-cd ~/ghost
+cd ~/falcon
 ./autogen.sh
 CONFIG_SITE=$PWD/depends/x86_64-apple-darwin14/share/config.site ./configure --prefix=/ --disable-ccache --disable-maintainer-mode --disable-dependency-tracking --enable-reduce-exports --disable-bench --disable-gui-tests GENISOIMAGE=$PWD/depends/x86_64-apple-darwin14/native/bin/genisoimage
 make $MAKEOPTS 
@@ -315,17 +315,17 @@ cp $PWD/depends/x86_64-apple-darwin14/native/bin/x86_64-apple-darwin14-codesign_
 cp $PWD/depends/x86_64-apple-darwin14/native/bin/x86_64-apple-darwin14-pagestuff unsigned-app-$DISTNAME/pagestuff
 mv dist unsigned-app-$DISTNAME
 cd unsigned-app-$DISTNAME
-find . | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ~/sign-ghost/$DISTNAME-osx-unsigned.tar.gz
-cd ~/ghost
+find . | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ~/sign-falcon/$DISTNAME-osx-unsigned.tar.gz
+cd ~/falcon
 make deploy -j32
-$PWD/depends/x86_64-apple-darwin14/native/bin/dmg dmg "Ghost-Core.dmg" ~/release-ghost/unsigned/$DISTNAME-osx-unsigned.dmg
+$PWD/depends/x86_64-apple-darwin14/native/bin/dmg dmg "Falcon-Core.dmg" ~/release-falcon/unsigned/$DISTNAME-osx-unsigned.dmg
 rm -rf unsigned-app-$DISTNAME dist osx_volname dpi36.background.tiff dpi72.background.tiff
 cd ~/OSX
 find . -name "lib*.la" -delete
 find . -name "lib*.a" -delete
 rm -rf $DISTNAME/lib/pkgconfig
-find $DISTNAME | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ~/release-ghost/$DISTNAME-osx64.tar.gz
-cd ~/ghost
+find $DISTNAME | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ~/release-falcon/$DISTNAME-osx64.tar.gz
+cd ~/falcon
 rm -rf ~/OSX
 make clean
 export PATH=$PATH_orig

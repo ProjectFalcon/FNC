@@ -1,23 +1,23 @@
-Ghost Core integration/staging tree
+Falcon Core integration/staging tree
 =====================================
 
 
-https://www.ghostbyjohnmcafee.com/
+https://www.falconofficial.com/
 
-What is Ghost?
+What is Falcon?
 ----------------
 
 An open source, privacy focused, anonymous and
 decentralised network that uses proof of stake 
 consensus algorithm with incentivized stakers.
 
-For more information, see https://www.ghostbyjohnmcafee.com/
+For more information, see https://www.falconofficial.com/
 
 
 Getting Started
 ---------------
 
-A new Ghost wallet will need an HD master key loaded and an initial account
+A new Falcon wallet will need an HD master key loaded and an initial account
 derived before it will be functional.
 
 The GUI programs will guide you through the initial setup.
@@ -28,22 +28,22 @@ Loading the new mnemonic with the extkeyimportmaster command will setup the
 master HD key and first account.
 
 To create an initial new HD master key and account from random data, start
-ghostd or ghost-qt with the parameter: -createdefaultmasterkey.
+falcond or falcon-qt with the parameter: -createdefaultmasterkey.
 
 Remember to backup your passphrase and/or wallet.dat file!
 
 License
 -------
 
-Ghost Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
+Falcon Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
 information or see https://opensource.org/licenses/MIT.
 
 Development Process
 -------------------
 
 The `master` branch is regularly built and tested, but is not guaranteed to be
-completely stable. [Tags](https://github.com/ghost-coin/ghost-core/tags) are created
-regularly to indicate new official, stable release versions of Ghost Core.
+completely stable. [Tags](https://github.com/falcon-coin/falcon-core/tags) are created
+regularly to indicate new official, stable release versions of Falcon Core.
 
 The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md)
 and useful hints for developers can be found in [doc/developer-notes.md](doc/developer-notes.md).

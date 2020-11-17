@@ -2,15 +2,15 @@
 
 *.exe
 *.pdb
-src/ghost
-src/ghostd
-src/ghost-cli
-src/ghost-tx
-src/ghost-wallet
-src/test/test_ghost
-src/test/test_ghost_fuzzy
-src/qt/test/test_ghost-qt
-src/bench/bench_ghost
+src/falcon
+src/falcond
+src/falcon-cli
+src/falcon-tx
+src/falcon-wallet
+src/test/test_falcon
+src/test/test_falcon_fuzzy
+src/qt/test/test_falcon-qt
+src/bench/bench_falcon
 contrib/genesis-nodejs/node_modules/*
 # autoreconf
 src/Makefile.in
@@ -55,11 +55,11 @@ src/qt/bitcoin-qt.creator.user
 src/qt/bitcoin-qt.files
 src/qt/bitcoin-qt.includes
 
-src/qt/ghost-qt.config
-src/qt/ghost-qt.creator
-src/qt/ghost-qt.creator.user
-src/qt/ghost-qt.files
-src/qt/ghost-qt.includes
+src/qt/falcon-qt.config
+src/qt/falcon-qt.creator
+src/qt/falcon-qt.creator.user
+src/qt/falcon-qt.files
+src/qt/falcon-qt.includes
 
 .deps
 .dirstamp
@@ -96,8 +96,8 @@ src/qt/ghost-qt.includes
 *.qm
 Makefile
 !depends/Makefile
-ghost-qt
-Ghost-Qt.app
+falcon-qt
+Falcon-Qt.app
 background.tiff*
 
 # Qt Creator
@@ -105,7 +105,7 @@ Makefile.am.user
 
 # Unit-tests
 Makefile.test
-ghost-qt_test
+falcon-qt_test
 
 # Resources cpp
 qrc_*.cpp
@@ -118,7 +118,7 @@ build
 *.gcno
 *.gcda
 /*.info
-test_ghost.coverage/
+test_falcon.coverage/
 total.coverage/
 coverage_percent.txt
 
@@ -134,7 +134,7 @@ test/.mypy_cache/
 
 /doc/doxygen/
 
-libghostconsensus.pc
+libfalconconsensus.pc
 contrib/devtools/split-debug.sh
 
 # Output from running db4 installation

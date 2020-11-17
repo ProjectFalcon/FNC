@@ -1,6 +1,6 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2020 The Bitcoin Core developers
-// Copyright (c) 2020 The Ghost Core developers
+// Copyright (c) 2020 The Falcon Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -8,6 +8,7 @@
 
 #include <chainparamsseeds.h>
 #include <consensus/merkle.h>
+// #include <progressbar.hpp>
 #include <tinyformat.h>
 #include <util/system.h>
 #include <util/strencodings.h>
@@ -45,8 +46,6 @@ CAmount CChainParams::GetProofOfStakeRewardAtHeight(const int nHeight) const
     const CAmount nBlocksInAYear = (365 * 24 * 60 * 60) / GetTargetSpacing();
     const int currYear = nHeight / nBlocksInAYear;
     CAmount nSubsidy = GetProofOfStakeRewardAtYear(currYear);
-    if(nHeight >= consensus.nBlockRewardIncreaseHeight)
-        nSubsidy *= nBlockRewardIncrease;
 
     return nSubsidy;
 }
@@ -64,19 +63,9 @@ int64_t CChainParams::GetMaxSmsgFeeRateDelta(int64_t smsg_fee_prev) const
 
 const DevFundSettings *CChainParams::GetDevFundSettings(int64_t nTime,int nHeight) const
 {
-    //TODO akshaynexus cleanup this code
-    if(nHeight >= consensus.nBlockRewardIncreaseHeight){
-        for (auto i = vDevFundSettingsNew.rbegin(); i != vDevFundSettingsNew.rend(); ++i) {
-            if (nTime > i->first) {
-                return &i->second;
-            }
-        }
-    }
-    else{
-        for (auto i = vDevFundSettings.rbegin(); i != vDevFundSettings.rend(); ++i) {
-            if (nTime > i->first) {
-                return &i->second;
-            }
+    for (auto i = vDevFundSettings.rbegin(); i != vDevFundSettings.rend(); ++i) {
+        if (nTime > i->first) {
+            return &i->second;
         }
     }
 
@@ -183,26 +172,27 @@ const std::pair<const char*, CAmount> regTestOutputs[] = {
 const size_t nGenesisOutputsRegtest = sizeof(regTestOutputs) / sizeof(regTestOutputs[0]);
 
 const std::pair<const char*, CAmount> genesisOutputs[] = {
-    std::make_pair("ac91d9def79121740404da83c600d187e89f8aff", 685150.75 * COIN),//GZaPN2m7hRUDumJ7qZd65u3tT362khT3LF
-    std::make_pair("4d43e963865032057ef616caec9e086ff6120ac2", 685150.75 * COIN),//GQtToV2LnHGhHy4LRVapLDMaukdDgzZZZV
-    std::make_pair("b2671804429dc27f109da9c587487d0144567643", 685150.75 * COIN),//Ga7ECMeX8QUJTTvf9VUnYgTQUFxPChDqqU
-    std::make_pair("f5a9f6f57a007a029e836a848eb4876dfa8e3a03", 685150.75 * COIN),//GgEsaUiyMA8j67pw9SkRiWn3sNcXdFiKb6
-    std::make_pair("8837a52768d79e080d79b09cf4a116968ceef725", 685150.75 * COIN),//GWGAyWQ3zKBUdUq5zFhe96zhzqR7TeryjM
-    std::make_pair("c7d1847cb9fb340415fa8baf45fca6f197f43321", 685150.75 * COIN),//Gc4TsqMNxNy5N2AewSbmX5Uf2gpccx9gve
-    std::make_pair("dcd6e461bdad602cc1aa58a5d52e1e5967efa48e", 685150.75 * COIN),//GdycWJ7SwaptNxr4naQ3ybQu7fA1pZxPSN
-    std::make_pair("9e322d2934db522f13a9a7c86226e4fa100aec6b", 685150.75 * COIN),//GYGPHkiAPvU7nN8tCWDsrJBrvyXVWq5cJ3
-    std::make_pair("8d4dafe7bcf2d7572d39e3493dacbbc4c67278e1", 685150.75 * COIN),//GWj4kyJqTQGAhCFHDUer7CoXCu6AvGcoaU
-    std::make_pair("f859e9757a493aadf12e60896bbe8b9b39eb26d2", 685150.75 * COIN),//GgV5htjf6WdNfYywRvYGcTTEv2e98RAc1y
-    std::make_pair("81093899c94b6f86650ef57a8a4bcd724488bc21", 685150.75 * COIN),//GVcCdZoEvr52S46ug5G5BvoHKXpt9ZKV79
-    std::make_pair("a00c672cf0ae25d9d42c2350bbb08fb6df344786", 685150.75 * COIN),//GYSBPbcb4n8ncSdGn9BSJt2rRWMjjJhbz9
-    std::make_pair("59ca3ae2f992dc6a73ec668ac747a327a99adec0", 685150.75 * COIN),//GS2gpPVRhNdXP4mMEopMmPy8Y2txfQTdDR
-    std::make_pair("a43f74d1d773ff485dc157714e6ed8772c88e523", 685150.75 * COIN),//GYpPFcM2XkPFd36SuhUgF5Tii9HKov5ZwL
-    std::make_pair("451d033e99f26e254e118ced3b6d6e709e80429d", 685150.75 * COIN),//GQ9MoCWvDxEH1em3jdXEbjgag9kryk4FZ7
-    std::make_pair("686c7590c3418d0dc49f16cbbcfe6528905dd9b1", 685150.75 * COIN),//GTN4cxVh4PryFGAnYJDhudrD1UamPofmGw
-    std::make_pair("d755c6410c5008f88771bba9879336a01208d88f", 685150.75 * COIN),//GdUWT5jz8Jk61dP9fVUTWBsCPYNDNDq8WZ
-    std::make_pair("0c59e6e59b1fe7cd0361a193356c39d4202bf5ca", 685150.75 * COIN),//GJyEDvdYg4RntmA5zZsveiEadQn12KVjGH
-    std::make_pair("b9539acc18027f45f451c3567d47136e4aac6817", 685150.75 * COIN),//Gajqaa3ZU9VoWbtQtdA2qba7wYzYAKJ98m
-    std::make_pair("d09288f9150d32166573cbeb0e7f34ef43403d20", 685150.75 * COIN),//GcrkWTjM8nbseKCv7sBdeBhVwMx3PGgwSe
+    std::make_pair("46792e37c1bbe44294a9a020395f38c13cb791c4", 4500000000 * COIN),//FCFjw11L3ApZWcLM2ZLWQc9Qjv8SQp5Lgz
+    std::make_pair("830e35ce278978b618577ab8c582aecee72134f7", 4500000000 * COIN),//FHn51Ghnrzp56xAEuWXsfL42SLBN19uaiS
+    std::make_pair("8a4ea720ee6f73ad59617a120907c4bc970b0174", 4500000000 * COIN),//FJSQwAnaU4yKEbZV77Bxqd3daHCwcLwJC7
+    std::make_pair("3e7b7237774ee02e43996c7d2212540c142b6e5c", 4500000000 * COIN),//FBXVEtFCSpiFaadoKLWG1BGWz9TUj4FKP8
+    std::make_pair("2f2959e006ad885ec557a0c38986049677aaed34", 4500000000 * COIN),//FA8UkwVtmuAe1NB1ShYb7f6vV8c8GCDvQf
+    std::make_pair("f447ffeaa316f5ea9475dc9b50e881a66c8e47cf", 4500000000 * COIN),//FU6kbEUEy2MhPT7VmXv24sbQUFkRct1d8j
+    std::make_pair("5ec9c41efa472f7baec523dce8c933138ae871fb", 4500000000 * COIN),//FEUJgndysB1vzyg3VDhX9oQs1jKq3GAtLa
+    std::make_pair("3b41c382d00004435475d170654b05ea243f5f6b", 4500000000 * COIN),//FBES7TmhjTsrAUP69RnK7cFyoJkykpRYda
+    std::make_pair("16c52c929034ca169e8b223634d8bf188d0a2b6b", 4500000000 * COIN),//F7uWXvG39YNgv1Chr2zNumAZcae4efSKAL
+    std::make_pair("0ef161911b81430d5262b2b40c303168fd470183", 4500000000 * COIN),//F7C85wYh9zrxF4R1dcRdmdcfpnnUBZuDfX
+    std::make_pair("abe4453cd7d39d14c8f855d9610ffd0c246ed20f", 4500000000 * COIN),//FMVzU7Ze7tHwMfsWfUbqQQuBcaGh1WtV3n
+    std::make_pair("be7f5ac23942e474a16373c82b0c9766ad811de9", 4500000000 * COIN),//FPCNQzmMVbTb4B3PMydhfSXQX5BiJpvxnz
+    std::make_pair("332a2002e2bfc6c3133488a6190b370fe306b624", 4500000000 * COIN),//FAVePV2mG8oKDp58YxMKoMZPCbV3KRD4a1
+    std::make_pair("6943b1df58bab603c12b583966cb55d30cf6e2f9", 4500000000 * COIN),//FFRhWTjVLEWS6XXKfzXJTyfDLBV6uGpbJh
+    std::make_pair("cec904717020c95731f1487e5af1d7e479dc3a63", 4500000000 * COIN),//FQgVUFQXXvXuhNuaaV9oMcYPhN7oBk911b
+    std::make_pair("6adc90736bc109ee8c52d99f7616572b8cdd22dd", 4500000000 * COIN),//FFa9KD57KoX9VstLRyjEXPMugjqYeBbrFE
+    std::make_pair("4f31f359515dfaa1253b239e50e79a313c24b9f6", 4500000000 * COIN),//FD3rganFx3hqRnm7QddMnDSxQaAQGDyvGp
+    std::make_pair("f9fc64b05dc8b544f66c5551c2e5c339ace17f1f", 4500000000 * COIN),//FUcv5AMsYdv2bLnKC4xR5Cixotp6U6JZ3v
+    std::make_pair("9f95629b8cff68cb00b0fb1b5e051ad839d258a3", 4500000000 * COIN),//FLNurmSnTjvyKR1vMQve5PEvSywHjWsZMe
+    std::make_pair("f507e5220d807fb643d5d6fbe99744ca9d8c471d", 4500000000 * COIN),//FUAiUMh9j9K9gjFfUYEnmewKR2a7SXWJc9
+
 };
 const size_t nGenesisOutputs = sizeof(genesisOutputs) / sizeof(genesisOutputs[0]);
 
@@ -236,7 +226,7 @@ static CBlock CreateGenesisBlockRegTest(uint32_t nTime, uint32_t nNonce, uint32_
     const char *pszTimestamp = "The Times 03/Jan/2009 Chancellor on brink of second bailout for banks";
 
     CMutableTransaction txNew;
-    txNew.nVersion = GHOST_TXN_VERSION;
+    txNew.nVersion = FALCON_TXN_VERSION;
     txNew.SetType(TXN_COINBASE);
     txNew.vin.resize(1);
     uint32_t nHeight = 0;  // bip34
@@ -254,7 +244,7 @@ static CBlock CreateGenesisBlockRegTest(uint32_t nTime, uint32_t nNonce, uint32_
     genesis.nTime    = nTime;
     genesis.nBits    = nBits;
     genesis.nNonce   = nNonce;
-    genesis.nVersion = GHOST_BLOCK_VERSION;
+    genesis.nVersion = FALCON_BLOCK_VERSION;
     genesis.vtx.push_back(MakeTransactionRef(std::move(txNew)));
 
     genesis.hashPrevBlock.SetNull();
@@ -269,7 +259,7 @@ static CBlock CreateGenesisBlockTestNet(uint32_t nTime, uint32_t nNonce, uint32_
     const char *pszTimestamp = "The Times 03/Jan/2009 Chancellor on brink of second bailout for banks";
 
     CMutableTransaction txNew;
-    txNew.nVersion = GHOST_TXN_VERSION;
+    txNew.nVersion = FALCON_TXN_VERSION;
     txNew.SetType(TXN_COINBASE);
     txNew.vin.resize(1);
     uint32_t nHeight = 0;  // bip34
@@ -287,7 +277,7 @@ static CBlock CreateGenesisBlockTestNet(uint32_t nTime, uint32_t nNonce, uint32_
     genesis.nTime    = nTime;
     genesis.nBits    = nBits;
     genesis.nNonce   = nNonce;
-    genesis.nVersion = GHOST_BLOCK_VERSION;
+    genesis.nVersion = FALCON_BLOCK_VERSION;
     genesis.vtx.push_back(MakeTransactionRef(std::move(txNew)));
 
     genesis.hashPrevBlock.SetNull();
@@ -302,7 +292,7 @@ static CBlock CreateGenesisBlockMainNet(uint32_t nTime, uint32_t nNonce, uint32_
     const char *pszTimestamp = "BTC 000000000000000000c679bc2209676d05129834627c7b1c02d1018b224c6f37";
 
     CMutableTransaction txNew;
-    txNew.nVersion = GHOST_TXN_VERSION;
+    txNew.nVersion = FALCON_TXN_VERSION;
     txNew.SetType(TXN_COINBASE);
 
     txNew.vin.resize(1);
@@ -321,7 +311,7 @@ static CBlock CreateGenesisBlockMainNet(uint32_t nTime, uint32_t nNonce, uint32_
     genesis.nTime    = nTime;
     genesis.nBits    = nBits;
     genesis.nNonce   = nNonce;
-    genesis.nVersion = GHOST_BLOCK_VERSION;
+    genesis.nVersion = FALCON_BLOCK_VERSION;
     genesis.vtx.push_back(MakeTransactionRef(std::move(txNew)));
 
     genesis.hashPrevBlock.SetNull();
@@ -331,7 +321,81 @@ static CBlock CreateGenesisBlockMainNet(uint32_t nTime, uint32_t nNonce, uint32_
     return genesis;
 }
 
+/* Helper functions to simplify new genesis block finding*/
 
+static CBlock CreateGenesisBlockForNet(std::string net,uint32_t nTime, uint32_t nNonce, uint32_t nBits){
+    if(net == "mainnet")
+        return CreateGenesisBlockMainNet(nTime,nNonce,nBits);
+    else if (net == "testnet")
+        return CreateGenesisBlockTestNet(nTime,nNonce,nBits);
+    else if (net == "regtest")
+        return CreateGenesisBlockRegTest(nTime,nNonce,nBits);
+    else
+        throw std::runtime_error("Invalid network given");
+}
+
+std::string getCreteGenStringForNetwork(std::string net){
+    if(net == "mainnet")
+        return "CreateGenesisBlockMainNet";
+    else if (net == "testnet")
+        return "CreateGenesisBlockTestNet";
+    else if (net == "regtest")
+        return "CreateGenesisBlockRegTest";
+    else
+        throw std::runtime_error("Invalid network given");
+}
+
+std::string enclosestringinquotes(std::string str){
+    return "\"" + str + "\"";
+}
+
+std::string generateGenesisCode(std::string net,CBlock genesisblock){
+    std::string createfunc = getCreteGenStringForNetwork(net);
+    std::string gensiscode = "";
+    gensiscode += "        genesis = " + createfunc + "(" + std::to_string(genesisblock.nTime) + ", " + std::to_string(genesisblock.nNonce) + ", " + std::to_string(genesisblock.nBits) + ");\n";
+    gensiscode += "        consensus.hashGenesisBlock = genesis.GetHash();\n";
+    gensiscode += "        assert(consensus.hashGenesisBlock == uint256S(" + enclosestringinquotes(genesisblock.GetHash().ToString())     +"));\n" ;
+    gensiscode += "        assert(genesis.hashMerkleRoot == uint256S(" + enclosestringinquotes(genesisblock.hashMerkleRoot.ToString())  +"));\n" ;
+    gensiscode += "        assert(genesis.hashWitnessMerkleRoot == uint256S(" + enclosestringinquotes(genesisblock.hashWitnessMerkleRoot.ToString())  +"));\n" ;
+    return gensiscode;
+}
+
+void FindGenesis(std::string network,Consensus::Params consensus,CBlock genesisblock,uint32_t nGenesisTime,uint32_t nBits,bool fExitOnSol){
+        arith_uint256 test;
+        bool fNegative;
+        bool fOverflow;
+        test.SetCompact(nBits, &fNegative, &fOverflow);
+        std::cout << "Test threshold: " << test.GetHex() << "\n\n";
+        int genesisNonce = 0;
+        uint256 TempHashHolding = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");
+        uint256 BestBlockHash = uint256S("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+        std::cout << "Finding genesis block for network " << network << "\n";
+        int nMaxNonce = 40000000;
+        for (int i=0;i<nMaxNonce;i++) {
+            genesisblock = CreateGenesisBlockForNet(network,nGenesisTime, i, nBits);
+            consensus.hashGenesisBlock = genesisblock.GetHash();
+            arith_uint256 BestBlockHashArith = UintToArith256(BestBlockHash);
+            if (UintToArith256(consensus.hashGenesisBlock) < BestBlockHashArith) {
+                BestBlockHash = consensus.hashGenesisBlock;
+                std::cout << "Nonce testing is " << i << " \n";
+            }
+            TempHashHolding = consensus.hashGenesisBlock;
+            std::cout.clear();
+            if (BestBlockHashArith < test) {
+                genesisNonce = i - 1;
+                genesisblock = CreateGenesisBlockForNet(network,nGenesisTime, genesisNonce, nBits);
+                break;
+            }
+        }
+        std::cout << "\n";
+        std::cout << "Genesis Block details for " << network << "\n";
+        std::cout << generateGenesisCode(network,genesisblock);
+        std::cout << "\n";
+        if(fExitOnSol)
+            std::exit(0);
+}
+
+/* End helpers */
 /**
  * Main network
  */
@@ -375,10 +439,10 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000af273924ccacbf60");//Chainwork at Block 2913
+        consensus.nMinimumChainWork = uint256S("0x0");//TODO akshaynexus set this on mainnet
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0xeccad59c62c2b669a746297d1f3ffb49c4de8620d6ad69c240079386130b2343"); //Blockhash of Block 2913
+        consensus.defaultAssumeValid = uint256S("0x0"); //TODO akshaynexus set this on mainnet
 
         consensus.nMinRCTOutputDepth = 12;
 
@@ -392,8 +456,7 @@ public:
         pchMessageStart[2] = 0xe1;
         pchMessageStart[3] = 0xb4;
         nDefaultPort = 51728;
-        nBIP44IDLegacy = 0x8000002C;
-        nBIP44IDCurrent = 0x80000213;
+        nBIP44ID = 0x8000002C;
 
         nModifierInterval = 10 * 60;    // 10 minutes
         nStakeMinConfirmations = 225;   // 225 * 2 minutes
@@ -401,40 +464,34 @@ public:
         nTargetTimespan = 24 * 60;      // 24 mins
         consensus.nLWMADiffUpgradeHeight = 40863;
         consensus.nZawyLwmaAveragingWindow = 45;
-        nBlockReward = 6 * COIN;
-        consensus.nBlockRewardIncreaseHeight = 40862;
-        consensus.nGVRPayOnetimeAmt = 129000 * COIN;
-        consensus.nOneTimeGVRPayHeight = 40861;
-        nBlockRewardIncrease = 2;       // Times to increase blockreward
+        nBlockReward = 2000 * COIN;
         nBlockPerc = {100, 100, 95, 90, 86, 81, 77, 74, 70, 66, 63, 60, 57, 54, 51, 49, 46, 44, 42, 40, 38, 36, 34, 32, 31, 29, 28, 26, 25, 24, 23, 21, 20, 19, 18, 17, 17, 16, 15, 14, 14, 13, 12, 12, 11, 10, 10};
 
         nPruneAfterHeight = 100000;
         m_assumed_blockchain_size = 1;
         m_assumed_chain_state_size = 1;
 
-        genesis = CreateGenesisBlockMainNet(1592430039, 96427, 0x1f00ffff); // 2017-07-17 13:00:00
+        // FindGenesis("mainnet",consensus,genesis,GetTime(),520159231,false);
+
+        genesis = CreateGenesisBlockMainNet(1605234748, 20386, 520159231);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x00001e92daa9a7c945afdf3ce2736862b128f95c8966d3cda112caea98dd95f0"));
-        assert(genesis.hashMerkleRoot == uint256S("0x3365ed8b8758ef69f7edeae23c1ec4bc7a893df9b7d3ff49e4846a1c29a2121f"));
-        assert(genesis.hashWitnessMerkleRoot == uint256S("0x9b4cee449a778b349408c8d3200c1e45dbf097926a69276240d2b767305bfac3"));
+        assert(consensus.hashGenesisBlock == uint256S("0000e33f7a794e4aee1ed9ba169faa375f89fd0f507d8d60649f1c7079ecec40"));
+        assert(genesis.hashMerkleRoot == uint256S("cb0fb1e2526c122647576f6ba4c24b1558e87a8466b1dfcbd80b0b1b60ac0b09"));
+        assert(genesis.hashWitnessMerkleRoot == uint256S("4520e844b45e808aaa3c848bccc15fc1481331f9d745e83002a52e51c14e0597"));
 
         // Note that of those which support the service bits prefix, most only support a subset of
         // possible options.
         // This is fine at runtime as we'll fall back to using them as a oneshot if they don't support the
         // service bits we want, but we should get them updated to support all service bits wanted by any
         // release ASAP to avoid it where possible.
-        vSeeds.emplace_back("ghostseeder.coldstake.io");
-        vSeeds.emplace_back("ghostseeder.ghostbyjohnmcafee.com");
-
-        //DevFund settings before gvr addition
+        vSeeds.emplace_back("45.81.224.174");
+        vSeeds.emplace_back("45.81.224.217");
+/*
+        //TODO akshaynexus Set this to falcon devfund
         vDevFundSettings.emplace_back(0,
-            DevFundSettings("GQtToV2LnHGhHy4LRVapLDMaukdDgzZZZV", 33.00, 360));//Approx each 12 hr payment to dev fund
-
-        //Dev fee new settings
-        vDevFundSettingsNew.emplace_back(0,
-            DevFundSettings("Ga7ECMeX8QUJTTvf9VUnYgTQUFxPChDqqU", 66.67, 5040));//Approx each week to GVR Funds addr
-
-        base58Prefixes[PUBKEY_ADDRESS]     = {0x26}; // G
+            DevFundSettings("4b6a64d7724c3bf0472cb2ad31a4919518db3db5", 15, 360));//Approx each 12 hr payment to dev fund
+*/
+        base58Prefixes[PUBKEY_ADDRESS]     = {0x23}; // F
         base58Prefixes[SCRIPT_ADDRESS]     = {0x61}; // g
         base58Prefixes[PUBKEY_ADDRESS_256] = {0x39};
         base58Prefixes[SCRIPT_ADDRESS_256] = {0x3d};
@@ -479,9 +536,6 @@ public:
         checkpointData = {
             {
                 { 0, genesis.GetHash()},
-                {1000,uint256S("0x99ccb3aa356f8bfad4a6f3052c272c21e8d087f7c625a8de3869741dcd1cbab0")},
-                {2000,uint256S("0xad2d20d55432a00ba0740da7d9376875e30558bb0a4af53049c9d33cea5cc66c")},
-                {2900,uint256S("0x2618955a4b082357450a6dae51c4900df004928e99613d55499144f34e813c74")},
             }
         };
 
@@ -561,50 +615,50 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000713ab7611e91606dd");
+        //TODO akshaynexus fill this value once testnet is up
+        consensus.nMinimumChainWork = uint256S("0x0");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x516d16948ce3324dd14e11c5ef3f6cb6dc2ecb8289f4bc150586d060cb83ee0c");
+        //TODO akshaynexus fill this value once testnet is up
+        consensus.defaultAssumeValid = uint256S("0x0");
 
         consensus.nMinRCTOutputDepth = 12;
-
+        //TODO akshaynexus change pchmessage start,bip44id and p2p port
         pchMessageStart[0] = 0xfb;
         pchMessageStart[1] = 0xc1;
         pchMessageStart[2] = 0xb4;
         pchMessageStart[3] = 0xdd;
         nDefaultPort = 51928;
-        nBIP44IDCurrent = 0x80000213;
-        nBIP44IDLegacy = nBIP44IDCurrent;
+        nBIP44ID = 0x80000213;
+
         nModifierInterval = 10 * 60;    // 10 minutes
         nStakeMinConfirmations = 225;   // 225 * 2 minutes
         nTargetSpacing = 120;           // 2 minutes
         nTargetTimespan = 24 * 60;      // 24 mins
         consensus.nZawyLwmaAveragingWindow = 45;
-        consensus.nLWMADiffUpgradeHeight = 49512;
-        nBlockReward = 6 * COIN;
-        consensus.nBlockRewardIncreaseHeight = 46864;// Set at 1k so that it doesnt get activated during regtest tests
-        nBlockRewardIncrease = 2;       // Times to increase blockreward
-        consensus.nGVRPayOnetimeAmt = 129000 * COIN;
-        consensus.nOneTimeGVRPayHeight = 46863; //Change this height if you want to test gvr one time pay
+        consensus.nLWMADiffUpgradeHeight = 49512;//TODO akshaynexus set this around 100 blocks after genesis
+        nBlockReward = 2000 * COIN;
         nBlockPerc = {100, 100, 95, 90, 86, 81, 77, 74, 70, 66, 63, 60, 57, 54, 51, 49, 46, 44, 42, 40, 38, 36, 34, 32, 31, 29, 28, 26, 25, 24, 23, 21, 20, 19, 18, 17, 17, 16, 15, 14, 14, 13, 12, 12, 11, 10, 10};
 
         nPruneAfterHeight = 1000;
         m_assumed_blockchain_size = 1;
         m_assumed_chain_state_size = 1;
+        /*
+        //TODO akshaynexus generate new genesis block for FNC testnet
+*/
+        // FindGenesis("testnet",consensus,genesis,GetTime(),0x1f00ffff,false);
 
-        genesis = CreateGenesisBlockTestNet(1590703697, 13656, 0x1f00ffff);
+        genesis = CreateGenesisBlockTestNet(1599239257, 5786, 520159231);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x00006c035c00b305d0ca5b6e1e167bb3ce71aecb5a9a8db7515458f0090ca3e8"));
-        assert(genesis.hashMerkleRoot == uint256S("0xa4ac827e3f40b55d69013e74f29fac184dbcd4b5e2f726c4273ffbc8c0779475"));
-        assert(genesis.hashWitnessMerkleRoot == uint256S("0x08917a20ac55e83d7d860b7daf0cb3c25114d00338deab02f77af9eea20c06e1"));
-
+        assert(consensus.hashGenesisBlock == uint256S("0000a51dc99886d17c58d301af59871317e796250caf41b5e0e7b9b5726bd7be"));
+        assert(genesis.hashMerkleRoot == uint256S("6b8d7961d8c93a9acd56ba9b1311d983c484dda8fdedd26fed0d1006b64b8104"));
+        assert(genesis.hashWitnessMerkleRoot == uint256S("d1545c5df85cd0131bfbc65b9dc045f61a316bec05a82e9a242dc708155aa8be"));
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.emplace_back("ghost-testnetdns.mineit.io");
+        vSeeds.emplace_back("falcon-testnetdns.mineit.io");
 
-        vDevFundSettings.push_back(std::make_pair(0, DevFundSettings("XHjYLwbVGbhr96HZqhT7j8crjEZJiGdZ1B", 33.00, 1440)));
-        vDevFundSettingsNew.push_back(std::make_pair(0, DevFundSettings("XHjYLwbVGbhr96HZqhT7j8crjEZJiGdZ1B", 66.67, 100)));
+        vDevFundSettings.push_back(std::make_pair(0, DevFundSettings("XHjYLwbVGbhr96HZqhT7j8crjEZJiGdZ1B", 15.00, 1440)));
 
         base58Prefixes[PUBKEY_ADDRESS]     = {0x4B}; // X
         base58Prefixes[SCRIPT_ADDRESS]     = {0x89}; // x
@@ -621,7 +675,7 @@ public:
 
         {
             std::map<int, std::string> bech32PrefixesMap{
-                {PUBKEY_ADDRESS, "tghost"},
+                {PUBKEY_ADDRESS, "tfalcon"},
                 {SCRIPT_ADDRESS,"tw"},
                 {PUBKEY_ADDRESS_256,"tl"},
                 {SCRIPT_ADDRESS_256,"tj"},
@@ -720,8 +774,7 @@ public:
         pchMessageStart[2] = 0x06;
         pchMessageStart[3] = 0x0c;
         nDefaultPort = 11928;
-        nBIP44IDCurrent = 0x80000001;
-        nBIP44IDLegacy = nBIP44IDCurrent;
+        nBIP44ID = 0x80000001;
 
 
         nModifierInterval = 2 * 60;     // 2 minutes
@@ -730,32 +783,26 @@ public:
         nTargetTimespan = 16 * 60;      // 16 mins
         nStakeTimestampMask = 0;
         nBlockReward = 6 * COIN;
-        consensus.nBlockRewardIncreaseHeight = 1000;// Set at 1k so that it doesnt get activated during regtest tests
-        nBlockRewardIncrease = 2;       // Times to increase blockreward
-        consensus.nGVRPayOnetimeAmt = 129000 * COIN;
         consensus.nLWMADiffUpgradeHeight = INT_MAX;//TODO akshaynexus set regtest height
         consensus.nZawyLwmaAveragingWindow = 45;
-        consensus.nOneTimeGVRPayHeight = INT_MAX; //Change this height if you want to test gvr one time pay
         nBlockPerc = {100, 100, 95, 90, 86, 81, 77, 74, 70, 66, 63, 60, 57, 54, 51, 49, 46, 44, 42, 40, 38, 36, 34, 32, 31, 29, 28, 26, 25, 24, 23, 21, 20, 19, 18, 17, 17, 16, 15, 14, 14, 13, 12, 12, 11, 10, 10};
         //DevFund settings before gvr addition
         //Commented out regtest,uncomment to test gvr one time pay
             //     vDevFundSettings.emplace_back(0,
             // DevFundSettings("pZT7cC5oPiadxPkM6u2WDBrRN19oG1ZsNF", 33.00, 2));//Approx each 12 hr payment to dev fund
-            //     vDevFundSettingsNew.emplace_back(0,
-            // DevFundSettings("pZT7cC5oPiadxPkM6u2WDBrRN19oG1ZsNF", 66.67, 1));
 
         nPruneAfterHeight = 1000;
         m_assumed_blockchain_size = 0;
         m_assumed_chain_state_size = 0;
 
         UpdateActivationParametersFromArgs(args);
+        // FindGenesis("regtest",consensus,genesis,GetTime(),545259519,true);
 
-        genesis = CreateGenesisBlockRegTest(1543578342, 1, 0x207fffff);
+        genesis = CreateGenesisBlockRegTest(1599239257, 1, 545259519);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x0df42459b6ced4f7c9ec8c7d4c4efe1a9ca89441f17e8c2485a80c247d0544b2"));
-        assert(genesis.hashMerkleRoot == uint256S("0xf89653c7208af2c76a3070d436229fb782acbd065bd5810307995b9982423ce7"));
-        assert(genesis.hashWitnessMerkleRoot == uint256S("0x36b66a1aff91f34ab794da710d007777ef5e612a320e1979ac96e5f292399639"));
-
+        assert(consensus.hashGenesisBlock == uint256S("45c974a211459fd62168ac95bb3acb2b3e4415e66a1145a80be1ce11ab0df20b"));
+        assert(genesis.hashMerkleRoot == uint256S("58ab4ddab41e00daf145b8e79a056438ce082276e41bad2b8eebc553dd7258e2"));
+        assert(genesis.hashWitnessMerkleRoot == uint256S("fda61aaa709f4ae34f893e5b30e81e308e90a2479bbb00c00fb6e6dcb0a9e292"));
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();      //!< Regtest mode doesn't have any DNS seeds.
@@ -766,7 +813,7 @@ public:
 
         checkpointData = {
             {
-                {0, uint256S("0x0df42459b6ced4f7c9ec8c7d4c4efe1a9ca89441f17e8c2485a80c247d0544b2")},
+                {0, consensus.hashGenesisBlock},
             }
         };
 
@@ -783,7 +830,7 @@ public:
         base58Prefixes[EXT_PUBLIC_KEY_BTC] = {0x04, 0x35, 0x87, 0xCF}; // tpub
         base58Prefixes[EXT_SECRET_KEY_BTC] = {0x04, 0x35, 0x83, 0x94}; // tprv
 
-        bech32Prefixes[PUBKEY_ADDRESS].assign       ("rghost",(const char*)"rghost"+6);
+        bech32Prefixes[PUBKEY_ADDRESS].assign       ("rfalcon",(const char*)"rfalcon"+6);
         bech32Prefixes[SCRIPT_ADDRESS].assign       ("tpr",(const char*)"tpr"+3);
         bech32Prefixes[PUBKEY_ADDRESS_256].assign   ("tpl",(const char*)"tpl"+3);
         bech32Prefixes[SCRIPT_ADDRESS_256].assign   ("tpj",(const char*)"tpj"+3);

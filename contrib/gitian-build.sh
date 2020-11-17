@@ -18,7 +18,7 @@ osx=true
 SIGNER=
 VERSION=
 commit=false
-url=https://github.com/ghost/ghost-core
+url=https://github.com/falcon/falcon-core
 proc=2
 mem=3000
 lxc=true
@@ -41,7 +41,7 @@ version         Version number, commit, or branch to build. If building a commit
 
 Options:
 -c|--commit     Indicate that the version argument is for a commit or branch
--u|--url        Specify the URL of the repository. Default is https://github.com/ghost/ghost-core
+-u|--url        Specify the URL of the repository. Default is https://github.com/falcon/falcon-core
 -v|--verify     Verify the Gitian build
 -b|--build      Do a Gitian build
 -s|--sign       Make signed binaries for Windows and Mac OSX
@@ -252,7 +252,7 @@ if [[ $setup = true ]]
 then
     sudo apt-get install ruby apache2 git apt-cacher-ng python-vm-builder qemu-kvm qemu-utils
     git clone https://github.com/particl/gitian.sigs
-    git clone https://github.com/particl/ghost-detached-sigs
+    git clone https://github.com/particl/falcon-detached-sigs
     git clone https://github.com/devrandom/gitian-builder.git
     pushd ./gitian-builder
     if [[ -n "$USE_LXC" ]]
@@ -270,7 +270,7 @@ then
 fi
 
 # Set up build
-pushd ./ghost-core
+pushd ./falcon-core
 git fetch --tags
 git checkout ${COMMIT}
 popd
@@ -279,7 +279,7 @@ popd
 if [[ $build = true ]]
 then
     # Make output folder
-    mkdir -p ./ghost-binaries/${VERSION}
+    mkdir -p ./falcon-binaries/${VERSION}
 
     # Build Dependencies
     echo ""
@@ -289,7 +289,7 @@ then
     mkdir -p inputs
     wget -N -P inputs $osslPatchUrl
     wget -N -P inputs $osslTarUrl
-    make -C ../ghost-core/depends download SOURCES_PATH=$(pwd)/cache/common
+    make -C ../falcon-core/depends download SOURCES_PATH=$(pwd)/cache/common
 
     # Linux
     if [[ $linux = true ]]
@@ -297,9 +297,9 @@ then
         echo ""
         echo "Compiling ${VERSION} Linux"
         echo ""
-        ./bin/gbuild --allow-sudo -j ${proc} -m ${mem} --commit ghost-core=${COMMIT} --url ghost-core=${url} ../ghost-core/contrib/gitian-descriptors/gitian-linux.yml
-        ./bin/gsign -p "$signProg" --signer "$SIGNER" --release ${VERSION}-linux --destination ../gitian.sigs/ ../ghost-core/contrib/gitian-descriptors/gitian-linux.yml
-        mv build/out/ghost-*.tar.gz build/out/src/ghost-*.tar.gz ../ghost-binaries/${VERSION}
+        ./bin/gbuild --allow-sudo -j ${proc} -m ${mem} --commit falcon-core=${COMMIT} --url falcon-core=${url} ../falcon-core/contrib/gitian-descriptors/gitian-linux.yml
+        ./bin/gsign -p "$signProg" --signer "$SIGNER" --release ${VERSION}-linux --destination ../gitian.sigs/ ../falcon-core/contrib/gitian-descriptors/gitian-linux.yml
+        mv build/out/falcon-*.tar.gz build/out/src/falcon-*.tar.gz ../falcon-binaries/${VERSION}
     fi
     # Windows
     if [[ $windows = true ]]
@@ -307,10 +307,10 @@ then
         echo ""
         echo "Compiling ${VERSION} Windows"
         echo ""
-        ./bin/gbuild -j ${proc} -m ${mem} --commit ghost-core=${COMMIT} --url ghost-core=${url} ../ghost-core/contrib/gitian-descriptors/gitian-win.yml
-        ./bin/gsign -p "$signProg" --signer "$SIGNER" --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../ghost-core/contrib/gitian-descriptors/gitian-win.yml
-        mv build/out/ghost-*-win-unsigned.tar.gz inputs/ghost-win-unsigned.tar.gz
-        mv build/out/ghost-*.zip build/out/ghost-*.exe ../ghost-binaries/${VERSION}
+        ./bin/gbuild -j ${proc} -m ${mem} --commit falcon-core=${COMMIT} --url falcon-core=${url} ../falcon-core/contrib/gitian-descriptors/gitian-win.yml
+        ./bin/gsign -p "$signProg" --signer "$SIGNER" --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../falcon-core/contrib/gitian-descriptors/gitian-win.yml
+        mv build/out/falcon-*-win-unsigned.tar.gz inputs/falcon-win-unsigned.tar.gz
+        mv build/out/falcon-*.zip build/out/falcon-*.exe ../falcon-binaries/${VERSION}
     fi
     # Mac OSX
     if [[ $osx = true ]]
@@ -318,10 +318,10 @@ then
         echo ""
         echo "Compiling ${VERSION} Mac OSX"
         echo ""
-        ./bin/gbuild -j ${proc} -m ${mem} --commit ghost-core=${COMMIT} --url ghost-core=${url} ../ghost-core/contrib/gitian-descriptors/gitian-osx.yml
-        ./bin/gsign -p "$signProg" --signer "$SIGNER" --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../ghost-core/contrib/gitian-descriptors/gitian-osx.yml
-        mv build/out/ghost-*-osx-unsigned.tar.gz inputs/ghost-osx-unsigned.tar.gz
-        mv build/out/ghost-*.tar.gz build/out/ghost-*.dmg ../ghost-binaries/${VERSION}
+        ./bin/gbuild -j ${proc} -m ${mem} --commit falcon-core=${COMMIT} --url falcon-core=${url} ../falcon-core/contrib/gitian-descriptors/gitian-osx.yml
+        ./bin/gsign -p "$signProg" --signer "$SIGNER" --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../falcon-core/contrib/gitian-descriptors/gitian-osx.yml
+        mv build/out/falcon-*-osx-unsigned.tar.gz inputs/falcon-osx-unsigned.tar.gz
+        mv build/out/falcon-*.tar.gz build/out/falcon-*.dmg ../falcon-binaries/${VERSION}
     fi
     popd
 
@@ -348,27 +348,27 @@ then
     echo ""
     echo "Verifying v${VERSION} Linux"
     echo ""
-    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../ghost-core/contrib/gitian-descriptors/gitian-linux.yml
+    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../falcon-core/contrib/gitian-descriptors/gitian-linux.yml
     # Windows
     echo ""
     echo "Verifying v${VERSION} Windows"
     echo ""
-    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../ghost-core/contrib/gitian-descriptors/gitian-win.yml
+    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../falcon-core/contrib/gitian-descriptors/gitian-win.yml
     # Mac OSX
     echo ""
     echo "Verifying v${VERSION} Mac OSX"
     echo ""
-    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../ghost-core/contrib/gitian-descriptors/gitian-osx.yml
+    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../falcon-core/contrib/gitian-descriptors/gitian-osx.yml
     # Signed Windows
     echo ""
     echo "Verifying v${VERSION} Signed Windows"
     echo ""
-    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../ghost-core/contrib/gitian-descriptors/gitian-osx-signer.yml
+    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../falcon-core/contrib/gitian-descriptors/gitian-osx-signer.yml
     # Signed Mac OSX
     echo ""
     echo "Verifying v${VERSION} Signed Mac OSX"
     echo ""
-    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../ghost-core/contrib/gitian-descriptors/gitian-osx-signer.yml
+    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../falcon-core/contrib/gitian-descriptors/gitian-osx-signer.yml
     popd
 fi
 
@@ -382,10 +382,10 @@ then
         echo ""
         echo "Signing ${VERSION} Windows"
         echo ""
-        ./bin/gbuild --skip-image --upgrade --commit signature=${COMMIT} ../ghost-core/contrib/gitian-descriptors/gitian-win-signer.yml
-        ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../ghost-core/contrib/gitian-descriptors/gitian-win-signer.yml
-        mv build/out/ghost-*win64-setup.exe ../ghost-binaries/${VERSION}
-        mv build/out/ghost-*win32-setup.exe ../ghost-binaries/${VERSION}
+        ./bin/gbuild --skip-image --upgrade --commit signature=${COMMIT} ../falcon-core/contrib/gitian-descriptors/gitian-win-signer.yml
+        ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../falcon-core/contrib/gitian-descriptors/gitian-win-signer.yml
+        mv build/out/falcon-*win64-setup.exe ../falcon-binaries/${VERSION}
+        mv build/out/falcon-*win32-setup.exe ../falcon-binaries/${VERSION}
     fi
     # Sign Mac OSX
     if [[ $osx = true ]]
@@ -393,9 +393,9 @@ then
         echo ""
         echo "Signing ${VERSION} Mac OSX"
         echo ""
-        ./bin/gbuild --skip-image --upgrade --commit signature=${COMMIT} ../ghost-core/contrib/gitian-descriptors/gitian-osx-signer.yml
-        ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../ghost-core/contrib/gitian-descriptors/gitian-osx-signer.yml
-        mv build/out/ghost-osx-signed.dmg ../ghost-binaries/${VERSION}/ghost-${VERSION}-osx.dmg
+        ./bin/gbuild --skip-image --upgrade --commit signature=${COMMIT} ../falcon-core/contrib/gitian-descriptors/gitian-osx-signer.yml
+        ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../falcon-core/contrib/gitian-descriptors/gitian-osx-signer.yml
+        mv build/out/falcon-osx-signed.dmg ../falcon-binaries/${VERSION}/falcon-${VERSION}-osx.dmg
     fi
     popd
 

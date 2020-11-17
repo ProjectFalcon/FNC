@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2020 The Bitcoin Core developers
-// Copyright (c) 2020 The Ghost Core developers
+// Copyright (c) 2020 The Falcon Core developers
 
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -64,7 +64,7 @@
 #include <boost/thread.hpp>
 
 #if defined(NDEBUG)
-# error "Ghost cannot be compiled without assertions."
+# error "Falcon cannot be compiled without assertions."
 #endif
 
 #define MICRO 0.000001
@@ -458,7 +458,7 @@ static bool CheckInputsFromMempoolAndCache(const CTransaction& tx, CValidationSt
         if (txFrom) {
             assert(txFrom->GetHash() == txin.prevout.hash);
             assert(txFrom->GetNumVOuts() > txin.prevout.n);
-            if (txFrom->IsGhostVersion()) {
+            if (txFrom->IsFalconVersion()) {
                 assert(coin.Matches(txFrom->vpout[txin.prevout.n].get()));
             } else {
                 assert(txFrom->vout[txin.prevout.n] == coin.out);
@@ -2658,7 +2658,7 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
                                  REJECT_INVALID, "bad-txns-nonfinal");
             }
 
-            if (tx.IsGhostVersion()
+            if (tx.IsFalconVersion()
                 && (fAddressIndex || fSpentIndex)) {
                 // Update spent inputs for insight
                 for (size_t j = 0; j < tx.vin.size(); j++) {
@@ -2952,27 +2952,6 @@ bool CChainState::ConnectBlock(const CBlock& block, CValidationState& state, CBl
                 } else {
                     // Ensure cfwd data output is correct and nStakeReward is <= nHolderPart
                     // cfwd must == nDevBfwd + (nCalculatedStakeReward - nStakeReward) // Allowing users to set a higher split
-                    //One time gvrpay check
-                    if(nStakeReward > nMaxHolderPart && pindex->nHeight == consensus.nOneTimeGVRPayHeight){
-                        //Make sure stakeout pays the one time pay
-                        if(txCoinstake->vpout.size() > 1){
-                            CScript devFundScriptPubKey = GetScriptForDestination(DecodeDestination(pDevFundSettings->sDevFundAddresses));
-                            const CTxOutStandard *outputDF = txCoinstake->vpout[1]->GetStandardOutput();
-                            //Check output script
-                            if (outputDF->scriptPubKey != devFundScriptPubKey) {
-                                return state.Invalid(ValidationInvalidReason::CONSENSUS, error("%s: Bad GVR Pay output script.", __func__), REJECT_INVALID, "bad-cs");
-                            }
-                            //Check payout
-                            if(outputDF->nValue != consensus.nGVRPayOnetimeAmt){
-                                return state.Invalid(ValidationInvalidReason::CONSENSUS, error("%s: Bad gvrpay-reward (actual=%d vs minfundpart=%d)", __func__, outputDF->nValue, consensus.nGVRPayOnetimeAmt), REJECT_INVALID, "bad-gvronetime-pay");
-                            }
-                            //Now if this passes set stakereward to actual reward so that we can check coinstake
-                            nStakeReward -= consensus.nGVRPayOnetimeAmt;
-                        }
-                        else{
-                            return state.Invalid(ValidationInvalidReason::CONSENSUS, error("%s: No gvrpay output found", __func__), REJECT_INVALID, "bad-gvronetime-pay");
-                        }
-                    }
                     if (nStakeReward < 0 || nStakeReward > nMaxHolderPart) {
                         return state.Invalid(ValidationInvalidReason::CONSENSUS, error("%s: Bad stake-reward (actual=%d vs maxholderpart=%d)", __func__, nStakeReward, nMaxHolderPart), REJECT_INVALID, "bad-cs-amount");
                     }
@@ -3318,7 +3297,7 @@ void UpdateTip(const CBlockIndex* pindexNew, const CChainParams& chainParams)
         {
             if (fParticlMode)
             {
-                if (pindex->nVersion > GHOST_BLOCK_VERSION)
+                if (pindex->nVersion > FALCON_BLOCK_VERSION)
                     ++nUpgraded;
             } else
             {
@@ -4214,7 +4193,7 @@ static bool FindUndoPos(CValidationState &state, int nFile, FlatFilePos &pos, un
 static bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, const Consensus::Params& consensusParams, bool fCheckPOW = true)
 {
     if (fParticlMode
-        && !block.IsGhostVersion())
+        && !block.IsFalconVersion())
         return state.Invalid(ValidationInvalidReason::CONSENSUS, false, REJECT_INVALID, "block-version", "bad block version");
 
     // Check timestamp

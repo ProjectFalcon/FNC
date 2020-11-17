@@ -66,12 +66,12 @@
         <translation>Адреса получения</translation>
     </message>
     <message>
-        <source>These are your Ghost addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Это ваши Ghost-адреса для отправки платежей. Всегда проверяйте количество и адрес получателя перед отправкой перевода.</translation>
+        <source>These are your Falcon addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Это ваши Falcon-адреса для отправки платежей. Всегда проверяйте количество и адрес получателя перед отправкой перевода.</translation>
     </message>
     <message>
-        <source>These are your Ghost addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
-        <translation>Это ваши Ghost-адреса для приёма платежей. Используйте кнопку «Создать новый адрес для получения» на вкладке Получить, чтобы создать новые адреса.</translation>
+        <source>These are your Falcon addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
+        <translation>Это ваши Falcon-адреса для приёма платежей. Используйте кнопку «Создать новый адрес для получения» на вкладке Получить, чтобы создать новые адреса.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -168,8 +168,8 @@
         <translation>Подтвердить шифрование кошелька</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR GHOST&lt;/b&gt;!</source>
-        <translation>Предупреждение: Если вы зашифруете кошелёк и потеряете пароль, вы &lt;b&gt;ПОТЕРЯЕТЕ ВСЕ ВАШИ GhostЫ&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR FNC&lt;/b&gt;!</source>
+        <translation>Предупреждение: Если вы зашифруете кошелёк и потеряете пароль, вы &lt;b&gt;ПОТЕРЯЕТЕ ВСЕ ВАШИ FalconЫ&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -188,8 +188,8 @@
         <translation>Введите старый и новый пароль для кошелька.</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your ghost from being stolen by malware infecting your computer.</source>
-        <translation>Помните, что шифрование вашего кошелька не может полностью защитить ваши Ghostы от кражи вредоносными программами, заражающими ваш компьютер.</translation>
+        <source>Remember that encrypting your wallet cannot fully protect your falcon from being stolen by malware infecting your computer.</source>
+        <translation>Помните, что шифрование вашего кошелька не может полностью защитить ваши Falconы от кражи вредоносными программами, заражающими ваш компьютер.</translation>
     </message>
     <message>
         <source>Wallet to be encrypted</source>
@@ -362,8 +362,8 @@
         <translation>Прокси &lt;b&gt;включен&lt;/b&gt;: %1</translation>
     </message>
     <message>
-        <source>Send coins to a Ghost address</source>
-        <translation>Послать средства на Ghost-адрес</translation>
+        <source>Send coins to a Falcon address</source>
+        <translation>Послать средства на Falcon-адрес</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -406,12 +406,12 @@
         <translation>Зашифровать приватные ключи, принадлежащие вашему кошельку</translation>
     </message>
     <message>
-        <source>Sign messages with your Ghost addresses to prove you own them</source>
-        <translation>Подписывайте сообщения Ghost-адресами чтобы подтвердить что это написали именно Вы</translation>
+        <source>Sign messages with your Falcon addresses to prove you own them</source>
+        <translation>Подписывайте сообщения Falcon-адресами чтобы подтвердить что это написали именно Вы</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Ghost addresses</source>
-        <translation>Проверяйте сообщения чтобы убедиться что они подписаны конкретными Ghost-адресами</translation>
+        <source>Verify messages to ensure they were signed with specified Falcon addresses</source>
+        <translation>Проверяйте сообщения чтобы убедиться что они подписаны конкретными Falcon-адресами</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -430,7 +430,7 @@
         <translation>Панель вкладок</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and ghost: URIs)</source>
+        <source>Request payments (generates QR codes and falcon: URIs)</source>
         <translation>Запросить платеж</translation>
     </message>
     <message>
@@ -442,16 +442,16 @@
         <translation>Показать список использованных адресов и меток получателей</translation>
     </message>
     <message>
-        <source>Open a ghost: URI or payment request</source>
-        <translation>Открыть Ghost: URI или запрос платежа</translation>
+        <source>Open a falcon: URI or payment request</source>
+        <translation>Открыть Falcon: URI или запрос платежа</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
         <translation>Опции командной строки</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Ghost network</source>
-        <translation><numerusform>%n активное подключение к сети Ghost</numerusform><numerusform>%n активных подключения к сети Ghost</numerusform><numerusform>%n активных подключений к сети Ghost</numerusform><numerusform>%n активных подключений к сети Ghost</numerusform></translation>
+        <source>%n active connection(s) to Falcon network</source>
+        <translation><numerusform>%n активное подключение к сети Falcon</numerusform><numerusform>%n активных подключения к сети Falcon</numerusform><numerusform>%n активных подключений к сети Falcon</numerusform><numerusform>%n активных подключений к сети Falcon</numerusform></translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -518,7 +518,7 @@
         <translation>Закрыть кошелёк</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible Ghost command-line options</source>
+        <source>Show the %1 help message to get a list with possible Falcon command-line options</source>
         <translation>Показать помощь по %1, чтобы получить список доступных параметров командной строки</translation>
     </message>
     <message>
@@ -630,8 +630,8 @@
         <translation>Кошелёк &lt;b&gt;зашифрован&lt;/b&gt; и сейчас &lt;b&gt;заблокирован&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>A fatal error occurred. Ghost can no longer continue safely and will quit.</source>
-        <translation>Произошла критическая ошибка. Ghost больше не может продолжать безопасную работу и будет закрыт.</translation>
+        <source>A fatal error occurred. Falcon can no longer continue safely and will quit.</source>
+        <translation>Произошла критическая ошибка. Falcon больше не может продолжать безопасную работу и будет закрыт.</translation>
     </message>
 </context>
 <context>
@@ -874,8 +874,8 @@
         <translation>Изменить адрес отправки</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Ghost address.</source>
-        <translation>Введенный адрес "%1" не является действительным Ghost-адресом.</translation>
+        <source>The entered address "%1" is not a valid Falcon address.</source>
+        <translation>Введенный адрес "%1" не является действительным Falcon-адресом.</translation>
     </message>
     <message>
         <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
@@ -975,8 +975,8 @@
         <translation>Использовать пользовательскую директорию данных</translation>
     </message>
     <message>
-        <source>Ghost</source>
-        <translation>Ghost Core</translation>
+        <source>Falcon</source>
+        <translation>Falcon Core</translation>
     </message>
     <message>
         <source>Discard blocks after verification, except most recent %1 GB (prune)</source>
@@ -991,7 +991,7 @@
         <translation>Приблизительно %1 ГБ данных будет сохранено в эту директорию.</translation>
     </message>
     <message>
-        <source>%1 will download and store a copy of the Ghost block chain.</source>
+        <source>%1 will download and store a copy of the Falcon block chain.</source>
         <translation>%1 скачает и сохранит копию цепи блоков.</translation>
     </message>
     <message>
@@ -1022,11 +1022,11 @@
         <translation>Форма</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the ghost network, as detailed below.</source>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the falcon network, as detailed below.</source>
         <translation>Последние транзакции пока могут быть не видны, поэтому вы можете видеть некорректный баланс ваших кошельков. Отображаемая информация будет верна после завершения синхронизации. Прогресс синхронизации вы можете видеть ниже.</translation>
     </message>
     <message>
-        <source>Attempting to spend ghost that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+        <source>Attempting to spend falcon that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
         <translation>Попытка потратить средства, использованные в транзакциях, которые ещё не синхронизированы, будет отклонена сетью.</translation>
     </message>
     <message>
@@ -1227,8 +1227,8 @@
         <translation>&amp;Тратить неподтвержденную сдачу</translation>
     </message>
     <message>
-        <source>Automatically open the Ghost client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Автоматически открыть порт для Ghost-клиента на маршрутизаторе. Работает только если Ваш маршрутизатор поддерживает UPnP, и данная функция включена.</translation>
+        <source>Automatically open the Falcon client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Автоматически открыть порт для Falcon-клиента на маршрутизаторе. Работает только если Ваш маршрутизатор поддерживает UPnP, и данная функция включена.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -1243,8 +1243,8 @@
         <translation>Разрешить входящие подключения</translation>
     </message>
     <message>
-        <source>Connect to the Ghost network through a SOCKS5 proxy.</source>
-        <translation>Подключится к сети Ghost через прокси SOCKS5.</translation>
+        <source>Connect to the Falcon network through a SOCKS5 proxy.</source>
+        <translation>Подключится к сети Falcon через прокси SOCKS5.</translation>
     </message>
     <message>
         <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
@@ -1279,8 +1279,8 @@
         <translation>Tor</translation>
     </message>
     <message>
-        <source>Connect to the Ghost network through a separate SOCKS5 proxy for Tor hidden services.</source>
-        <translation>Подключатся к Ghost-сети через отдельный прокси SOCKS5 для скрытых сервисов Tor.</translation>
+        <source>Connect to the Falcon network through a separate SOCKS5 proxy for Tor hidden services.</source>
+        <translation>Подключатся к Falcon-сети через отдельный прокси SOCKS5 для скрытых сервисов Tor.</translation>
     </message>
     <message>
         <source>&amp;Window</source>
@@ -1390,8 +1390,8 @@
         <translation>Форма</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Ghost network after a connection is established, but this process has not completed yet.</source>
-        <translation>Отображаемая информация может быть устаревшей. Ваш кошелёк автоматически синхронизируется с сетью Ghost после подключения, но этот процесс пока не завершён.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Falcon network after a connection is established, but this process has not completed yet.</source>
+        <translation>Отображаемая информация может быть устаревшей. Ваш кошелёк автоматически синхронизируется с сетью Falcon после подключения, но этот процесс пока не завершён.</translation>
     </message>
     <message>
         <source>Watch-only:</source>
@@ -1465,16 +1465,16 @@
         <translation>Ошибка запроса платежа</translation>
     </message>
     <message>
-        <source>Cannot start ghost: click-to-pay handler</source>
-        <translation>Не удаётся запустить ghost: обработчик click-to-pay</translation>
+        <source>Cannot start falcon: click-to-pay handler</source>
+        <translation>Не удаётся запустить falcon: обработчик click-to-pay</translation>
     </message>
     <message>
         <source>URI handling</source>
         <translation>Обработка идентификатора</translation>
     </message>
     <message>
-        <source>'ghost://' is not a valid URI. Use 'ghost:' instead.</source>
-        <translation>'ghost://' не верный URI. Используйте 'ghost:' вместо этого.</translation>
+        <source>'falcon://' is not a valid URI. Use 'falcon:' instead.</source>
+        <translation>'falcon://' не верный URI. Используйте 'falcon:' вместо этого.</translation>
     </message>
     <message>
         <source>You are using a BIP70 URL which will be unsupported in the future.</source>
@@ -1501,8 +1501,8 @@
         <translation>Неверный адрес %1</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid Ghost address or malformed URI parameters.</source>
-        <translation>Не удалось обработать идентификатор! Это может быть связано с неверным Ghost-адресом или неправильными параметрами идентификатора.</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid Falcon address or malformed URI parameters.</source>
+        <translation>Не удалось обработать идентификатор! Это может быть связано с неверным Falcon-адресом или неправильными параметрами идентификатора.</translation>
     </message>
     <message>
         <source>Payment request file handling</source>
@@ -1603,8 +1603,8 @@
         <translation>Количество</translation>
     </message>
     <message>
-        <source>Enter a Ghost address (e.g. %1)</source>
-        <translation>Введите ghost-адрес (напр. %1)</translation>
+        <source>Enter a Falcon address (e.g. %1)</source>
+        <translation>Введите falcon-адрес (напр. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -2064,8 +2064,8 @@
         <translation>&amp;Сообщение:</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Ghost network.</source>
-        <translation>Необязательное сообщение для запроса платежа, которое будет показано при открытии запроса. Заметьте: сообщение не будет отправлено вместе с платежом через сеть Ghost.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Falcon network.</source>
+        <translation>Необязательное сообщение для запроса платежа, которое будет показано при открытии запроса. Заметьте: сообщение не будет отправлено вместе с платежом через сеть Falcon.</translation>
     </message>
     <message>
         <source>An optional label to associate with the new receiving address.</source>
@@ -2337,8 +2337,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Пыль:</translation>
     </message>
     <message>
-        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for ghost transactions than the network can process.</source>
-        <translation>Когда объем транзакций меньше, чем пространство в блоках, майнеры, а также ретранслирующие узлы могут устанавливать минимальную плату. Платить только эту минимальную комиссию - это хорошо, но имейте в виду, что это может привести к тому, что транзакция никогда не будет подтверждена, если будет больше Ghost-транзакций, чем может обработать сеть.</translation>
+        <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for falcon transactions than the network can process.</source>
+        <translation>Когда объем транзакций меньше, чем пространство в блоках, майнеры, а также ретранслирующие узлы могут устанавливать минимальную плату. Платить только эту минимальную комиссию - это хорошо, но имейте в виду, что это может привести к тому, что транзакция никогда не будет подтверждена, если будет больше Falcon-транзакций, чем может обработать сеть.</translation>
     </message>
     <message>
         <source>A too low fee might result in a never confirming transaction (read the tooltip)</source>
@@ -2493,8 +2493,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation><numerusform>Предполагаемое подтверждение в течение %n блока.</numerusform><numerusform>Предполагаемое подтверждение в течение %n блоков.</numerusform><numerusform>Предполагаемое подтверждение в течение %n блоков.</numerusform><numerusform>Предполагаемое подтверждение в течение %n блоков.</numerusform></translation>
     </message>
     <message>
-        <source>Warning: Invalid Ghost address</source>
-        <translation>Предупреждение: Неверный Ghost-адрес</translation>
+        <source>Warning: Invalid Falcon address</source>
+        <translation>Предупреждение: Неверный Falcon-адрес</translation>
     </message>
     <message>
         <source>Warning: Unknown change address</source>
@@ -2536,8 +2536,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Это нормальный платёж.</translation>
     </message>
     <message>
-        <source>The Ghost address to send the payment to</source>
-        <translation>Ghost-адрес, на который отправить платёж</translation>
+        <source>The Falcon address to send the payment to</source>
+        <translation>Falcon-адрес, на который отправить платёж</translation>
     </message>
     <message>
         <source>Alt+A</source>
@@ -2556,8 +2556,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Удалить эту запись</translation>
     </message>
     <message>
-        <source>The fee will be deducted from the amount being sent. The recipient will receive less ghost than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
-        <translation>С отправляемой суммы будет удержана комиссия. Получателю придёт меньше Ghostов, чем вы вводите в поле количества. Если выбрано несколько получателей, комиссия распределяется поровну.</translation>
+        <source>The fee will be deducted from the amount being sent. The recipient will receive less falcon than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+        <translation>С отправляемой суммы будет удержана комиссия. Получателю придёт меньше Falconов, чем вы вводите в поле количества. Если выбрано несколько получателей, комиссия распределяется поровну.</translation>
     </message>
     <message>
         <source>S&amp;ubtract fee from amount</source>
@@ -2584,8 +2584,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Введите метку для этого адреса, чтобы добавить его в список используемых адресов</translation>
     </message>
     <message>
-        <source>A message that was attached to the ghost: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Ghost network.</source>
-        <translation>Сообщение прикрепленное к ghost идентификатору будет сохранено вместе с транзакцией для вашего сведения. Заметьте: Сообщение не будет отправлено через сеть Ghost.</translation>
+        <source>A message that was attached to the falcon: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Falcon network.</source>
+        <translation>Сообщение прикрепленное к falcon идентификатору будет сохранено вместе с транзакцией для вашего сведения. Заметьте: Сообщение не будет отправлено через сеть Falcon.</translation>
     </message>
     <message>
         <source>Pay To:</source>
@@ -2629,12 +2629,12 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>&amp;Подписать Сообщение</translation>
     </message>
     <message>
-        <source>You can sign messages/agreements with your addresses to prove you can receive ghost sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
-        <translation>Вы можете подписывать сообщения/соглашения своими адресами, чтобы доказать свою возможность получать Ghostы на них. Будьте осторожны, не подписывайте что-то неопределённое или случайное, так как фишинговые атаки могут обманным путём заставить вас подписать нежелательные сообщения. Подписывайте только те сообщения, с которыми вы согласны вплоть до мелочей.</translation>
+        <source>You can sign messages/agreements with your addresses to prove you can receive falcon sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <translation>Вы можете подписывать сообщения/соглашения своими адресами, чтобы доказать свою возможность получать Falconы на них. Будьте осторожны, не подписывайте что-то неопределённое или случайное, так как фишинговые атаки могут обманным путём заставить вас подписать нежелательные сообщения. Подписывайте только те сообщения, с которыми вы согласны вплоть до мелочей.</translation>
     </message>
     <message>
-        <source>The Ghost address to sign the message with</source>
-        <translation>Ghost-адрес, которым подписать сообщение</translation>
+        <source>The Falcon address to sign the message with</source>
+        <translation>Falcon-адрес, которым подписать сообщение</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2665,8 +2665,8 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Скопировать текущую подпись в буфер обмена системы</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Ghost address</source>
-        <translation>Подписать сообщение, чтобы доказать владение Ghost-адресом</translation>
+        <source>Sign the message to prove you own this Falcon address</source>
+        <translation>Подписать сообщение, чтобы доказать владение Falcon-адресом</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -2689,12 +2689,12 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 satoshis p
         <translation>Введите ниже адрес получателя, сообщение (убедитесь, что переводы строк, пробелы, табы и т.п. в точности скопированы) и подпись, чтобы проверить сообщение. Убедитесь, что не скопировали лишнего в подпись, по сравнению с самим подписываемым сообщением, чтобы не стать жертвой атаки "man-in-the-middle". Заметьте, что эта операция удостоверяет лишь авторство подписавшего, но не может удостоверить отправителя транзакции.</translation>
     </message>
     <message>
-        <source>The Ghost address the message was signed with</source>
-        <translation>Ghost-адрес, которым было подписано сообщение</translation>
+        <source>The Falcon address the message was signed with</source>
+        <translation>Falcon-адрес, которым было подписано сообщение</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Ghost address</source>
-        <translation>Проверить сообщение, чтобы убедиться, что оно было подписано указанным Ghost-адресом</translation>
+        <source>Verify the message to ensure it was signed with the specified Falcon address</source>
+        <translation>Проверить сообщение, чтобы убедиться, что оно было подписано указанным Falcon-адресом</translation>
     </message>
     <message>
         <source>Verify &amp;Message</source>

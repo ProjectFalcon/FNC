@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2020 The Bitcoin Core developers
-// Copyright (c) 2020 The Ghost Core developers
+// Copyright (c) 2020 The Falcon Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -93,7 +93,7 @@ public:
     const CMessageHeader::MessageStartChars& MessageStart() const { return pchMessageStart; }
     int GetDefaultPort() const { return nDefaultPort; }
 
-    int BIP44ID(bool fLegacy = false) const { return fLegacy ? nBIP44IDLegacy : nBIP44IDCurrent; }
+    int BIP44ID() const { return nBIP44ID; }
 
     uint32_t GetModifierInterval() const { return nModifierInterval; }
     uint32_t GetStakeMinConfirmations() const { return nStakeMinConfirmations; }
@@ -162,22 +162,19 @@ protected:
     Consensus::Params consensus;
     CMessageHeader::MessageStartChars pchMessageStart;
     int nDefaultPort;
-    int nBIP44IDLegacy;
-    int nBIP44IDCurrent;
+    int nBIP44ID;
 
     uint32_t nModifierInterval;         // seconds to elapse before new modifier is computed
     uint32_t nStakeMinConfirmations;    // min depth in chain before staked output is spendable
     uint32_t nTargetSpacing;            // targeted number of seconds between blocks
     uint32_t nTargetTimespan;
     CAmount nBlockReward;               // Block reward for PoS blocks,static
-    CAmount nBlockRewardIncrease;               // Block reward for PoS blocks,static
     uint32_t nStakeTimestampMask = (1 << 4) -1; // 4 bits, every kernel stake hash will change every 16 seconds
     int64_t nCoinYearReward = 2 * CENT; // 2% per year
     std::array<int, 47> nBlockPerc; //reward percentage each year
-    uint32_t nLastImportHeight = 0;       // always 0 on ghost
+    uint32_t nLastImportHeight = 0;       // always 0 on falcon
 
     std::vector<std::pair<int64_t, DevFundSettings> > vDevFundSettings;
-    std::vector<std::pair<int64_t, DevFundSettings> > vDevFundSettingsNew;
 
 
     uint64_t nPruneAfterHeight;

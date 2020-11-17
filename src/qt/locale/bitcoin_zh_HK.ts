@@ -62,8 +62,8 @@
         <translation>收款地址</translation>
     </message>
     <message>
-        <source>These are your Ghost addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>這些是你要付款過去的 Ghost 位址。在付款之前，務必要檢查金額和收款位址是否正確。</translation>
+        <source>These are your Falcon addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>這些是你要付款過去的 Falcon 位址。在付款之前，務必要檢查金額和收款位址是否正確。</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -156,8 +156,8 @@
         <translation>確認錢包加密</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR GHOST&lt;/b&gt;!</source>
-        <translation>警告: 如果你將錢包加密後又忘記密碼，你就會&lt;b&gt;失去所有 Ghost 了&lt;/b&gt;！</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR FNC&lt;/b&gt;!</source>
+        <translation>警告: 如果你將錢包加密後又忘記密碼，你就會&lt;b&gt;失去所有 Falcon 了&lt;/b&gt;！</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -294,8 +294,8 @@
         <translation>正在為磁碟區塊重建索引...</translation>
     </message>
     <message>
-        <source>Send coins to a Ghost address</source>
-        <translation>付款至一個 Ghost 位址</translation>
+        <source>Send coins to a Falcon address</source>
+        <translation>付款至一個 Falcon 位址</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -346,8 +346,8 @@
         <translation>說明 &amp;H</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and ghost: URIs)</source>
-        <translation>要求付款 (產生QR碼 ghost: URIs)</translation>
+        <source>Request payments (generates QR codes and falcon: URIs)</source>
+        <translation>要求付款 (產生QR碼 falcon: URIs)</translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -397,8 +397,8 @@
 <context>
     <name>Intro</name>
     <message>
-        <source>Ghost</source>
-        <translation>Ghost</translation>
+        <source>Falcon</source>
+        <translation>Falcon</translation>
     </message>
     <message>
         <source>Error</source>
@@ -441,8 +441,8 @@
 <context>
     <name>QObject</name>
     <message>
-        <source>Enter a Ghost address (e.g. %1)</source>
-        <translation>輸入一個 Ghost 位址 (例如 %1)</translation>
+        <source>Enter a Falcon address (e.g. %1)</source>
+        <translation>輸入一個 Falcon 位址 (例如 %1)</translation>
     </message>
     <message>
         <source>%1 d</source>

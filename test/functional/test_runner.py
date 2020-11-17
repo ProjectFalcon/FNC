@@ -286,8 +286,8 @@ def main():
     parser.add_argument('--exclude', '-x', help='specify a comma-separated-list of scripts to exclude.')
     parser.add_argument('--extended', action='store_true', help='run the extended test suite in addition to the basic tests')
     parser.add_argument('--bitcoin', action='store_true', help='run Bitcoin specific tests')
-    parser.add_argument('--ghost', action='store_true', help='run Ghost specific tests')
-    parser.add_argument('--ghostext', action='store_true', help='run Ghost extended tests')
+    parser.add_argument('--falcon', action='store_true', help='run Falcon specific tests')
+    parser.add_argument('--falconext', action='store_true', help='run Falcon extended tests')
     parser.add_argument('--insight', action='store_true', help='run Insight specific tests')
     parser.add_argument('--withstdout', action='store_true', help='print stdout when test passed also')
     parser.add_argument('--help', '-h', '-?', action='store_true', help='print help text and exit')
@@ -323,7 +323,7 @@ def main():
     logging.basicConfig(format='%(message)s', level=logging_level)
 
     # Create base test directory
-    tmpdir = "%s/ghost_test_runner_P_🏃_%s" % (args.tmpdirprefix, datetime.datetime.now().strftime("%Y%m%d_%H%M%S"))
+    tmpdir = "%s/falcon_test_runner_P_🏃_%s" % (args.tmpdirprefix, datetime.datetime.now().strftime("%Y%m%d_%H%M%S"))
 
     os.makedirs(tmpdir)
 
@@ -367,13 +367,13 @@ def main():
         test_list = []
         if args.extended:
             test_list += EXTENDED_SCRIPTS
-        if args.ghost:
+        if args.falcon:
             test_list += PARTICL_SCRIPTS
         if args.insight:
             test_list += INSIGHT_SCRIPTS
         if args.bitcoin:
             test_list += BASE_SCRIPTS
-        if args.ghostext:
+        if args.falconext:
             test_list += PARTICL_SCRIPTS_EXT
 
     # Remove the test cases that the user has explicitly asked to exclude.
@@ -419,7 +419,7 @@ def main():
         failfast=args.failfast,
         runs_ci=args.ci,
         use_term_control=args.ansi,
-        create_cache=(True if args.bitcoin or (not args.ghost and not args.insight) else False)
+        create_cache=(True if args.bitcoin or (not args.falcon and not args.insight) else False)
     )
 
 def run_tests(*, test_list, src_dir, build_dir, tmpdir, jobs=1, enable_coverage=False, args=None, combined_logs_len=0, failfast=False, runs_ci, use_term_control, create_cache=True):

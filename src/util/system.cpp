@@ -70,7 +70,7 @@
 // Application startup time (used for uptime calculation)
 const int64_t nStartupTime = GetTime();
 
-const char * const BITCOIN_CONF_FILENAME = "ghost.conf";
+const char * const BITCOIN_CONF_FILENAME = "falcon.conf";
 
 bool fParticlMode = true;
 bool fParticlWallet = false;
@@ -836,7 +836,7 @@ std::string ArgsManager::GetHelpMessage() const
                 usage += HelpMessageGroup("SMSG Commands:");
                 break;
             case OptionsCategory::PART_WALLET:
-                usage += HelpMessageGroup("Ghost wallet Commands:");
+                usage += HelpMessageGroup("Falcon wallet Commands:");
                 break;
             case OptionsCategory::PART_STAKING:
                 usage += HelpMessageGroup("Staking Commands:");
@@ -895,7 +895,7 @@ static std::string FormatException(const std::exception* pex, const char* pszThr
     char pszModule[MAX_PATH] = "";
     GetModuleFileNameA(nullptr, pszModule, sizeof(pszModule));
 #else
-    const char* pszModule = "ghost";
+    const char* pszModule = "falcon";
 #endif
     if (pex)
         return strprintf(
@@ -917,10 +917,10 @@ fs::path GetDefaultDataDir()
     // Windows < Vista: C:\Documents and Settings\Username\Application Data\Particl
     // Windows >= Vista: C:\Users\Username\AppData\Roaming\Particl
     // Mac: ~/Library/Application Support/Particl
-    // Unix: ~/.ghost
+    // Unix: ~/.falcon
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "Ghost";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "Falcon";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -930,10 +930,10 @@ fs::path GetDefaultDataDir()
         pathRet = fs::path(pszHome);
 #ifdef MAC_OSX
     // Mac
-    return pathRet / "Library/Application Support/Ghost";
+    return pathRet / "Library/Application Support/Falcon";
 #else
     // Unix
-    return pathRet / ".ghost";
+    return pathRet / ".falcon";
 #endif
 #endif
 }
@@ -1429,9 +1429,9 @@ std::string CopyrightHolders(const std::string& strPrefix)
 {
     const int BTC_START_YEAR = 2009;
     const int PART_START_YEAR = 2017;
-    const int GHOST_START_YEAR = 2020;
+    const int FALCON_START_YEAR = 2020;
 
-    std::string sRange = strprintf(" %i-%i ", GHOST_START_YEAR, COPYRIGHT_YEAR);
+    std::string sRange = strprintf(" %i-%i ", FALCON_START_YEAR, COPYRIGHT_YEAR);
     const auto copyright_devs = strprintf(_(COPYRIGHT_HOLDERS).translated, COPYRIGHT_HOLDERS_SUBSTITUTION);
     std::string strCopyrightHolders = strPrefix + sRange + copyright_devs;
 

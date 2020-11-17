@@ -136,7 +136,7 @@ LRESULT APIENTRY MainWndProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 int CreateMessageWindow()
 {
-    // Create a message-only window to intercept WM_CLOSE events from ghostd
+    // Create a message-only window to intercept WM_CLOSE events from falcond
 
     WNDCLASSEX WindowClassEx;
     ZeroMemory(&WindowClassEx, sizeof(WNDCLASSEX));
@@ -181,7 +181,7 @@ int CloseMessageWindow()
 /**
  * The PID file facilities.
  */
-static const char* BITCOIN_PID_FILENAME = "ghost.pid";
+static const char* BITCOIN_PID_FILENAME = "falcon.pid";
 
 static fs::path GetPidFile()
 {
@@ -231,7 +231,7 @@ NODISCARD static bool CreatePidFile()
 bool ShutdownRequestedMainThread()
 {
 #ifdef WIN32
-    // Only ghostd will create a hidden window to receive messages
+    // Only falcond will create a hidden window to receive messages
     while (winHwnd && PeekMessage(&winMsg, 0, 0, 0, PM_REMOVE)) {
         TranslateMessage(&winMsg);
         DispatchMessage(&winMsg);
@@ -684,7 +684,7 @@ void SetupServerArgs()
     gArgs.AddArg("-rpcuser=<user>", "Username for JSON-RPC connections", ArgsManager::ALLOW_ANY, OptionsCategory::RPC);
     gArgs.AddArg("-rpcworkqueue=<n>", strprintf("Set the depth of the work queue to service RPC calls (default: %d)", DEFAULT_HTTP_WORKQUEUE), ArgsManager::ALLOW_ANY | ArgsManager::DEBUG_ONLY, OptionsCategory::RPC);
     gArgs.AddArg("-server", "Accept command line and JSON-RPC commands", ArgsManager::ALLOW_ANY, OptionsCategory::RPC);
-    gArgs.AddArg("-rpccorsdomain=<domain>", "Allow JSON-RPC connections from specified domain (e.g. http://localhost:4200 or \"*\"). This needs to be set if you are using the Ghost GUI in a browser.", ArgsManager::ALLOW_ANY, OptionsCategory::RPC);
+    gArgs.AddArg("-rpccorsdomain=<domain>", "Allow JSON-RPC connections from specified domain (e.g. http://localhost:4200 or \"*\"). This needs to be set if you are using the Falcon GUI in a browser.", ArgsManager::ALLOW_ANY, OptionsCategory::RPC);
 
     gArgs.AddArg("-displaylocaltime", "Display human readable time strings in local timezone (default: false)", ArgsManager::ALLOW_ANY, OptionsCategory::RPC);
     gArgs.AddArg("-displayutctime", "Display human readable time strings in UTC (default: false)", ArgsManager::ALLOW_ANY, OptionsCategory::RPC);
@@ -703,8 +703,8 @@ void SetupServerArgs()
 
 std::string LicenseInfo()
 {
-    const std::string URL_SOURCE_CODE = "<https://github.com/ghost-coin/ghost-core>";
-    const std::string URL_WEBSITE = "<https://ghostbyjohnmcafee.com/>";
+    const std::string URL_SOURCE_CODE = "<https://github.com/falcon-coin/falcon-core>";
+    const std::string URL_WEBSITE = "<https://falconofficial.com/>";
 
     return CopyrightHolders(strprintf(_("Copyright (C)").translated)) + "\n" +
            "\n" +

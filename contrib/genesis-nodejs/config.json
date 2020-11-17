@@ -1,16 +1,34 @@
 {
    "networks":{
       "mainnet":{
-         "payeeAddrs":[
-   
-         ],
-         "amountToSplit":13573415,
+         "payeeAddrs":
+         [ "FCFjw11L3ApZWcLM2ZLWQc9Qjv8SQp5Lgz",
+           "FHn51Ghnrzp56xAEuWXsfL42SLBN19uaiS",
+           "FJSQwAnaU4yKEbZV77Bxqd3daHCwcLwJC7",
+           "FBXVEtFCSpiFaadoKLWG1BGWz9TUj4FKP8",
+           "FA8UkwVtmuAe1NB1ShYb7f6vV8c8GCDvQf",
+           "FU6kbEUEy2MhPT7VmXv24sbQUFkRct1d8j",
+           "FEUJgndysB1vzyg3VDhX9oQs1jKq3GAtLa",
+           "FBES7TmhjTsrAUP69RnK7cFyoJkykpRYda",
+           "F7uWXvG39YNgv1Chr2zNumAZcae4efSKAL",
+           "F7C85wYh9zrxF4R1dcRdmdcfpnnUBZuDfX",
+           "FMVzU7Ze7tHwMfsWfUbqQQuBcaGh1WtV3n",
+           "FPCNQzmMVbTb4B3PMydhfSXQX5BiJpvxnz",
+           "FAVePV2mG8oKDp58YxMKoMZPCbV3KRD4a1",
+           "FFRhWTjVLEWS6XXKfzXJTyfDLBV6uGpbJh",
+           "FQgVUFQXXvXuhNuaaV9oMcYPhN7oBk911b",
+           "FFa9KD57KoX9VstLRyjEXPMugjqYeBbrFE",
+           "FD3rganFx3hqRnm7QddMnDSxQaAQGDyvGp",
+           "FUcv5AMsYdv2bLnKC4xR5Cixotp6U6JZ3v",
+           "FLNurmSnTjvyKR1vMQve5PEvSywHjWsZMe",
+           "FUAiUMh9j9K9gjFfUYEnmewKR2a7SXWJc9" ],
+         "amountToSplit":90000000000,
          "config": {
             "protocol": "http",
             "user": "user",
-            "pass": "pass",
+            "pass": "password",
             "host": "127.0.0.1",
-            "port": 51735
+            "port": 51725
          }
       },
       "testnet":{

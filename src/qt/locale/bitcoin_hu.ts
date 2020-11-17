@@ -66,8 +66,8 @@
         <translation>Fogadási cím</translation>
     </message>
     <message>
-        <source>These are your Ghost addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Ezek a Ghost címeid kifizetések küldéséhez. Mindíg ellenőrizd az összeget és a fogadó címet mielőtt coinokat küldenél.</translation>
+        <source>These are your Falcon addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Ezek a Falcon címeid kifizetések küldéséhez. Mindíg ellenőrizd az összeget és a fogadó címet mielőtt coinokat küldenél.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -164,8 +164,8 @@
         <translation>Tárca titkosításának megerősítése</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR GHOST&lt;/b&gt;!</source>
-        <translation>Figyelem: Ha titkosítja a tárcáját és elveszíti a jelszavát, akkor &lt;b&gt;AZ ÖSSZES GHOSTJA ELVESZIK&lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR FNC&lt;/b&gt;!</source>
+        <translation>Figyelem: Ha titkosítja a tárcáját és elveszíti a jelszavát, akkor &lt;b&gt;AZ ÖSSZES FALCONJA ELVESZIK&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -184,7 +184,7 @@
         <translation>Írja be a tárca régi és új jelszavát.</translation>
     </message>
     <message>
-        <source>Remember that encrypting your wallet cannot fully protect your ghost from being stolen by malware infecting your computer.</source>
+        <source>Remember that encrypting your wallet cannot fully protect your falcon from being stolen by malware infecting your computer.</source>
         <translation>Ne feledd, hogy a tárca titkosítása nem nyújt teljes védelmet az adathalász programok fertőzésével szemben.</translation>
     </message>
     <message>
@@ -358,8 +358,8 @@
         <translation>Proxy  &lt;b&gt;aktív&lt;/b&gt;: %1</translation>
     </message>
     <message>
-        <source>Send coins to a Ghost address</source>
-        <translation>Ghost küldése megadott címre</translation>
+        <source>Send coins to a Falcon address</source>
+        <translation>Falcon küldése megadott címre</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -402,12 +402,12 @@
         <translation>A tárcádhoz tartozó privát kulcsok titkosítása</translation>
     </message>
     <message>
-        <source>Sign messages with your Ghost addresses to prove you own them</source>
-        <translation>Üzenetek aláírása a Ghost-címmeiddel, amivel bizonyítod, hogy a cím a sajátod</translation>
+        <source>Sign messages with your Falcon addresses to prove you own them</source>
+        <translation>Üzenetek aláírása a Falcon-címmeiddel, amivel bizonyítod, hogy a cím a sajátod</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Ghost addresses</source>
-        <translation>Üzenetek ellenőrzése, hogy valóban a megjelölt Ghost-címekkel vannak-e aláírva</translation>
+        <source>Verify messages to ensure they were signed with specified Falcon addresses</source>
+        <translation>Üzenetek ellenőrzése, hogy valóban a megjelölt Falcon-címekkel vannak-e aláírva</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -426,8 +426,8 @@
         <translation>Fül eszköztár</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and ghost: URIs)</source>
-        <translation>Fizetési kérelem (QR-kódot és "ghost:" URI azonosítót hoz létre)</translation>
+        <source>Request payments (generates QR codes and falcon: URIs)</source>
+        <translation>Fizetési kérelem (QR-kódot és "falcon:" URI azonosítót hoz létre)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -438,16 +438,16 @@
         <translation>A használt fogadó címek és címkék megtekintése</translation>
     </message>
     <message>
-        <source>Open a ghost: URI or payment request</source>
-        <translation>"ghost:" URI azonosító vagy fizetési kérelem megnyitása</translation>
+        <source>Open a falcon: URI or payment request</source>
+        <translation>"falcon:" URI azonosító vagy fizetési kérelem megnyitása</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
         <translation>Paran&amp;cssor kapcsolók</translation>
     </message>
     <message numerus="yes">
-        <source>%n active connection(s) to Ghost network</source>
-        <translation><numerusform>%n aktív kapcsolat a Ghost hálózathoz</numerusform><numerusform>%n aktív kapcsolat a Ghost hálózathoz</numerusform></translation>
+        <source>%n active connection(s) to Falcon network</source>
+        <translation><numerusform>%n aktív kapcsolat a Falcon hálózathoz</numerusform><numerusform>%n aktív kapcsolat a Falcon hálózathoz</numerusform></translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
@@ -514,8 +514,8 @@
         <translation>Tárca bezárása</translation>
     </message>
     <message>
-        <source>Show the %1 help message to get a list with possible Ghost command-line options</source>
-        <translation>A %1 súgó megjelenítése a Ghost lehetséges parancssori kapcsolóinak listájával</translation>
+        <source>Show the %1 help message to get a list with possible Falcon command-line options</source>
+        <translation>A %1 súgó megjelenítése a Falcon lehetséges parancssori kapcsolóinak listájával</translation>
     </message>
     <message>
         <source>default wallet</source>
@@ -621,8 +621,8 @@
         <translation>A tárca &lt;b&gt;titkosítva&lt;/b&gt; és jelenleg &lt;b&gt;bezárva&lt;/b&gt;.</translation>
     </message>
     <message>
-        <source>A fatal error occurred. Ghost can no longer continue safely and will quit.</source>
-        <translation>Végzetes hiba történt. A Ghost működése nem biztonságos és hamarosan leáll.</translation>
+        <source>A fatal error occurred. Falcon can no longer continue safely and will quit.</source>
+        <translation>Végzetes hiba történt. A Falcon működése nem biztonságos és hamarosan leáll.</translation>
     </message>
 </context>
 <context>
@@ -857,8 +857,8 @@
         <translation>Küldő cím szerkesztése</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Ghost address.</source>
-        <translation>A megadott "%1" cím nem egy érvényes Ghost-cím.</translation>
+        <source>The entered address "%1" is not a valid Falcon address.</source>
+        <translation>A megadott "%1" cím nem egy érvényes Falcon-cím.</translation>
     </message>
     <message>
         <source>Could not unlock wallet.</source>
@@ -950,8 +950,8 @@
         <translation>Saját adatkönyvtár használata:</translation>
     </message>
     <message>
-        <source>Ghost</source>
-        <translation>Ghost</translation>
+        <source>Falcon</source>
+        <translation>Falcon</translation>
     </message>
     <message>
         <source>Discard blocks after verification, except most recent %1 GB (prune)</source>
@@ -966,8 +966,8 @@
         <translation>Hozzávetőlegesen %1 GB adatot fogunk ebben a könyvtárban tárolni.</translation>
     </message>
     <message>
-        <source>%1 will download and store a copy of the Ghost block chain.</source>
-        <translation>%1 le fog töltődni és a Ghost blokk lánc egy másolatát fogja tárolni.</translation>
+        <source>%1 will download and store a copy of the Falcon block chain.</source>
+        <translation>%1 le fog töltődni és a Falcon blokk lánc egy másolatát fogja tárolni.</translation>
     </message>
     <message>
         <source>The wallet will also be stored in this directory.</source>
@@ -993,12 +993,12 @@
         <translation>Űrlap</translation>
     </message>
     <message>
-        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the ghost network, as detailed below.</source>
-        <translation>A legutóbbi tranzakciók még lehet, hogy nem láthatók, és így előfordulhat, hogy a tárca egyenlege helytelen. A tárca azon nyomban az aktuális egyenleget fogja mutatni, amint befejezte a ghost hálózattal történő szinkronizációt, amely alább van részletezve.</translation>
+        <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the falcon network, as detailed below.</source>
+        <translation>A legutóbbi tranzakciók még lehet, hogy nem láthatók, és így előfordulhat, hogy a tárca egyenlege helytelen. A tárca azon nyomban az aktuális egyenleget fogja mutatni, amint befejezte a falcon hálózattal történő szinkronizációt, amely alább van részletezve.</translation>
     </message>
     <message>
-        <source>Attempting to spend ghost that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
-        <translation>A hálózat nem fogadja el azoknak a ghostoknak az elköltését, amelyek érintettek a még nem látszódó tranzakciókban.</translation>
+        <source>Attempting to spend falcon that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
+        <translation>A hálózat nem fogadja el azoknak a falconoknak az elköltését, amelyek érintettek a még nem látszódó tranzakciókban.</translation>
     </message>
     <message>
         <source>Number of blocks left</source>
@@ -1190,8 +1190,8 @@
         <translation>&amp;Költése a a jóváhagyatlan visszajárónak</translation>
     </message>
     <message>
-        <source>Automatically open the Ghost client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>A Ghost-kliens portjának automatikus megnyitása a routeren. Ez csak akkor működik, ha a routered támogatja az UPnP-t és az engedélyezve is van rajta.</translation>
+        <source>Automatically open the Falcon client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>A Falcon-kliens portjának automatikus megnyitása a routeren. Ez csak akkor működik, ha a routered támogatja az UPnP-t és az engedélyezve is van rajta.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
@@ -1206,8 +1206,8 @@
         <translation>Bejövő kapcsolatok engedélyezése.</translation>
     </message>
     <message>
-        <source>Connect to the Ghost network through a SOCKS5 proxy.</source>
-        <translation>Csatlakozás a Ghost hálózatához SOCKS5 proxyn keresztül</translation>
+        <source>Connect to the Falcon network through a SOCKS5 proxy.</source>
+        <translation>Csatlakozás a Falcon hálózatához SOCKS5 proxyn keresztül</translation>
     </message>
     <message>
         <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
@@ -1242,8 +1242,8 @@
         <translation>Tor</translation>
     </message>
     <message>
-        <source>Connect to the Ghost network through a separate SOCKS5 proxy for Tor hidden services.</source>
-        <translation>Csatlakozás a Ghost hálózathoz külön SOCKS5 proxy használatával a Tor rejtett szolgáltatásainak eléréséhez.</translation>
+        <source>Connect to the Falcon network through a separate SOCKS5 proxy for Tor hidden services.</source>
+        <translation>Csatlakozás a Falcon hálózathoz külön SOCKS5 proxy használatával a Tor rejtett szolgáltatásainak eléréséhez.</translation>
     </message>
     <message>
         <source>&amp;Window</source>
@@ -1349,8 +1349,8 @@
         <translation>Űrlap</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Ghost network after a connection is established, but this process has not completed yet.</source>
-        <translation>A kijelzett információ lehet, hogy elavult. A kapcsolat létrehozatalát követően tárcája automatikusan szinkronba kerül a Ghost hálózattal, de ez a folyamat még nem fejeződött be.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Falcon network after a connection is established, but this process has not completed yet.</source>
+        <translation>A kijelzett információ lehet, hogy elavult. A kapcsolat létrehozatalát követően tárcája automatikusan szinkronba kerül a Falcon hálózattal, de ez a folyamat még nem fejeződött be.</translation>
     </message>
     <message>
         <source>Watch-only:</source>
@@ -1424,8 +1424,8 @@
         <translation>Hiba történt a fizetési kérelem során</translation>
     </message>
     <message>
-        <source>Cannot start ghost: click-to-pay handler</source>
-        <translation>A ghost nem tud elindulni: click-to-pay kezelő</translation>
+        <source>Cannot start falcon: click-to-pay handler</source>
+        <translation>A falcon nem tud elindulni: click-to-pay kezelő</translation>
     </message>
     <message>
         <source>URI handling</source>
@@ -1440,8 +1440,8 @@
         <translation>Érvénytelen fizetési cím %1</translation>
     </message>
     <message>
-        <source>URI cannot be parsed! This can be caused by an invalid Ghost address or malformed URI parameters.</source>
-        <translation>Nem sikerült az URI elemzése! Ezt okozhatja érvénytelen Ghost cím, vagy rossz URI paraméterezés.</translation>
+        <source>URI cannot be parsed! This can be caused by an invalid Falcon address or malformed URI parameters.</source>
+        <translation>Nem sikerült az URI elemzése! Ezt okozhatja érvénytelen Falcon cím, vagy rossz URI paraméterezés.</translation>
     </message>
     <message>
         <source>Payment request file handling</source>
@@ -1538,8 +1538,8 @@
         <translation>Összeg</translation>
     </message>
     <message>
-        <source>Enter a Ghost address (e.g. %1)</source>
-        <translation>Ad meg egy Ghost címet (pl: %1)</translation>
+        <source>Enter a Falcon address (e.g. %1)</source>
+        <translation>Ad meg egy Falcon címet (pl: %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -1975,8 +1975,8 @@
         <translation>&amp;Üzenet:</translation>
     </message>
     <message>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Ghost network.</source>
-        <translation>Egy opcionális üzenet csatolása a fizetési kérelemhez, amely megjelenik a kérelem megnyitásakor. Megjegyzés: Az üzenet nem lesz elküldve a fizetséggel a Ghost hálózaton keresztül.</translation>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Falcon network.</source>
+        <translation>Egy opcionális üzenet csatolása a fizetési kérelemhez, amely megjelenik a kérelem megnyitásakor. Megjegyzés: Az üzenet nem lesz elküldve a fizetséggel a Falcon hálózaton keresztül.</translation>
     </message>
     <message>
         <source>An optional label to associate with the new receiving address.</source>
@@ -2344,8 +2344,8 @@
         <translation>A fizetési kérelem lejárt.</translation>
     </message>
     <message>
-        <source>Warning: Invalid Ghost address</source>
-        <translation>Figyelmeztetés: Érvénytelen Ghost cím</translation>
+        <source>Warning: Invalid Falcon address</source>
+        <translation>Figyelmeztetés: Érvénytelen Falcon cím</translation>
     </message>
     <message>
         <source>Warning: Unknown change address</source>
@@ -2387,8 +2387,8 @@
         <translation>Ez normál fizetés.</translation>
     </message>
     <message>
-        <source>The Ghost address to send the payment to</source>
-        <translation>Erre a Ghost címre küldje az összeget</translation>
+        <source>The Falcon address to send the payment to</source>
+        <translation>Erre a Falcon címre küldje az összeget</translation>
     </message>
     <message>
         <source>Alt+A</source>
@@ -2472,8 +2472,8 @@
         <translation>Üzenet aláírása...</translation>
     </message>
     <message>
-        <source>The Ghost address to sign the message with</source>
-        <translation>Ghost cím, amivel alá kívánja írni az üzenetet</translation>
+        <source>The Falcon address to sign the message with</source>
+        <translation>Falcon cím, amivel alá kívánja írni az üzenetet</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -2504,7 +2504,7 @@
         <translation>A jelenleg kiválasztott aláírás másolása a rendszer-vágólapra</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Ghost address</source>
+        <source>Sign the message to prove you own this Falcon address</source>
         <translation>Üzenet</translation>
     </message>
     <message>
@@ -2520,12 +2520,12 @@
         <translation>Üzenet ellenőrzése</translation>
     </message>
     <message>
-        <source>The Ghost address the message was signed with</source>
-        <translation>Ghost cím, amivel aláírta az üzenetet</translation>
+        <source>The Falcon address the message was signed with</source>
+        <translation>Falcon cím, amivel aláírta az üzenetet</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Ghost address</source>
-        <translation>Ellenőrizze az üzenetet, hogy valóban a megjelölt Ghost címmel van-e aláírva</translation>
+        <source>Verify the message to ensure it was signed with the specified Falcon address</source>
+        <translation>Ellenőrizze az üzenetet, hogy valóban a megjelölt Falcon címmel van-e aláírva</translation>
     </message>
     <message>
         <source>Verify &amp;Message</source>

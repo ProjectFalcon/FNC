@@ -1,5 +1,5 @@
 ## Genesis-nodejs
-This is a simple script mainly to help setup a new network based on Ghost codebase.
+This is a simple script mainly to help setup a new network based on Falcon codebase.
 
 ## How to setup config.json
 - Run createpayoutaddrs.js,this will give you a array of newly generated addresses from daemon.

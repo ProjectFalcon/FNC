@@ -25,13 +25,13 @@ const PayoutAddrs = configNetwork.payeeAddrs;
 const OutputsToMake = PayoutAddrs.length;
 const PaymentPerAddr =  configNetwork.amountToSplit / PayoutAddrs.length;
 /*
-Ghost network additions to bitcore
+Falcon network additions to bitcore
 NOTE : Add network params changes here if prefixes are changed in chainparams
 */
-function SetupGhostParams(){
+function SetupFalconParams(){
     bitcore.Networks.add({
-        name: 'regtest-ghost',
-        alias: 'reg-ghost',
+        name: 'regtest-falcon',
+        alias: 'reg-falcon',
         pubkeyhash: 0x76,
         privatekey: 0x2e,
         scripthash: 0x7a,
@@ -44,8 +44,8 @@ function SetupGhostParams(){
     });
 
     bitcore.Networks.add({
-        name: 'testnet-ghost',
-        alias: 'test-ghost',
+        name: 'testnet-falcon',
+        alias: 'test-falcon',
         pubkeyhash: 0x4B,
         privatekey: 0x2e,
         scripthash: 0x89,
@@ -58,12 +58,12 @@ function SetupGhostParams(){
     });
     
     bitcore.Networks.add({
-        name: 'mainnet-ghost',
-        alias: 'main-ghost',
-        pubkeyhash: 0x26,
+        name: 'mainnet-falcon',
+        alias: 'main-falcon',
+        pubkeyhash: 0x23,
         privatekey: 0xA6,
         scripthash: 0x61,
-        bech32prefix: 'ghost',
+        bech32prefix: 'falcon',
         xpubkey: 0x696e82d1,
         xprivkey: 0x8f1daeb8,
         networkMagic: 0xb4eff2fb,
@@ -83,7 +83,7 @@ function GetHash160FromAddr(addr){
 }
 
 // Setup params first
-SetupGhostParams();
+SetupFalconParams();
 
 function generateGenesisOutputs(){
     var outputs = "";

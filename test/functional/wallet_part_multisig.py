@@ -172,7 +172,7 @@ class MultiSigTest(ParticlTestFramework):
         scriptTo = nodes[0].buildscript(opts)['hex']
 
         outputs = [{'address':'script', 'amount':8, 'script':scriptTo},]
-        mstxid3 = nodes[0].sendtypeto('ghost', 'ghost', outputs)
+        mstxid3 = nodes[0].sendtypeto('falcon', 'falcon', outputs)
 
         hexfund = nodes[0].gettransaction(mstxid3)['hex']
         ro = nodes[0].decoderawtransaction(hexfund)
@@ -227,7 +227,7 @@ class MultiSigTest(ParticlTestFramework):
         scriptTo = nodes[0].buildscript(opts)['hex']
 
         outputs = [{ 'address':'script', 'amount':1, 'script':scriptTo }]
-        txFundId = nodes[0].sendtypeto('ghost', 'ghost', outputs)
+        txFundId = nodes[0].sendtypeto('falcon', 'falcon', outputs)
         hexfund = nodes[0].gettransaction(txFundId)['hex']
 
         ro = nodes[0].decoderawtransaction(hexfund)

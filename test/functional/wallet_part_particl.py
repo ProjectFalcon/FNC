@@ -50,7 +50,7 @@ class WalletParticlTest(ParticlTestFramework):
         self.start_nodes()
 
     def particl_wallet_process(self, *args):
-        binary = self.config["environment"]["BUILDDIR"] + '/src/ghost-wallet' + self.config["environment"]["EXEEXT"]
+        binary = self.config["environment"]["BUILDDIR"] + '/src/falcon-wallet' + self.config["environment"]["EXEEXT"]
         args = ['-datadir={}'.format(self.nodes[0].datadir), '-regtest'] + list(args)
         return subprocess.Popen([binary] + args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
 
@@ -632,7 +632,7 @@ class WalletParticlTest(ParticlTestFramework):
 
         coincontrol = {'changeaddress':scriptHex,'debug':True}
         outputs = [{'address':sAddrSpend, 'amount':1, 'narr':'not change'},]
-        ro = nodes[2].sendtypeto('ghost', 'ghost', outputs, 'comment', 'comment-to', 4, 32, True, coincontrol)
+        ro = nodes[2].sendtypeto('falcon', 'falcon', outputs, 'comment', 'comment-to', 4, 32, True, coincontrol)
 
         ro = nodes[2].decoderawtransaction(ro['hex'])
         fFound = False
@@ -693,7 +693,7 @@ class WalletParticlTest(ParticlTestFramework):
         w_rpc = nodes[0].get_wallet_rpc('new_wallet_with_privkeys')
         ek_list = w_rpc.extkey('list', True)
 
-        self.log.info('Test ghost-wallet')
+        self.log.info('Test falcon-wallet')
         out = textwrap.dedent('''\
             Wallet info
             ===========

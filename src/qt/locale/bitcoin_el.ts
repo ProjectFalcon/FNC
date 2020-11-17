@@ -66,8 +66,8 @@
         <translation>Διευθύνσεις λήψης</translation>
     </message>
     <message>
-        <source>These are your Ghost addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Αυτές είναι οι Ghost διευθύνσεις σας για να στέλνετε πληρωμές. Να ελέγχετε πάντα το ποσό, καθώς και τη διεύθυνση παραλήπτη πριν στείλετε νομίσματα.</translation>
+        <source>These are your Falcon addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <translation>Αυτές είναι οι Falcon διευθύνσεις σας για να στέλνετε πληρωμές. Να ελέγχετε πάντα το ποσό, καθώς και τη διεύθυνση παραλήπτη πριν στείλετε νομίσματα.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -160,8 +160,8 @@
         <translation>Επιβεβαίωσε κρυπτογράφηση πορτοφολιού</translation>
     </message>
     <message>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR GHOST&lt;/b&gt;!</source>
-        <translation>Προσόχη! Εάν κρυπτογραφήσεις το πορτοφόλι σου και χάσεις τη φράση αποκατάστασης, θα &lt;b&gt; ΧΑΣΕΙΣ ΟΛΑ ΣΟΥ ΤΑ GHOST &lt;/b&gt;!</translation>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR FNC&lt;/b&gt;!</source>
+        <translation>Προσόχη! Εάν κρυπτογραφήσεις το πορτοφόλι σου και χάσεις τη φράση αποκατάστασης, θα &lt;b&gt; ΧΑΣΕΙΣ ΟΛΑ ΣΟΥ ΤΑ FNC &lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -318,8 +318,8 @@
         <translation>Φόρτωση ευρετηρίου μπλοκ στον σκληρό δίσκο...</translation>
     </message>
     <message>
-        <source>Send coins to a Ghost address</source>
-        <translation>Στείλε νομίσματα σε μια διεύθυνση ghost</translation>
+        <source>Send coins to a Falcon address</source>
+        <translation>Στείλε νομίσματα σε μια διεύθυνση falcon</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -362,12 +362,12 @@
         <translation>Κρυπτογραφήστε τα ιδιωτικά κλειδιά που ανήκουν στο πορτοφόλι σας</translation>
     </message>
     <message>
-        <source>Sign messages with your Ghost addresses to prove you own them</source>
+        <source>Sign messages with your Falcon addresses to prove you own them</source>
         <translation>Υπογράψτε ένα μήνυμα για να βεβαιώσετε πως είστε ο κάτοχος αυτής της διεύθυνσης</translation>
     </message>
     <message>
-        <source>Verify messages to ensure they were signed with specified Ghost addresses</source>
-        <translation>Υπογράψτε ένα μήνυμα για ν' αποδείξετε πως ανήκει μια συγκεκριμένη διεύθυνση Ghost</translation>
+        <source>Verify messages to ensure they were signed with specified Falcon addresses</source>
+        <translation>Υπογράψτε ένα μήνυμα για ν' αποδείξετε πως ανήκει μια συγκεκριμένη διεύθυνση Falcon</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -386,8 +386,8 @@
         <translation>Εργαλειοθήκη καρτελών</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and ghost: URIs)</source>
-        <translation>Αίτηση πληρωμών (δημιουργεί QR codes και διευθύνσεις ghost: )</translation>
+        <source>Request payments (generates QR codes and falcon: URIs)</source>
+        <translation>Αίτηση πληρωμών (δημιουργεί QR codes και διευθύνσεις falcon: )</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -398,8 +398,8 @@
         <translation>Προβολή της λίστας των χρησιμοποιημένων διευθύνσεων και ετικετών λήψεως</translation>
     </message>
     <message>
-        <source>Open a ghost: URI or payment request</source>
-        <translation>Άνοιγμα ghost: URI αίτησης πληρωμής</translation>
+        <source>Open a falcon: URI or payment request</source>
+        <translation>Άνοιγμα falcon: URI αίτησης πληρωμής</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
@@ -662,8 +662,8 @@
         <translation>Επεξεργασία διεύθυνσης αποστολής</translation>
     </message>
     <message>
-        <source>The entered address "%1" is not a valid Ghost address.</source>
-        <translation>Η διεύθυνση "%1" δεν είναι έγκυρη Ghost διεύθυνση.</translation>
+        <source>The entered address "%1" is not a valid Falcon address.</source>
+        <translation>Η διεύθυνση "%1" δεν είναι έγκυρη Falcon διεύθυνση.</translation>
     </message>
     <message>
         <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
@@ -743,8 +743,8 @@
         <translation>Προσαρμογή του φακέλου δεδομένων:</translation>
     </message>
     <message>
-        <source>Ghost</source>
-        <translation>Ghost</translation>
+        <source>Falcon</source>
+        <translation>Falcon</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
@@ -883,16 +883,16 @@
         <translation>&amp;Ξόδεμα μη επικυρωμένων ρέστων</translation>
     </message>
     <message>
-        <source>Automatically open the Ghost client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Αυτόματο άνοιγμα των θυρών Ghost στον δρομολογητή. Λειτουργεί μόνο αν ο δρομολογητής σας υποστηρίζει τη λειτουργία UPnP.</translation>
+        <source>Automatically open the Falcon client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Αυτόματο άνοιγμα των θυρών Falcon στον δρομολογητή. Λειτουργεί μόνο αν ο δρομολογητής σας υποστηρίζει τη λειτουργία UPnP.</translation>
     </message>
     <message>
         <source>Map port using &amp;UPnP</source>
         <translation>Απόδοση θυρών με χρήστη &amp;UPnP</translation>
     </message>
     <message>
-        <source>Connect to the Ghost network through a SOCKS5 proxy.</source>
-        <translation>Σύνδεση στο δίκτυο Ghost μέσω διαμεσολαβητή SOCKS5 (π.χ. για σύνδεση μέσω Tor)</translation>
+        <source>Connect to the Falcon network through a SOCKS5 proxy.</source>
+        <translation>Σύνδεση στο δίκτυο Falcon μέσω διαμεσολαβητή SOCKS5 (π.χ. για σύνδεση μέσω Tor)</translation>
     </message>
     <message>
         <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
@@ -1002,8 +1002,8 @@
         <translation>Φόρμα</translation>
     </message>
     <message>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Ghost network after a connection is established, but this process has not completed yet.</source>
-        <translation>Οι πληροφορίες που εμφανίζονται μπορεί να είναι ξεπερασμένες. Το πορτοφόλι σας συγχρονίζεται αυτόματα με το δίκτυο Ghost μετά από μια σύνδεση, αλλά αυτή η διαδικασία δεν έχει ακόμη ολοκληρωθεί.</translation>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Falcon network after a connection is established, but this process has not completed yet.</source>
+        <translation>Οι πληροφορίες που εμφανίζονται μπορεί να είναι ξεπερασμένες. Το πορτοφόλι σας συγχρονίζεται αυτόματα με το δίκτυο Falcon μετά από μια σύνδεση, αλλά αυτή η διαδικασία δεν έχει ακόμη ολοκληρωθεί.</translation>
     </message>
     <message>
         <source>Watch-only:</source>
@@ -1077,8 +1077,8 @@
         <translation>Σφάλμα αίτησης πληρωμής</translation>
     </message>
     <message>
-        <source>Cannot start ghost: click-to-pay handler</source>
-        <translation>Δεν είναι δυνατή η εκκίνηση του ghost: χειριστής click-to-pay</translation>
+        <source>Cannot start falcon: click-to-pay handler</source>
+        <translation>Δεν είναι δυνατή η εκκίνηση του falcon: χειριστής click-to-pay</translation>
     </message>
     <message>
         <source>URI handling</source>
@@ -1115,8 +1115,8 @@
         <translation>Ποσό</translation>
     </message>
     <message>
-        <source>Enter a Ghost address (e.g. %1)</source>
-        <translation>Εισάγετε μια διεύθυνση Ghost (π.χ. %1)</translation>
+        <source>Enter a Falcon address (e.g. %1)</source>
+        <translation>Εισάγετε μια διεύθυνση Falcon (π.χ. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -1636,8 +1636,8 @@
         <translation>Αυτή είναι μια απλή πληρωμή.</translation>
     </message>
     <message>
-        <source>The Ghost address to send the payment to</source>
-        <translation>Η διεύθυνση Ghost που θα σταλεί η πληρωμή</translation>
+        <source>The Falcon address to send the payment to</source>
+        <translation>Η διεύθυνση Falcon που θα σταλεί η πληρωμή</translation>
     </message>
     <message>
         <source>Alt+A</source>
@@ -1697,8 +1697,8 @@
         <translation>&amp;Υπογραφή Μηνύματος</translation>
     </message>
     <message>
-        <source>The Ghost address to sign the message with</source>
-        <translation>Διεύθυνση Ghost που θα σταλεί το μήνυμα</translation>
+        <source>The Falcon address to sign the message with</source>
+        <translation>Διεύθυνση Falcon που θα σταλεί το μήνυμα</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
@@ -1729,8 +1729,8 @@
         <translation>Αντιγραφή της επιλεγμένης υπογραφής στο πρόχειρο του συστήματος</translation>
     </message>
     <message>
-        <source>Sign the message to prove you own this Ghost address</source>
-        <translation>Υπογράψτε το μήνυμα για να αποδείξετε πως σας ανήκει η συγκεκριμένη διεύθυνση Ghost</translation>
+        <source>Sign the message to prove you own this Falcon address</source>
+        <translation>Υπογράψτε το μήνυμα για να αποδείξετε πως σας ανήκει η συγκεκριμένη διεύθυνση Falcon</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -1749,12 +1749,12 @@
         <translation>&amp;Επιβεβαίωση Mηνύματος</translation>
     </message>
     <message>
-        <source>The Ghost address the message was signed with</source>
-        <translation>Διεύθυνση Ghost με την οποία έχει υπογραφεί το μήνυμα</translation>
+        <source>The Falcon address the message was signed with</source>
+        <translation>Διεύθυνση Falcon με την οποία έχει υπογραφεί το μήνυμα</translation>
     </message>
     <message>
-        <source>Verify the message to ensure it was signed with the specified Ghost address</source>
-        <translation>Επαληθεύστε το μήνυμα για να αποδείξετε πως υπογράφθηκε από τη συγκεκριμένη διεύθυνση Ghost</translation>
+        <source>Verify the message to ensure it was signed with the specified Falcon address</source>
+        <translation>Επαληθεύστε το μήνυμα για να αποδείξετε πως υπογράφθηκε από τη συγκεκριμένη διεύθυνση Falcon</translation>
     </message>
     <message>
         <source>Verify &amp;Message</source>

@@ -44,13 +44,13 @@ class FilterTransactionsTest(ParticlTestFramework):
         #targetExternal = nodes[1].getnewextaddress('target external')
         stakingAddress = nodes[2].getnewaddress('staking')
 
-        # simple GHOST transaction
+        # simple FNC transaction
         nodes[0].sendtoaddress(targetAddress, 10)
         self.stakeBlocks(1)
         nodes[1].sendtoaddress(selfAddress, 8)
 
-        # GHOST to BLIND
-        nodes[0].sendghosttoblind(
+        # FNC to BLIND
+        nodes[0].sendfalcontoblind(
             selfStealth,          # address
             20,                   # amount
             '',                   # ?
@@ -59,8 +59,8 @@ class FilterTransactionsTest(ParticlTestFramework):
             'node0 -> node0 p->b' # narrative
         )
 
-        # GHOST to ANON
-        nodes[0].sendghosttoanon(
+        # FNC to ANON
+        nodes[0].sendfalcontoanon(
             targetStealth,        # address
             20,                   # amount
             '',                   # ?
@@ -71,8 +71,8 @@ class FilterTransactionsTest(ParticlTestFramework):
 
         # several outputs
         nodes[0].sendtypeto(
-            'ghost',               # type in
-            'ghost',               # type out
+            'falcon',               # type in
+            'falcon',               # type out
             [                     # outputs
                 {
                     'address':    selfAddress,
@@ -96,8 +96,8 @@ class FilterTransactionsTest(ParticlTestFramework):
             }
         )
         nodes[0].sendtypeto(
-            'ghost',              # type in
-            'ghost',              # type out
+            'falcon',              # type in
+            'falcon',              # type out
             [                    # outputs
                 {
                     'address':   'script',
@@ -109,8 +109,8 @@ class FilterTransactionsTest(ParticlTestFramework):
         )
         txid = nodes[0].sendtoaddress(selfSpending, 50)
         nodes[0].sendtypeto(
-            'ghost',              # type in
-            'ghost',              # type out
+            'falcon',              # type in
+            'falcon',              # type out
             [                    # outputs
                 {
                     'address':   targetAddress,
@@ -343,7 +343,7 @@ class FilterTransactionsTest(ParticlTestFramework):
             assert('Invalid sort' in e.error['message'])
 
         # Sent blind should show when filtered for blinded txns
-        nodes[0].sendblindtoghost(targetStealth, 1.0)
+        nodes[0].sendblindtofalcon(targetStealth, 1.0)
         ro = nodes[0].filtertransactions({ 'type': 'blind', 'count': 20 })
         assert(len(ro) == 2)
 

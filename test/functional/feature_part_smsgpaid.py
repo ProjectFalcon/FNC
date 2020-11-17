@@ -46,7 +46,7 @@ class SmsgPaidTest(ParticlTestFramework):
         assert(address1 == 'pX9N6S76ZtA5BfsiJmqBbjaEgLMHpt58it')
 
         sx_addr0 = nodes[0].getnewstealthaddress()
-        nodes[1].sendtypeto('ghost', 'ghost', [{'address':sx_addr0, 'amount':20},])
+        nodes[1].sendtypeto('falcon', 'falcon', [{'address':sx_addr0, 'amount':20},])
 
         ro = nodes[0].smsglocalkeys()
         assert(len(ro['wallet_keys']) == 0)
@@ -72,7 +72,7 @@ class SmsgPaidTest(ParticlTestFramework):
 
         self.stakeBlocks(1, nStakeNode=1)
         for i in range(20):
-            nodes[0].sendtypeto('ghost', 'anon', [{'address':sx_addr0, 'amount':0.5},])
+            nodes[0].sendtypeto('falcon', 'anon', [{'address':sx_addr0, 'amount':0.5},])
         self.waitForSmsgExchange(1, 1, 0)
 
         ro = nodes[0].smsginbox()

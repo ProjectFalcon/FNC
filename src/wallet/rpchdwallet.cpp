@@ -71,7 +71,7 @@ static int ExtractBip32InfoV(const std::vector<uint8_t> &vchKey, UniValue &keyIn
 
     CChainParams::Base58Type typePk = CChainParams::EXT_PUBLIC_KEY;
     if (memcmp(&vchKey[0], &Params().Base58Prefix(CChainParams::EXT_SECRET_KEY)[0], 4) == 0) {
-        keyInfo.pushKV("type", "Ghost extended secret key");
+        keyInfo.pushKV("type", "Falcon extended secret key");
     } else
     if (memcmp(&vchKey[0], &Params().Base58Prefix(CChainParams::EXT_SECRET_KEY_BTC)[0], 4) == 0) {
         keyInfo.pushKV("type", "Bitcoin extended secret key");
@@ -114,7 +114,7 @@ static int ExtractBip32InfoP(const std::vector<uint8_t> &vchKey, UniValue &keyIn
     CExtPubKey pk;
 
     if (memcmp(&vchKey[0], &Params().Base58Prefix(CChainParams::EXT_PUBLIC_KEY)[0], 4) == 0) {
-        keyInfo.pushKV("type", "Ghost extended public key");
+        keyInfo.pushKV("type", "Falcon extended public key");
     } else
     if (memcmp(&vchKey[0], &Params().Base58Prefix(CChainParams::EXT_PUBLIC_KEY_BTC)[0], 4) == 0)  {
         keyInfo.pushKV("type", "Bitcoin extended public key");
@@ -743,7 +743,7 @@ static UniValue extkey(const JSONRPCRequest &request)
         "    Show default account when called without parameters or \"key/id\" = \"default\".\n"
         "extkey key \"key/id\" ( show_secrets )\n"
         "    Display details of loose extkey in wallet.\n"
-        "extkey import \"key\" ( \"label\" bip44 save_bip44_key fLegacy)\n"
+        "extkey import \"key\" ( \"label\" bip44 save_bip44_key )\n"
         "    Add loose key to wallet.\n"
         "    If bip44 is set import will add the key derived from <key> on the bip44 path.\n"
         "    If save_bip44_key is set import will save the bip44 key to the wallet.\n"
@@ -984,16 +984,11 @@ static UniValue extkey(const JSONRPCRequest &request)
             if (!eKey58.IsValid(CChainParams::EXT_SECRET_KEY)
                 && !eKey58.IsValid(CChainParams::EXT_PUBLIC_KEY_BTC)
                 && !eKey58.IsValid(CChainParams::EXT_PUBLIC_KEY)) {
-                throw JSONRPCError(RPC_INVALID_PARAMETER, "Import failed - Key must begin with a ghost prefix.");
+                throw JSONRPCError(RPC_INVALID_PARAMETER, "Import failed - Key must begin with a falcon prefix.");
             }
         }
 
         sek.kp = eKey58.GetKey();
-        bool fLegacy = false;
-        if (request.params.size() > nParamOffset) {
-            fLegacy = GetBool(request.params[nParamOffset]);
-            nParamOffset++;
-        }
 
         {
             LOCK(pwallet->cs_wallet);
@@ -1004,7 +999,7 @@ static UniValue extkey(const JSONRPCRequest &request)
 
             int rv;
             CKeyID idDerived;
-            if (0 != (rv = pwallet->ExtKeyImportLoose(&wdb, sek, idDerived, fBip44, fSaveBip44, fLegacy))) {
+            if (0 != (rv = pwallet->ExtKeyImportLoose(&wdb, sek, idDerived, fBip44, fSaveBip44))) {
                 wdb.TxnAbort();
                 throw JSONRPCError(RPC_MISC_ERROR, strprintf("ExtKeyImportLoose failed, %s", ExtKeyGetString(rv)));
             }
@@ -1388,7 +1383,7 @@ static UniValue extkey(const JSONRPCRequest &request)
     return result;
 };
 
-static UniValue extkeyimportinternal(const JSONRPCRequest &request, bool fGenesisChain, bool fLegacy = false)
+static UniValue extkeyimportinternal(const JSONRPCRequest &request, bool fGenesisChain)
 {
     std::shared_ptr<CWallet> const wallet = GetWalletForJSONRPCRequest(request);
     CHDWallet *const pwallet = GetParticlWallet(wallet.get());
@@ -1413,7 +1408,7 @@ static UniValue extkeyimportinternal(const JSONRPCRequest &request, bool fGenesi
     std::string sPassphrase = "";
     std::string sError;
     int64_t nScanFrom = 1;
-    fLegacy = request.params.size() > 6 ? GetBool(request.params[6]) : fLegacy;
+
     if (request.params.size() > 1) {
         sPassphrase = request.params[1].get_str();
     }
@@ -1434,8 +1429,8 @@ static UniValue extkeyimportinternal(const JSONRPCRequest &request, bool fGenesi
     if (request.params[5].isNum()) {
         nScanFrom = request.params[5].get_int64();
     }
-    if (request.params.size() > 7) {
-        throw JSONRPCError(RPC_INVALID_PARAMETER, strprintf("Unknown parameter '%s'", request.params[7].get_str()));
+    if (request.params.size() > 6) {
+        throw JSONRPCError(RPC_INVALID_PARAMETER, strprintf("Unknown parameter '%s'", request.params[6].get_str()));
     }
 
     LogPrintf("Importing master key and account with labels '%s', '%s'.\n", sLblMaster.c_str(), sLblAccount.c_str());
@@ -1491,7 +1486,7 @@ static UniValue extkeyimportinternal(const JSONRPCRequest &request, bool fGenesi
             throw JSONRPCError(RPC_MISC_ERROR, "TxnBegin failed.");
         }
 
-        if (0 != (rv = pwallet->ExtKeyImportLoose(&wdb, sek, idDerived, fBip44, fSaveBip44Root, fLegacy))) {
+        if (0 != (rv = pwallet->ExtKeyImportLoose(&wdb, sek, idDerived, fBip44, fSaveBip44Root))) {
             wdb.TxnAbort();
             throw JSONRPCError(RPC_WALLET_ERROR, strprintf("ExtKeyImportLoose failed, %s", ExtKeyGetString(rv)));
         }
@@ -1594,7 +1589,6 @@ static UniValue extkeyimportmaster(const JSONRPCRequest &request)
                     {"master_label", RPCArg::Type::STR, /* default */ "Master Key", "Label for master key."},
                     {"account_label", RPCArg::Type::STR, /* default */ "Default Account", "Label for account."},
                     {"scan_chain_from", RPCArg::Type::NUM, /* default */ "0", "Scan for transactions in blocks after timestamp, negative number to skip."},
-                    {"use_legacy", RPCArg::Type::BOOL, /* default */ "false", "Use legacy bip44 derivation."},
                 },
             RPCResults{},
             RPCExamples{
@@ -1629,7 +1623,6 @@ static UniValue extkeygenesisimport(const JSONRPCRequest &request)
                     {"master_label", RPCArg::Type::STR, /* default */ "Master Key", "Label for master key."},
                     {"account_label", RPCArg::Type::STR, /* default */ "Default Account", "Label for account."},
                     {"scan_chain_from", RPCArg::Type::NUM, /* default */ "0", "Scan for transactions in blocks after timestamp, negative number to skip."},
-                    {"use_legacy", RPCArg::Type::BOOL, /* default */ "false", "Use legacy bip44 derivation."},
                 },
             RPCResults{},
             RPCExamples{
@@ -1643,80 +1636,12 @@ static UniValue extkeygenesisimport(const JSONRPCRequest &request)
     return extkeyimportinternal(request, true);
 }
 
-static UniValue extkeyimportmasterlegacy(const JSONRPCRequest &request)
-{
-    std::shared_ptr<CWallet> const wallet = GetWalletForJSONRPCRequest(request);
-    CHDWallet *const pwallet = GetParticlWallet(wallet.get());
-    if (!EnsureWalletIsAvailable(pwallet, request.fHelp))
-        return NullUniValue;
-
-            RPCHelpMan{"extkeyimportmasterlegacy",
-                "\nImport master key from bip44 mnemonic root key and derive default account.Uses legacy bip44 coin id\n"
-                "Derives an extra chain from path 444444 to receive imported coin." +
-                HelpRequiringPassphrase(pwallet) + "\n",
-                {
-                    {"mnemonic/key", RPCArg::Type::STR, RPCArg::Optional::NO, "The mnemonic or root extended key.\n"
-        "       Use '-stdin' to be prompted to enter a passphrase.\n"
-        "       if mnemonic is blank, defaults to '-stdin'."},
-                    {"passphrase", RPCArg::Type::STR, /* default */ "", "Passphrase when importing mnemonic.\n"
-        "       Use '-stdin' to be prompted to enter a passphrase."},
-                    {"save_bip44_root", RPCArg::Type::BOOL, /* default */ "false", "Save bip44 root key to wallet."},
-                    {"master_label", RPCArg::Type::STR, /* default */ "Master Key", "Label for master key."},
-                    {"account_label", RPCArg::Type::STR, /* default */ "Default Account", "Label for account."},
-                    {"scan_chain_from", RPCArg::Type::NUM, /* default */ "0", "Scan for transactions in blocks after timestamp, negative number to skip."},
-                },
-            RPCResults{},
-            RPCExamples{
-        HelpExampleCli("extkeyimportmasterlegacy", "-stdin -stdin false \"label_master\" \"label_account\"")
-        + HelpExampleCli("extkeyimportmasterlegacy", "\"word1 ... word24\" \"passphrase\" false \"label_master\" \"label_account\"") +
-        "\nAs a JSON-RPC call\n"
-        + HelpExampleRpc("extkeyimportmasterlegacy", "\"word1 ... word24\", \"passphrase\", false, \"label_master\", \"label_account\"")
-            },
-        }.Check(request);
-
-    return extkeyimportinternal(request, false,true);
-}
-
-static UniValue extkeygenesisimportlegacy(const JSONRPCRequest &request)
-{
-    std::shared_ptr<CWallet> const wallet = GetWalletForJSONRPCRequest(request);
-    CHDWallet *const pwallet = GetParticlWallet(wallet.get());
-    if (!EnsureWalletIsAvailable(pwallet, request.fHelp))
-        return NullUniValue;
-
-            RPCHelpMan{"extkeyimportmasterlegacy",
-                "\nImport master key from bip44 mnemonic root key and derive default account.Uses legacy bip44 coin id\n"
-                "Derives an extra chain from path 444444 to receive imported coin." +
-                HelpRequiringPassphrase(pwallet) + "\n",
-                {
-                    {"mnemonic/key", RPCArg::Type::STR, RPCArg::Optional::NO, "The mnemonic or root extended key.\n"
-        "       Use '-stdin' to be prompted to enter a passphrase.\n"
-        "       if mnemonic is blank, defaults to '-stdin'."},
-                    {"passphrase", RPCArg::Type::STR, /* default */ "", "Passphrase when importing mnemonic.\n"
-        "       Use '-stdin' to be prompted to enter a passphrase."},
-                    {"save_bip44_root", RPCArg::Type::BOOL, /* default */ "false", "Save bip44 root key to wallet."},
-                    {"master_label", RPCArg::Type::STR, /* default */ "Master Key", "Label for master key."},
-                    {"account_label", RPCArg::Type::STR, /* default */ "Default Account", "Label for account."},
-                    {"scan_chain_from", RPCArg::Type::NUM, /* default */ "0", "Scan for transactions in blocks after timestamp, negative number to skip."},
-                },
-            RPCResults{},
-            RPCExamples{
-        HelpExampleCli("extkeyimportmasterlegacy", "-stdin -stdin false \"label_master\" \"label_account\"")
-        + HelpExampleCli("extkeyimportmasterlegacy", "\"word1 ... word24\" \"passphrase\" false \"label_master\" \"label_account\"") +
-        "\nAs a JSON-RPC call\n"
-        + HelpExampleRpc("extkeyimportmasterlegacy", "\"word1 ... word24\", \"passphrase\", false, \"label_master\", \"label_account\"")
-            },
-        }.Check(request);
-
-    return extkeyimportinternal(request, true,true);
-}
-
 static UniValue extkeyaltversion(const JSONRPCRequest &request)
 {
             RPCHelpMan{"extkeyaltversion",
                 "\nReturns the provided ext_key encoded with alternate version bytes.\n"
-                "If the provided ext_key has a Bitcoin prefix the output will be encoded with a Ghost prefix.\n"
-                "If the provided ext_key has a Ghost prefix the output will be encoded with a Bitcoin prefix.\n",
+                "If the provided ext_key has a Bitcoin prefix the output will be encoded with a Falcon prefix.\n"
+                "If the provided ext_key has a Falcon prefix the output will be encoded with a Bitcoin prefix.\n",
                 {
                     {"ext_key", RPCArg::Type::STR, RPCArg::Optional::NO, ""},
                 },
@@ -1760,7 +1685,7 @@ static UniValue getnewextaddress(const JSONRPCRequest &request)
         return NullUniValue;
 
             RPCHelpMan{"getnewextaddress",
-                "\nReturns a new Ghost ext address for receiving payments." +
+                "\nReturns a new Falcon ext address for receiving payments." +
                 HelpRequiringPassphrase(pwallet) + "\n",
                 {
                     {"label", RPCArg::Type::STR, /* default */ "", "If specified the key is added to the address book."},
@@ -1769,7 +1694,7 @@ static UniValue getnewextaddress(const JSONRPCRequest &request)
                     {"hardened", RPCArg::Type::BOOL, /* default */ "false", "Derive a hardened key."},
                 },
                 RPCResult{
-            "\"address\"              (string) The new ghost extended address\n"
+            "\"address\"              (string) The new falcon extended address\n"
                 },
                 RPCExamples{
             HelpExampleCli("getnewextaddress", "") +
@@ -1825,7 +1750,7 @@ static UniValue getnewstealthaddress(const JSONRPCRequest &request)
         return NullUniValue;
 
             RPCHelpMan{"getnewstealthaddress",
-                "\nReturns a new Ghost stealth address for receiving payments." +
+                "\nReturns a new Falcon stealth address for receiving payments." +
                 HelpRequiringPassphrase(pwallet) + "\n",
                 {
                     {"label", RPCArg::Type::STR, /* default */ "", "If specified the key is added to the address book."},
@@ -1839,7 +1764,7 @@ static UniValue getnewstealthaddress(const JSONRPCRequest &request)
                     {"makeV2", RPCArg::Type::BOOL, /* default */ "false", "Generate an address from the same scheme used for hardware wallets."},
                 },
                 RPCResult{
-            "\"address\"              (string) The new ghost stealth address\n"
+            "\"address\"              (string) The new falcon stealth address\n"
                 },
                 RPCExamples{
             HelpExampleCli("getnewstealthaddress", "\"lblTestSxAddrPrefix\" 3 \"0b101\"") +
@@ -1920,7 +1845,7 @@ static UniValue importstealthaddress(const JSONRPCRequest &request)
                     {"bech32", RPCArg::Type::BOOL, /* default */ "false", "Use Bech32 encoding."},
                 },
                 RPCResult{
-            "\"address\"              (string) The new ghost stealth address\n"
+            "\"address\"              (string) The new falcon stealth address\n"
                 },
                 RPCExamples{
             HelpExampleCli("importstealthaddress", "scan_secret spend_secret \"label\" 3 \"0b101\"") +
@@ -2187,7 +2112,7 @@ static UniValue liststealthaddresses(const JSONRPCRequest &request)
             "    ]\n"
             "  }...\n"
             "]\n"
-            "\"address\"              (string) The new ghost stealth address\n"
+            "\"address\"              (string) The new falcon stealth address\n"
                 },
                 RPCExamples{
             HelpExampleCli("liststealthaddresses", "") +
@@ -3736,7 +3661,7 @@ static UniValue manageaddressbook(const JSONRPCRequest &request)
         // Try decode as segwit address
         dest = DecodeDestination(sAddress);
         if (!IsValidDestination(dest)) {
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Ghost address");
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Falcon address");
         }
     }
 
@@ -3881,7 +3806,7 @@ static UniValue getstakinginfo(const JSONRPCRequest &request)
             "  \"staking\": true|false,         (boolean) if this wallet is staking or not\n"
             "  \"errors\": \"...\"              (string) any error messages\n"
             "  \"percentyearreward\": xxxxxxx,  (numeric) current stake reward percentage\n"
-            "  \"moneysupply\": xxxxxxx,        (numeric) the total amount of ghost in the network\n"
+            "  \"moneysupply\": xxxxxxx,        (numeric) the total amount of falcon in the network\n"
             "  \"reserve\": xxxxxxx,            (numeric) the reserve balance of the wallet in " + CURRENCY_UNIT + "\n"
             "  \"walletfoundationdonationpercent\": xxxxxxx,\n    (numeric) user set percentage of the block reward ceded to the foundation\n"
             "  \"foundationdonationpercent\": xxxxxxx,\n    (numeric) network enforced percentage of the block reward ceded to the foundation\n"
@@ -4147,9 +4072,9 @@ static UniValue listunspentanon(const JSONRPCRequest &request)
                 {
                     {"minconf", RPCArg::Type::NUM, /* default */ "1", "The minimum confirmations to filter"},
                     {"maxconf", RPCArg::Type::NUM, /* default */ "9999999", "The maximum confirmations to filter"},
-                    {"addresses", RPCArg::Type::ARR, /* default */ "", "A json array of ghost addresses to filter",
+                    {"addresses", RPCArg::Type::ARR, /* default */ "", "A json array of falcon addresses to filter",
                         {
-                            {"address", RPCArg::Type::STR, /* default */ "", "ghost address"},
+                            {"address", RPCArg::Type::STR, /* default */ "", "falcon address"},
                         },
                     },
                     {"include_unsafe", RPCArg::Type::BOOL, /* default */ "true", "Include outputs that are not safe to spend\n"
@@ -4170,7 +4095,7 @@ static UniValue listunspentanon(const JSONRPCRequest &request)
             "  {\n"
             "    \"txid\" : \"txid\",          (string) the transaction id \n"
             "    \"vout\" : n,               (numeric) the vout value\n"
-            "    \"address\" : \"address\",    (string) the ghost address\n"
+            "    \"address\" : \"address\",    (string) the falcon address\n"
             "    \"label\" : \"label\",        (string) The associated label, or \"\" for the default label\n"
             //"    \"scriptPubKey\" : \"key\",   (string) the script key\n"
             "    \"amount\" : x.xxx,         (numeric) the transaction output amount in " + CURRENCY_UNIT + "\n"
@@ -4210,7 +4135,7 @@ static UniValue listunspentanon(const JSONRPCRequest &request)
             const UniValue& input = inputs[idx];
             CBitcoinAddress address(input.get_str());
             if (!address.IsValidStealthAddress())
-                throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Ghost stealth address: ")+input.get_str());
+                throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Falcon stealth address: ")+input.get_str());
             if (setAddress.count(address))
                 throw JSONRPCError(RPC_INVALID_PARAMETER, std::string("Invalid parameter, duplicated address: ")+input.get_str());
            setAddress.insert(address);
@@ -4361,9 +4286,9 @@ static UniValue listunspentblind(const JSONRPCRequest &request)
                 {
                     {"minconf", RPCArg::Type::NUM, /* default */ "1", "The minimum confirmations to filter"},
                     {"maxconf", RPCArg::Type::NUM, /* default */ "9999999", "The maximum confirmations to filter"},
-                    {"addresses", RPCArg::Type::ARR, /* default */ "", "A json array of ghost addresses to filter",
+                    {"addresses", RPCArg::Type::ARR, /* default */ "", "A json array of falcon addresses to filter",
                         {
-                            {"address", RPCArg::Type::STR, /* default */ "", "ghost address"},
+                            {"address", RPCArg::Type::STR, /* default */ "", "falcon address"},
                         },
                     },
                     {"include_unsafe", RPCArg::Type::BOOL, /* default */ "true", "Include outputs that are not safe to spend\n"
@@ -4383,7 +4308,7 @@ static UniValue listunspentblind(const JSONRPCRequest &request)
             "  {\n"
             "    \"txid\" : \"txid\",          (string) the transaction id \n"
             "    \"vout\" : n,               (numeric) the vout value\n"
-            "    \"address\" : \"address\",    (string) the ghost address\n"
+            "    \"address\" : \"address\",    (string) the falcon address\n"
             "    \"label\" : \"label\",        (string) The associated label, or \"\" for the default label\n"
             "    \"scriptPubKey\" : \"key\",   (string) the script key\n"
             "    \"amount\" : x.xxx,         (numeric) the transaction output amount in " + CURRENCY_UNIT + "\n"
@@ -4461,7 +4386,7 @@ static UniValue listunspentblind(const JSONRPCRequest &request)
             const UniValue& input = inputs[idx];
             CBitcoinAddress address(input.get_str());
             if (!address.IsValidStealthAddress())
-                throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Ghost stealth address: ")+input.get_str());
+                throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Falcon stealth address: ")+input.get_str());
             if (setAddress.count(address))
                 throw JSONRPCError(RPC_INVALID_PARAMETER, std::string("Invalid parameter, duplicated address: ")+input.get_str());
            setAddress.insert(address);
@@ -4643,7 +4568,7 @@ void ReadCoinControlOptions(const UniValue &obj, CHDWallet *pwallet, CCoinContro
         if (!fHaveScript) {
             CTxDestination dest = DecodeDestination(sChangeAddress);
             if (!IsValidDestination(dest)) {
-                throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "changeAddress must be a valid ghost address");
+                throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "changeAddress must be a valid falcon address");
             }
             coin_control.destChange = dest;
         }
@@ -4759,7 +4684,7 @@ static UniValue SendToInner(const JSONRPCRequest &request, OutputTypes typeIn, O
 
             if (typeOut == OUTPUT_RINGCT
                 && !address.IsValidStealthAddress()) {
-                throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, strprintf("Invalid Ghost stealth address: %s", sAddress));
+                throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, strprintf("Invalid Falcon stealth address: %s", sAddress));
             }
 
             if (address.IsValid() || obj.exists("script")) {
@@ -4768,7 +4693,7 @@ static UniValue SendToInner(const JSONRPCRequest &request, OutputTypes typeIn, O
                 // Try decode as segwit address
                 dest = DecodeDestination(sAddress);
                 if (!IsValidDestination(dest)) {
-                    throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, strprintf("Invalid Ghost address: %s", sAddress));
+                    throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, strprintf("Invalid Falcon address: %s", sAddress));
                 }
             }
 
@@ -4841,7 +4766,7 @@ static UniValue SendToInner(const JSONRPCRequest &request, OutputTypes typeIn, O
 
         if (typeOut == OUTPUT_RINGCT
             && !address.IsValidStealthAddress()) {
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Ghost stealth address");
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Falcon stealth address");
         }
         if (address.IsValid()) {
             dest = address.Get();
@@ -4849,7 +4774,7 @@ static UniValue SendToInner(const JSONRPCRequest &request, OutputTypes typeIn, O
             // Try decode as segwit address
             dest = DecodeDestination(sAddress);
             if (!IsValidDestination(dest)) {
-                throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Ghost address");
+                throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Falcon address");
             }
         }
 
@@ -5154,7 +5079,7 @@ static const char *TypeToWord(OutputTypes type)
     switch (type)
     {
         case OUTPUT_STANDARD:
-            return "ghost";
+            return "falcon";
         case OUTPUT_CT:
             return "blind";
         case OUTPUT_RINGCT:
@@ -5167,7 +5092,7 @@ static const char *TypeToWord(OutputTypes type)
 
 static OutputTypes WordToType(std::string &s)
 {
-    if (s == "ghost")
+    if (s == "falcon")
         return OUTPUT_STANDARD;
     if (s == "blind")
         return OUTPUT_CT;
@@ -5195,7 +5120,7 @@ static std::string SendHelp(CHDWallet *pwallet, OutputTypes typeIn, OutputTypes 
     rv += HelpRequiringPassphrase(pwallet);
 
     rv +=   "\nArguments:\n"
-            "1. \"address\"     (string, required) The ghost address to send to.\n"
+            "1. \"address\"     (string, required) The falcon address to send to.\n"
             "2. \"amount\"      (numeric or string, required) The amount in " + CURRENCY_UNIT + " to send. eg 0.1\n"
             "3. \"comment\"     (string, optional) A comment used to store what the transaction is for. \n"
             "                            This is not part of the transaction, just kept in your wallet.\n"
@@ -5221,7 +5146,7 @@ static std::string SendHelp(CHDWallet *pwallet, OutputTypes typeIn, OutputTypes 
     return rv;
 };
 
-static UniValue sendghosttoblind(const JSONRPCRequest &request)
+static UniValue sendfalcontoblind(const JSONRPCRequest &request)
 {
     std::shared_ptr<CWallet> const wallet = GetWalletForJSONRPCRequest(request);
     CHDWallet *const pwallet = GetParticlWallet(wallet.get());
@@ -5233,7 +5158,7 @@ static UniValue sendghosttoblind(const JSONRPCRequest &request)
     return SendToInner(request, OUTPUT_STANDARD, OUTPUT_CT);
 };
 
-static UniValue sendghosttoanon(const JSONRPCRequest &request)
+static UniValue sendfalcontoanon(const JSONRPCRequest &request)
 {
     std::shared_ptr<CWallet> const wallet = GetWalletForJSONRPCRequest(request);
     CHDWallet *const pwallet = GetParticlWallet(wallet.get());
@@ -5246,7 +5171,7 @@ static UniValue sendghosttoanon(const JSONRPCRequest &request)
 };
 
 
-static UniValue sendblindtoghost(const JSONRPCRequest &request)
+static UniValue sendblindtofalcon(const JSONRPCRequest &request)
 {
     std::shared_ptr<CWallet> const wallet = GetWalletForJSONRPCRequest(request);
     CHDWallet *const pwallet = GetParticlWallet(wallet.get());
@@ -5283,7 +5208,7 @@ static UniValue sendblindtoanon(const JSONRPCRequest &request)
 };
 
 
-static UniValue sendanontoghost(const JSONRPCRequest &request)
+static UniValue sendanontofalcon(const JSONRPCRequest &request)
 {
     std::shared_ptr<CWallet> const wallet = GetWalletForJSONRPCRequest(request);
     CHDWallet *const pwallet = GetParticlWallet(wallet.get());
@@ -5363,7 +5288,7 @@ UniValue sendtypeto(const JSONRPCRequest &request)
                         {
                             {"", RPCArg::Type::OBJ, RPCArg::Optional::NO, "",
                                 {
-                                    {"address", RPCArg::Type::STR, /* default */ "", "The ghost address to send to."},
+                                    {"address", RPCArg::Type::STR, /* default */ "", "The falcon address to send to."},
                                     {"amount", RPCArg::Type::AMOUNT, /* default */ "", "The amount in " + CURRENCY_UNIT + " to send. eg 0.1."},
                                     {"narr", RPCArg::Type::STR, /* default */ "", "Up to 24 character narration sent with the transaction."},
                                     {"blindingfactor", RPCArg::Type::STR_HEX, /* default */ "", "The blinding factor, 32 bytes and hex encoded."},
@@ -5383,7 +5308,7 @@ UniValue sendtypeto(const JSONRPCRequest &request)
                     {"test_fee", RPCArg::Type::BOOL, /* default */ "false", "Only return the fee it would cost to send, txn is discarded."},
                     {"coin_control", RPCArg::Type::OBJ, /* default */ "", "",
                         {
-                            {"changeaddress", RPCArg::Type::STR, /* default */ "", "The ghost address to receive the change"},
+                            {"changeaddress", RPCArg::Type::STR, /* default */ "", "The falcon address to receive the change"},
                             {"inputs", RPCArg::Type::ARR, /* default */ "", "A json array of json objects",
                                 {
                                     {"", RPCArg::Type::OBJ, /* default */ "", "",
@@ -6831,14 +6756,14 @@ static UniValue buildscript(const JSONRPCRequest &request)
     return obj;
 };
 
-static UniValue createrawghosttransaction(const JSONRPCRequest& request)
+static UniValue createrawfalcontransaction(const JSONRPCRequest& request)
 {
     std::shared_ptr<CWallet> const wallet = GetWalletForJSONRPCRequest(request);
     CHDWallet *const pwallet = GetParticlWallet(wallet.get());
     if (!EnsureWalletIsAvailable(pwallet, request.fHelp))
         return NullUniValue;
 
-            RPCHelpMan{"createrawghosttransaction",
+            RPCHelpMan{"createrawfalcontransaction",
                 "\nCreate a transaction spending the given inputs and creating new confidential outputs.\n"
                 "Outputs can be addresses or data.\n"
                 "Returns hex-encoded raw transaction.\n"
@@ -6861,7 +6786,7 @@ static UniValue createrawghosttransaction(const JSONRPCRequest& request)
                         {
                             {"", RPCArg::Type::OBJ, /* default */ "", "",
                                 {
-                                    {"address", RPCArg::Type::STR, /* default */ "", "The ghost address."},
+                                    {"address", RPCArg::Type::STR, /* default */ "", "The falcon address."},
                                     {"amount", RPCArg::Type::AMOUNT, /* default */ "", "The numeric value (can be string) in " + CURRENCY_UNIT + " of the output."},
                                     {"data", RPCArg::Type::STR_HEX, /* default */ "", "The key is \"data\", the value is hex encoded data."},
                                     {"data_ct_fee", RPCArg::Type::AMOUNT, /* default */ "", "If type is \"data\" and output is at index 0, then it will be treated as a CT fee output."},
@@ -6895,11 +6820,11 @@ static UniValue createrawghosttransaction(const JSONRPCRequest& request)
             "}\n"
                 },
                 RPCExamples{
-            HelpExampleCli("createrawghosttransaction", "\"[{\\\"txid\\\":\\\"myid\\\",\\\"vout\\\":0}]\" \"{\\\"address\\\":0.01}\"")
-            + HelpExampleCli("createrawghosttransaction", "\"[{\\\"txid\\\":\\\"myid\\\",\\\"vout\\\":0}]\" \"{\\\"data\\\":\\\"00010203\\\"}\"") +
+            HelpExampleCli("createrawfalcontransaction", "\"[{\\\"txid\\\":\\\"myid\\\",\\\"vout\\\":0}]\" \"{\\\"address\\\":0.01}\"")
+            + HelpExampleCli("createrawfalcontransaction", "\"[{\\\"txid\\\":\\\"myid\\\",\\\"vout\\\":0}]\" \"{\\\"data\\\":\\\"00010203\\\"}\"") +
             "\nAs a JSON-RPC call\n"
-            + HelpExampleRpc("createrawghosttransaction", "\"[{\\\"txid\\\":\\\"myid\\\",\\\"vout\\\":0}]\", \"{\\\"address\\\":0.01}\"")
-            + HelpExampleRpc("createrawghosttransaction", "\"[{\\\"txid\\\":\\\"myid\\\",\\\"vout\\\":0}]\", \"{\\\"data\\\":\\\"00010203\\\"}\"")
+            + HelpExampleRpc("createrawfalcontransaction", "\"[{\\\"txid\\\":\\\"myid\\\",\\\"vout\\\":0}]\", \"{\\\"address\\\":0.01}\"")
+            + HelpExampleRpc("createrawfalcontransaction", "\"[{\\\"txid\\\":\\\"myid\\\",\\\"vout\\\":0}]\", \"{\\\"data\\\":\\\"00010203\\\"}\"")
                 },
             }.Check(request);
 
@@ -6914,7 +6839,7 @@ static UniValue createrawghosttransaction(const JSONRPCRequest& request)
     UniValue outputs = request.params[1].get_array();
 
     CMutableTransaction rawTx;
-    rawTx.nVersion = GHOST_TXN_VERSION;
+    rawTx.nVersion = FALCON_TXN_VERSION;
 
 
     if (!request.params[2].isNull()) {
@@ -7227,7 +7152,7 @@ static UniValue fundrawtransactionfrom(const JSONRPCRequest& request)
                     },
                     {"options", RPCArg::Type::OBJ, /* default */ "", "",
                         {
-                            {"changeAddress", RPCArg::Type::STR, /* default */ "", "The ghost address to receive the change."},
+                            {"changeAddress", RPCArg::Type::STR, /* default */ "", "The falcon address to receive the change."},
                             {"changePosition", RPCArg::Type::NUM, /* default */ "random", "The index of the change output."},
                             //{"change_type", RPCArg::Type::STR, /* default */ "", "The output type to use. Only valid if changeAddress is not specified. Options are \"legacy\", \"p2sh-segwit\", and \"bech32\". Default is set by -changetype."},
                             {"includeWatching", RPCArg::Type::BOOL, /* default */ "false", "Also select inputs which are watch only."},
@@ -7236,7 +7161,7 @@ static UniValue fundrawtransactionfrom(const JSONRPCRequest& request)
                             {"subtractFeeFromOutputs", RPCArg::Type::ARR, /* default */ "", "A json array of integers.\n"
                             "                              The fee will be equally deducted from the amount of each specified output.\n"
                             "                              The outputs are specified by their zero-based index, before any change output is added.\n"
-                            "                              Those recipients will receive less ghost than you enter in their corresponding amount field.\n"
+                            "                              Those recipients will receive less falcon than you enter in their corresponding amount field.\n"
                             "                              If no outputs are specified here, the sender pays the fee.",
                                 {
                                     {"vout_index", RPCArg::Type::NUM, /* default */ "", ""},
@@ -7323,7 +7248,7 @@ static UniValue fundrawtransactionfrom(const JSONRPCRequest& request)
             CTxDestination dest = DecodeDestination(options["changeAddress"].get_str());
 
             if (!IsValidDestination(dest)) {
-                throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "changeAddress must be a valid ghost address");
+                throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "changeAddress must be a valid falcon address");
             }
 
             coinControl.destChange = dest;
@@ -7391,7 +7316,7 @@ static UniValue fundrawtransactionfrom(const JSONRPCRequest& request)
 
     // parse hex string from parameter
     CMutableTransaction tx;
-    tx.nVersion = GHOST_TXN_VERSION;
+    tx.nVersion = FALCON_TXN_VERSION;
     if (!DecodeHexTx(tx, request.params[1].get_str(), true)) {
         throw JSONRPCError(RPC_DESERIALIZATION_ERROR, "TX decode failed");
     }
@@ -8490,11 +8415,8 @@ static const CRPCCommand commands[] =
 { //  category              name                                actor (function)                argNames
   //  --------------------- ------------------------            -----------------------         ----------
     { "wallet",             "extkey",                           &extkey,                        {} },
-    { "wallet",             "extkeyimportmaster",               &extkeyimportmaster,            {"source","passphrase","save_bip44_root","master_label","account_label","scan_chain_from","use_legacy"} }, // import, set as master, derive account, set default account, force users to run mnemonic new first make them copy the key
-    { "wallet",             "extkeygenesisimport",              &extkeygenesisimport,           {"source","passphrase","save_bip44_root","master_label","account_label","scan_chain_from","use_legacy"} },
-    { "wallet",             "extkeyimportmasterlegacy",         &extkeyimportmasterlegacy,      {"source","passphrase","save_bip44_root","master_label","account_label","scan_chain_from"} },
-    { "wallet",             "extkeygenesisimportlegacy",        &extkeygenesisimportlegacy,      {"source","passphrase","save_bip44_root","master_label","account_label","scan_chain_from"} },
-
+    { "wallet",             "extkeyimportmaster",               &extkeyimportmaster,            {"source","passphrase","save_bip44_root","master_label","account_label","scan_chain_from"} }, // import, set as master, derive account, set default account, force users to run mnemonic new first make them copy the key
+    { "wallet",             "extkeygenesisimport",              &extkeygenesisimport,           {"source","passphrase","save_bip44_root","master_label","account_label","scan_chain_from"} },
     { "wallet",             "extkeyaltversion",                 &extkeyaltversion,              {"ext_key"} },
     { "wallet",             "getnewextaddress",                 &getnewextaddress,              {"label","childNo","bech32","hardened"} },
     { "wallet",             "getnewstealthaddress",             &getnewstealthaddress,          {"label","num_prefix_bits","prefix_num","bech32","makeV2"} },
@@ -8517,15 +8439,15 @@ static const CRPCCommand commands[] =
 
     { "wallet",             "burn",                             &burn,                          {"amount","data"} },
 
-    //sendghosttoghost // normal txn
-    { "wallet",             "sendghosttoblind",                  &sendghosttoblind,               {"address","amount","comment","comment_to","subtractfeefromamount","narration"} },
-    { "wallet",             "sendghosttoanon",                   &sendghosttoanon,                {"address","amount","comment","comment_to","subtractfeefromamount","narration"} },
+    //sendfalcontofalcon // normal txn
+    { "wallet",             "sendfalcontoblind",                  &sendfalcontoblind,               {"address","amount","comment","comment_to","subtractfeefromamount","narration"} },
+    { "wallet",             "sendfalcontoanon",                   &sendfalcontoanon,                {"address","amount","comment","comment_to","subtractfeefromamount","narration"} },
 
-    { "wallet",             "sendblindtoghost",                  &sendblindtoghost,               {"address","amount","comment","comment_to","subtractfeefromamount","narration"} },
+    { "wallet",             "sendblindtofalcon",                  &sendblindtofalcon,               {"address","amount","comment","comment_to","subtractfeefromamount","narration"} },
     { "wallet",             "sendblindtoblind",                 &sendblindtoblind,              {"address","amount","comment","comment_to","subtractfeefromamount","narration"} },
     { "wallet",             "sendblindtoanon",                  &sendblindtoanon,               {"address","amount","comment","comment_to","subtractfeefromamount","narration"} },
 
-    { "wallet",             "sendanontoghost",                   &sendanontoghost,                {"address","amount","comment","comment_to","subtractfeefromamount","narration","ringsize","inputs_per_sig"} },
+    { "wallet",             "sendanontofalcon",                   &sendanontofalcon,                {"address","amount","comment","comment_to","subtractfeefromamount","narration","ringsize","inputs_per_sig"} },
     { "wallet",             "sendanontoblind",                  &sendanontoblind,               {"address","amount","comment","comment_to","subtractfeefromamount","narration","ringsize","inputs_per_sig"} },
     { "wallet",             "sendanontoanon",                   &sendanontoanon,                {"address","amount","comment","comment_to","subtractfeefromamount","narration","ringsize","inputs_per_sig"} },
 
@@ -8548,7 +8470,7 @@ static const CRPCCommand commands[] =
     { "governance",         "tallyvotes",                       &tallyvotes,                    {"proposal","height_start","height_end"} },
 
     { "rawtransactions",    "buildscript",                      &buildscript,                   {"json"} },
-    { "rawtransactions",    "createrawghosttransaction",         &createrawghosttransaction,      {"inputs","outputs","locktime","replaceable"} },
+    { "rawtransactions",    "createrawfalcontransaction",         &createrawfalcontransaction,      {"inputs","outputs","locktime","replaceable"} },
     { "rawtransactions",    "fundrawtransactionfrom",           &fundrawtransactionfrom,        {"input_type","hexstring","input_amounts","output_amounts","options"} },
     { "rawtransactions",    "verifycommitment",                 &verifycommitment,              {"commitment","blind","amount"} },
     { "rawtransactions",    "rewindrangeproof",                 &rewindrangeproof,              {"rangeproof","commitment","nonce_key","ephemeral_key"} },

@@ -19,7 +19,7 @@ AkshayCM (33):
 - Add newline
 - Changes to conform to CI checks
 - Fix final check failures
-- Fix host prefix to ghost
+- Fix host prefix to falcon
 - Fix test runs
 - [RPC] Add burn command
 - Add more info to getcoldstakinginfo
