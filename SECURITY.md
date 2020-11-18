@@ -16,7 +16,7 @@ To report security issues send an email to contact@falconofficial.com
 Please note this email address is not for support and is only for issues directly affecting Falcon Core.
 
 **For support and general questions**
-Refer to our social links found [here.](https://github.com/falcon-coin/falcon-core/blob/master/CONTRIBUTING.md#communication-channels)
+Refer to our social links found [here.](git@github.com:ProjectFalcon/FNC.git/blob/master/CONTRIBUTING.md#communication-channels)
 
 The following keys may be used to communicate sensitive information to developers:
 

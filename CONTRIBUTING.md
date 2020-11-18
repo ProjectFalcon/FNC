@@ -305,7 +305,7 @@ The project leader is the release manager for each Falcon Core release.
 Acknowledgement
 ---------------
 
-This process was heavily influenced by the Bitcoin Core [contributing process](https://github.com/bitcoin/bitcoin/blob/master/CONTRIBUTING.md) and Falcon Core[contributing process](https://github.com/falcon-coin/falcon-core/blob/master/CONTRIBUTING.md)
+This process was heavily influenced by the Bitcoin Core [contributing process](https://github.com/bitcoin/bitcoin/blob/master/CONTRIBUTING.md) and Falcon Core[contributing process](git@github.com:ProjectFalcon/FNC.git/blob/master/CONTRIBUTING.md)
 
 Copyright
 ---------

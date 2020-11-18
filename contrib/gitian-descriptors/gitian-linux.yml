@@ -35,8 +35,8 @@ packages:
 - "python3"
 - "libudev-dev"
 remotes:
-- "url": "https://github.com/falcon/falcon-core.git"
-  "dir": "falcon-core"
+- "url": "git@github.com:ProjectFalcon/FNC.git"
+  "dir": "FNC"
 files: []
 script: |
   # prepare
@@ -132,7 +132,7 @@ script: |
   chmod +x ${WRAP_DIR}/${prog}
   done
 
-  cd falcon-core
+  cd FNC
   BASEPREFIX=`pwd`/depends
   # Build dependencies for each host
   for i in $HOSTS; do
