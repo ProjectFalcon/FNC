@@ -25,7 +25,7 @@ packages:
 - "python3"
 - "rename"
 remotes:
-- "url": "git@github.com:ProjectFalcon/FNC.git"
+- "url": "https://github.com/ProjectFalcon/FNC.git"
   "dir": "FNC"
 files: []
 script: |

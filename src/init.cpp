@@ -703,7 +703,7 @@ void SetupServerArgs()
 
 std::string LicenseInfo()
 {
-    const std::string URL_SOURCE_CODE = "<git@github.com:ProjectFalcon/FNC.git>";
+    const std::string URL_SOURCE_CODE = "<https://github.com/ProjectFalcon/FNC.git>";
     const std::string URL_WEBSITE = "<https://falconofficial.com/>";
 
     return CopyrightHolders(strprintf(_("Copyright (C)").translated)) + "\n" +

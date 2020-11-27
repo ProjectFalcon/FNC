@@ -264,7 +264,7 @@ Setup and Build Example: Arch Linux
 This example lists the steps necessary to setup and build a command line only, non-wallet distribution of the latest changes on Arch Linux:
 
     pacman -S git base-devel boost libevent python
-    git clone git@github.com:ProjectFalcon/FNC.git.git
+    git clone https://github.com/ProjectFalcon/FNC.git.git
     cd FNC/
     ./autogen.sh
     ./configure --disable-wallet --without-gui --without-miniupnpc

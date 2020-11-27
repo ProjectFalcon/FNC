@@ -37,7 +37,7 @@ cd ~/
 # Removes any existing builds and starts clean WARNING
 # rm -rf ~/sign-falcon ~/release-falcon
 
-git clone git@github.com:falcon-coin/falcon-private.git falcon
+git clone git@github.com:ProjectFalcon/falcon-private.git falcon
 cd ~/falcon
 git checkout $BRANCH
 git pull
