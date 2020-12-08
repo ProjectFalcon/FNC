@@ -21,6 +21,7 @@
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/algorithm/string/split.hpp>
 
+const bool mineGenesis = false;
 int CChainParams::GetCoinYearPercent(int year) const
 {
     if(static_cast<std::size_t>(year) < nBlockPerc.size()) {
@@ -354,9 +355,11 @@ std::string generateGenesisCode(std::string net,CBlock genesisblock){
     std::string gensiscode = "";
     gensiscode += "        genesis = " + createfunc + "(" + std::to_string(genesisblock.nTime) + ", " + std::to_string(genesisblock.nNonce) + ", " + std::to_string(genesisblock.nBits) + ");\n";
     gensiscode += "        consensus.hashGenesisBlock = genesis.GetHash();\n";
-    gensiscode += "        assert(consensus.hashGenesisBlock == uint256S(" + enclosestringinquotes(genesisblock.GetHash().ToString())     +"));\n" ;
-    gensiscode += "        assert(genesis.hashMerkleRoot == uint256S(" + enclosestringinquotes(genesisblock.hashMerkleRoot.ToString())  +"));\n" ;
-    gensiscode += "        assert(genesis.hashWitnessMerkleRoot == uint256S(" + enclosestringinquotes(genesisblock.hashWitnessMerkleRoot.ToString())  +"));\n" ;
+    gensiscode += "        if(!mineGenesis) {\n";
+    gensiscode += "           assert(consensus.hashGenesisBlock == uint256S(" + enclosestringinquotes(genesisblock.GetHash().ToString())     +"));\n" ;
+    gensiscode += "           assert(genesis.hashMerkleRoot == uint256S(" + enclosestringinquotes(genesisblock.hashMerkleRoot.ToString())  +"));\n" ;
+    gensiscode += "           assert(genesis.hashWitnessMerkleRoot == uint256S(" + enclosestringinquotes(genesisblock.hashWitnessMerkleRoot.ToString())  +"));\n" ;
+    gensiscode += "        }";
     return gensiscode;
 }
 
@@ -365,11 +368,11 @@ void FindGenesis(std::string network,Consensus::Params consensus,CBlock genesisb
         bool fNegative;
         bool fOverflow;
         test.SetCompact(nBits, &fNegative, &fOverflow);
-        std::cout << "Test threshold: " << test.GetHex() << "\n\n";
+        // std::cout << "Test threshold: " << test.GetHex() << "\n\n";
         int genesisNonce = 0;
         uint256 TempHashHolding = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");
         uint256 BestBlockHash = uint256S("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        std::cout << "Finding genesis block for network " << network << "\n";
+        // std::cout << "Finding genesis block for network " << network << "\n";
         int nMaxNonce = 40000000;
         for (int i=0;i<nMaxNonce;i++) {
             genesisblock = CreateGenesisBlockForNet(network,nGenesisTime, i, nBits);
@@ -377,7 +380,7 @@ void FindGenesis(std::string network,Consensus::Params consensus,CBlock genesisb
             arith_uint256 BestBlockHashArith = UintToArith256(BestBlockHash);
             if (UintToArith256(consensus.hashGenesisBlock) < BestBlockHashArith) {
                 BestBlockHash = consensus.hashGenesisBlock;
-                std::cout << "Nonce testing is " << i << " \n";
+                // std::cout << "Nonce testing is " << i << " \n";
             }
             TempHashHolding = consensus.hashGenesisBlock;
             std::cout.clear();
@@ -470,15 +473,16 @@ public:
         nPruneAfterHeight = 100000;
         m_assumed_blockchain_size = 1;
         m_assumed_chain_state_size = 1;
+        if(mineGenesis)
+            FindGenesis("mainnet",consensus,genesis,GetTime(),520159231,false);
 
-        // FindGenesis("mainnet",consensus,genesis,GetTime(),520159231,false);
-
-        genesis = CreateGenesisBlockMainNet(1606489104, 58421, 520159231);
+        genesis = CreateGenesisBlockMainNet(1607412307, 155664, 520159231);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0000a8af6fabcc885208d574ca6ca3ec6096828c42f40f41b141e049ad589ef5"));
-        assert(genesis.hashMerkleRoot == uint256S("e8a80a3db46511b92bf490d19d4098b0c33c462b56aa413e516371dd7b0d6ad3"));
-        assert(genesis.hashWitnessMerkleRoot == uint256S("a7b1d06697763b2cb44df8419a4b233ecd86ea62785ab707605522883be22f68"));
-
+        if(!mineGenesis) {
+           assert(consensus.hashGenesisBlock == uint256S("0000c1a9b61bacee1aef8fe32aae04302ede31eccb800cb7b993367971c413cc"));
+           assert(genesis.hashMerkleRoot == uint256S("e8a80a3db46511b92bf490d19d4098b0c33c462b56aa413e516371dd7b0d6ad3"));
+           assert(genesis.hashWitnessMerkleRoot == uint256S("a7b1d06697763b2cb44df8419a4b233ecd86ea62785ab707605522883be22f68"));
+        }
         // Note that of those which support the service bits prefix, most only support a subset of
         // possible options.
         // This is fine at runtime as we'll fall back to using them as a oneshot if they don't support the
@@ -646,13 +650,17 @@ public:
         /*
         //TODO akshaynexus generate new genesis block for FNC testnet
 */
-        // FindGenesis("testnet",consensus,genesis,GetTime(),0x1f00ffff,false);
+        if(mineGenesis)
+            FindGenesis("testnet",consensus,genesis,GetTime(),0x1f00ffff,false);
 
-        genesis = CreateGenesisBlockTestNet(1606489151, 16225, 520159231);
+        genesis = CreateGenesisBlockTestNet(1607412309, 34175, 520159231);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("000035d3743ca0c36eb9c14ae618ab7bc6d0d4eb0568f543926ebe6b7a7834d1"));
-        assert(genesis.hashMerkleRoot == uint256S("a4ac827e3f40b55d69013e74f29fac184dbcd4b5e2f726c4273ffbc8c0779475"));
-        assert(genesis.hashWitnessMerkleRoot == uint256S("08917a20ac55e83d7d860b7daf0cb3c25114d00338deab02f77af9eea20c06e1"));
+        if(!mineGenesis) {
+           assert(consensus.hashGenesisBlock == uint256S("0000e305cf1a6e74e0211280bcf6b2ba5ee4c8596a117a45ca45c4c61e845c63"));
+           assert(genesis.hashMerkleRoot == uint256S("a4ac827e3f40b55d69013e74f29fac184dbcd4b5e2f726c4273ffbc8c0779475"));
+           assert(genesis.hashWitnessMerkleRoot == uint256S("08917a20ac55e83d7d860b7daf0cb3c25114d00338deab02f77af9eea20c06e1"));
+        }
+
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
@@ -796,13 +804,16 @@ public:
         m_assumed_chain_state_size = 0;
 
         UpdateActivationParametersFromArgs(args);
-        // FindGenesis("regtest",consensus,genesis,GetTime(),545259519,true);
+        if(mineGenesis)
+            FindGenesis("regtest",consensus,genesis,GetTime(),545259519,true);
 
-        genesis = CreateGenesisBlockRegTest(1606489179, 0, 545259519);
+        genesis = CreateGenesisBlockRegTest(1607412309, 0, 545259519);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("22b005bf72c6a2f424e743c8d89f67de1cd6b7b3c30d6f426071c9129295abdc"));
-        assert(genesis.hashMerkleRoot == uint256S("f89653c7208af2c76a3070d436229fb782acbd065bd5810307995b9982423ce7"));
-        assert(genesis.hashWitnessMerkleRoot == uint256S("36b66a1aff91f34ab794da710d007777ef5e612a320e1979ac96e5f292399639"));
+        if(!mineGenesis) {
+           assert(consensus.hashGenesisBlock == uint256S("6f68baecffa19b772e3e13015812709f705385dc33fde6a588fafed96ca0fb95"));
+           assert(genesis.hashMerkleRoot == uint256S("f89653c7208af2c76a3070d436229fb782acbd065bd5810307995b9982423ce7"));
+           assert(genesis.hashWitnessMerkleRoot == uint256S("36b66a1aff91f34ab794da710d007777ef5e612a320e1979ac96e5f292399639"));
+        }
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();      //!< Regtest mode doesn't have any DNS seeds.
