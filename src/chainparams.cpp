@@ -21,7 +21,7 @@
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/algorithm/string/split.hpp>
 
-const bool mineGenesis = false;
+const bool mineGenesis = true;
 int CChainParams::GetCoinYearPercent(int year) const
 {
     if(static_cast<std::size_t>(year) < nBlockPerc.size()) {
@@ -454,10 +454,10 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 32-bit integer with any alignment.
          */
-        pchMessageStart[0] = 0xf2;
-        pchMessageStart[1] = 0xf3;
-        pchMessageStart[2] = 0xe1;
-        pchMessageStart[3] = 0xb4;
+        pchMessageStart[0] = 0xf7;
+        pchMessageStart[1] = 0xfa;
+        pchMessageStart[2] = 0xed;
+        pchMessageStart[3] = 0xb2;
         nDefaultPort = 51728;
         nBIP44ID = 0x8000002C;
 
@@ -476,10 +476,10 @@ public:
         if(mineGenesis)
             FindGenesis("mainnet",consensus,genesis,GetTime(),520159231,false);
 
-        genesis = CreateGenesisBlockMainNet(1607412307, 155664, 520159231);
+        genesis = CreateGenesisBlockMainNet(1608428300, 71928, 520159231);
         consensus.hashGenesisBlock = genesis.GetHash();
         if(!mineGenesis) {
-           assert(consensus.hashGenesisBlock == uint256S("0000c1a9b61bacee1aef8fe32aae04302ede31eccb800cb7b993367971c413cc"));
+           assert(consensus.hashGenesisBlock == uint256S("000089fd1376df8a54c53781cbba5d4e5d5e2e76246e3d8ea659654a456cbe0b"));
            assert(genesis.hashMerkleRoot == uint256S("e8a80a3db46511b92bf490d19d4098b0c33c462b56aa413e516371dd7b0d6ad3"));
            assert(genesis.hashWitnessMerkleRoot == uint256S("a7b1d06697763b2cb44df8419a4b233ecd86ea62785ab707605522883be22f68"));
         }
@@ -653,10 +653,10 @@ public:
         if(mineGenesis)
             FindGenesis("testnet",consensus,genesis,GetTime(),0x1f00ffff,false);
 
-        genesis = CreateGenesisBlockTestNet(1607412309, 34175, 520159231);
+        genesis = CreateGenesisBlockTestNet(1608428301, 2030, 520159231);
         consensus.hashGenesisBlock = genesis.GetHash();
         if(!mineGenesis) {
-           assert(consensus.hashGenesisBlock == uint256S("0000e305cf1a6e74e0211280bcf6b2ba5ee4c8596a117a45ca45c4c61e845c63"));
+           assert(consensus.hashGenesisBlock == uint256S("0000966103633687cbd0d382ce75f5b246662e0c41ffd4f74fd642f3e9720d94"));
            assert(genesis.hashMerkleRoot == uint256S("a4ac827e3f40b55d69013e74f29fac184dbcd4b5e2f726c4273ffbc8c0779475"));
            assert(genesis.hashWitnessMerkleRoot == uint256S("08917a20ac55e83d7d860b7daf0cb3c25114d00338deab02f77af9eea20c06e1"));
         }
@@ -807,10 +807,10 @@ public:
         if(mineGenesis)
             FindGenesis("regtest",consensus,genesis,GetTime(),545259519,true);
 
-        genesis = CreateGenesisBlockRegTest(1607412309, 0, 545259519);
+        genesis = CreateGenesisBlockRegTest(1608428301, 2, 545259519);
         consensus.hashGenesisBlock = genesis.GetHash();
         if(!mineGenesis) {
-           assert(consensus.hashGenesisBlock == uint256S("6f68baecffa19b772e3e13015812709f705385dc33fde6a588fafed96ca0fb95"));
+           assert(consensus.hashGenesisBlock == uint256S("6f6c9a25d4565b56d1ebd0210fe1f0b8b0aac7452a7ea6d53152fe4e6b6ef637"));
            assert(genesis.hashMerkleRoot == uint256S("f89653c7208af2c76a3070d436229fb782acbd065bd5810307995b9982423ce7"));
            assert(genesis.hashWitnessMerkleRoot == uint256S("36b66a1aff91f34ab794da710d007777ef5e612a320e1979ac96e5f292399639"));
         }
