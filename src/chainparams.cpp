@@ -21,7 +21,7 @@
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/algorithm/string/split.hpp>
 
-const bool mineGenesis = true;
+const bool mineGenesis = false;
 int CChainParams::GetCoinYearPercent(int year) const
 {
     if(static_cast<std::size_t>(year) < nBlockPerc.size()) {
