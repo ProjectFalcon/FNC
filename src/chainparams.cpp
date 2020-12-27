@@ -173,26 +173,26 @@ const std::pair<const char*, CAmount> regTestOutputs[] = {
 const size_t nGenesisOutputsRegtest = sizeof(regTestOutputs) / sizeof(regTestOutputs[0]);
 
 const std::pair<const char*, CAmount> genesisOutputs[] = {
-    std::make_pair("46792e37c1bbe44294a9a020395f38c13cb791c4", 4500000000 * COIN),//FCFjw11L3ApZWcLM2ZLWQc9Qjv8SQp5Lgz
-    std::make_pair("830e35ce278978b618577ab8c582aecee72134f7", 4500000000 * COIN),//FHn51Ghnrzp56xAEuWXsfL42SLBN19uaiS
-    std::make_pair("8a4ea720ee6f73ad59617a120907c4bc970b0174", 4500000000 * COIN),//FJSQwAnaU4yKEbZV77Bxqd3daHCwcLwJC7
-    std::make_pair("3e7b7237774ee02e43996c7d2212540c142b6e5c", 4500000000 * COIN),//FBXVEtFCSpiFaadoKLWG1BGWz9TUj4FKP8
-    std::make_pair("2f2959e006ad885ec557a0c38986049677aaed34", 4500000000 * COIN),//FA8UkwVtmuAe1NB1ShYb7f6vV8c8GCDvQf
-    std::make_pair("f447ffeaa316f5ea9475dc9b50e881a66c8e47cf", 4500000000 * COIN),//FU6kbEUEy2MhPT7VmXv24sbQUFkRct1d8j
-    std::make_pair("5ec9c41efa472f7baec523dce8c933138ae871fb", 4500000000 * COIN),//FEUJgndysB1vzyg3VDhX9oQs1jKq3GAtLa
-    std::make_pair("3b41c382d00004435475d170654b05ea243f5f6b", 4500000000 * COIN),//FBES7TmhjTsrAUP69RnK7cFyoJkykpRYda
-    std::make_pair("16c52c929034ca169e8b223634d8bf188d0a2b6b", 4500000000 * COIN),//F7uWXvG39YNgv1Chr2zNumAZcae4efSKAL
-    std::make_pair("0ef161911b81430d5262b2b40c303168fd470183", 4500000000 * COIN),//F7C85wYh9zrxF4R1dcRdmdcfpnnUBZuDfX
-    std::make_pair("abe4453cd7d39d14c8f855d9610ffd0c246ed20f", 4500000000 * COIN),//FMVzU7Ze7tHwMfsWfUbqQQuBcaGh1WtV3n
-    std::make_pair("be7f5ac23942e474a16373c82b0c9766ad811de9", 4500000000 * COIN),//FPCNQzmMVbTb4B3PMydhfSXQX5BiJpvxnz
-    std::make_pair("332a2002e2bfc6c3133488a6190b370fe306b624", 4500000000 * COIN),//FAVePV2mG8oKDp58YxMKoMZPCbV3KRD4a1
-    std::make_pair("6943b1df58bab603c12b583966cb55d30cf6e2f9", 4500000000 * COIN),//FFRhWTjVLEWS6XXKfzXJTyfDLBV6uGpbJh
-    std::make_pair("cec904717020c95731f1487e5af1d7e479dc3a63", 4500000000 * COIN),//FQgVUFQXXvXuhNuaaV9oMcYPhN7oBk911b
-    std::make_pair("6adc90736bc109ee8c52d99f7616572b8cdd22dd", 4500000000 * COIN),//FFa9KD57KoX9VstLRyjEXPMugjqYeBbrFE
-    std::make_pair("4f31f359515dfaa1253b239e50e79a313c24b9f6", 4500000000 * COIN),//FD3rganFx3hqRnm7QddMnDSxQaAQGDyvGp
-    std::make_pair("f9fc64b05dc8b544f66c5551c2e5c339ace17f1f", 4500000000 * COIN),//FUcv5AMsYdv2bLnKC4xR5Cixotp6U6JZ3v
-    std::make_pair("9f95629b8cff68cb00b0fb1b5e051ad839d258a3", 4500000000 * COIN),//FLNurmSnTjvyKR1vMQve5PEvSywHjWsZMe
-    std::make_pair("f507e5220d807fb643d5d6fbe99744ca9d8c471d", 4500000000 * COIN),//FUAiUMh9j9K9gjFfUYEnmewKR2a7SXWJc9
+    std::make_pair("b67f54c116d96281bdb02219f4b2636a58223ba6", 4000000000 * COIN),//FNU4yqEcE9ZF22yP8L1e7m1Zdd25CMtJGW
+    std::make_pair("46b563837f331f9c6d93d7b394227e531987485a", 4000000000 * COIN),//FCGz4LcvjDBzAf1to1FyCsgruchiLiFd8c
+    std::make_pair("a929e8872c8f3fbd9a8cff3e42339ecc5b35e4b5", 4000000000 * COIN),//FMFZs4WYnzcpaWw8G1sDonXwGDhzKqnj9r
+    std::make_pair("db9a3803b64f036071dc530a721c6617b5f28c56", 4000000000 * COIN),//FRrGC85GjxnfSUGuaDeZ2JTwHJZsz9Lt4c
+    std::make_pair("37134b8bee68b51e75ee0c6925a91a76f34920df", 4000000000 * COIN),//FArKjzv9X6FYE3f74XS51UZ9PxhaTGvbkG
+    std::make_pair("465f6ceb0720ea5544d88c0afed367722a0baf36", 4000000000 * COIN),//FCFD5WM6NpGiiUTGvPQ2NbcnG4QAPF2Lgn
+    std::make_pair("73abd29f291d2d58436e94e369ebfbe12e2d30a7", 4000000000 * COIN),//FGNj1KEfA2nt6Xht9NzgZwwfSSKjNTV3QP
+    std::make_pair("aca2fa85cd88085633c68d8c3b32c470c76046d7", 4000000000 * COIN),//FMZvvkM2SucCuy1ZvxRYavJdW6aX1pMeXo
+    std::make_pair("b977bf17d84d3825bb9545cdc4883c5b13e30ee9", 4000000000 * COIN),//FNjmvRJFtaieLX8MR41Ao2aPc8nY1ZCxok
+    std::make_pair("0a76c0ee071fc606b8e3932c1dc13c5a39ebc094", 4000000000 * COIN),//F6nSUsDnRbY9GrG9X9ykT29crn4efdajsx
+    std::make_pair("a55effb389153ce01da7c41444b38fe680d25716", 4000000000 * COIN),//FLuWm64SbU4fsTzE7ZcmzA3VWKkAL4U8fd
+    std::make_pair("8a30e793e40d092ae62d3ded45b46141db4464ae", 4000000000 * COIN),//FJRoJE1krJUSTd8WbsCYwxJdAmcEiNtwyP
+    std::make_pair("dabd5abfe7de48d261f0932e9eee07e458593e85", 4000000000 * COIN),//FRmhcCcfwPqkK5t4tFqxLJWi2R47BoHNVw
+    std::make_pair("9ba9579e911b17266e3993d437202670428f59f6", 4000000000 * COIN),//FL2B4eBLAanhQZiVSedSUCe2qXi7z7bZN3
+    std::make_pair("b136480374eb81da37078f5c2bd320595aeb44d8", 4000000000 * COIN),//FMz86HZgm87rTyNoGRZ38PvmAny1ZmAFJc
+    std::make_pair("37e7c1060a92e2c9037b74c1467097846030797b", 4000000000 * COIN),//FAviFuH7QdBiUDDeQstHAzPKxMpKnyegsu
+    std::make_pair("0d61af6a037e2a27b290d1444f1c21ad0290cde8", 4000000000 * COIN),//F73sGakHPMp2Ki6FoxJWX4qGMQbkhyQgLA
+    std::make_pair("888313c9ef4673abdd3b84d754cb6cc2628e6d60", 4000000000 * COIN),//FJGvPJQ663De54oAyYv28PBLA64i88bjaC
+    std::make_pair("affb36be18faeff93a008e198048dbb7254a3783", 4000000000 * COIN),//FMscf1qJdktC1E8hAPwZoim4pviKHRVECK
+    std::make_pair("d22a3e6b46c255507623a68090f350d6068aab1a", 4000000000 * COIN),//FQzMyEmMswqkNpWrQwWU8nusMLD56ukTzv
 
 };
 const size_t nGenesisOutputs = sizeof(genesisOutputs) / sizeof(genesisOutputs[0]);
@@ -465,9 +465,9 @@ public:
         nStakeMinConfirmations = 225;   // 225 * 2 minutes
         nTargetSpacing = 120;           // 2 minutes
         nTargetTimespan = 24 * 60;      // 24 mins
-        consensus.nLWMADiffUpgradeHeight = 40863;
+        consensus.nLWMADiffUpgradeHeight = 1000;
         consensus.nZawyLwmaAveragingWindow = 45;
-        nBlockReward = 2000 * COIN;
+        nBlockReward = 400 * COIN;
         nBlockPerc = {100, 100, 95, 90, 86, 81, 77, 74, 70, 66, 63, 60, 57, 54, 51, 49, 46, 44, 42, 40, 38, 36, 34, 32, 31, 29, 28, 26, 25, 24, 23, 21, 20, 19, 18, 17, 17, 16, 15, 14, 14, 13, 12, 12, 11, 10, 10};
 
         nPruneAfterHeight = 100000;
@@ -476,12 +476,12 @@ public:
         if(mineGenesis)
             FindGenesis("mainnet",consensus,genesis,GetTime(),520159231,false);
 
-        genesis = CreateGenesisBlockMainNet(1608428300, 71928, 520159231);
+        genesis = CreateGenesisBlockMainNet(1609051249, 22257, 520159231);
         consensus.hashGenesisBlock = genesis.GetHash();
         if(!mineGenesis) {
-           assert(consensus.hashGenesisBlock == uint256S("000089fd1376df8a54c53781cbba5d4e5d5e2e76246e3d8ea659654a456cbe0b"));
-           assert(genesis.hashMerkleRoot == uint256S("e8a80a3db46511b92bf490d19d4098b0c33c462b56aa413e516371dd7b0d6ad3"));
-           assert(genesis.hashWitnessMerkleRoot == uint256S("a7b1d06697763b2cb44df8419a4b233ecd86ea62785ab707605522883be22f68"));
+           assert(consensus.hashGenesisBlock == uint256S("0000abf07766f345fa532fa771020676a73708975d923f0f8d1e8d9aa38efee4"));
+           assert(genesis.hashMerkleRoot == uint256S("1662297e1a8de50c87ac6c98a6045b909dac4979556ea299b4933410c27c056a"));
+           assert(genesis.hashWitnessMerkleRoot == uint256S("8a44a341c5c247b8c29949307eeaba2a8e02368265a64f481ee823df0bb94a1a"));
         }
         // Note that of those which support the service bits prefix, most only support a subset of
         // possible options.
@@ -490,6 +490,7 @@ public:
         // release ASAP to avoid it where possible.
         vSeeds.emplace_back("45.81.224.174");
         vSeeds.emplace_back("45.81.224.217");
+        vSeeds.emplace_back("falconseeder.coldstake.io");
 /*
         //TODO akshaynexus Set this to falcon devfund
         vDevFundSettings.emplace_back(0,
@@ -510,17 +511,17 @@ public:
 
         {
             std::map<int, std::string> bech32PrefixesMap{
-                {PUBKEY_ADDRESS, "gp"},
-                {SCRIPT_ADDRESS,"gw"},
-                {PUBKEY_ADDRESS_256,"gl"},
-                {SCRIPT_ADDRESS_256,"gj"},
-                {SECRET_KEY,"gtx"},
-                {EXT_PUBLIC_KEY,"gep"},
-                {EXT_SECRET_KEY,"gex"},
-                {STEALTH_ADDRESS,"gx"},
-                {EXT_KEY_HASH,"gek"},
-                {EXT_ACC_HASH,"gea"},
-                {STAKE_ONLY_PKADDR,"gcs"},
+                {PUBKEY_ADDRESS, "fp"},
+                {SCRIPT_ADDRESS,"fw"},
+                {PUBKEY_ADDRESS_256,"fl"},
+                {SCRIPT_ADDRESS_256,"fj"},
+                {SECRET_KEY,"ftx"},
+                {EXT_PUBLIC_KEY,"fep"},
+                {EXT_SECRET_KEY,"fex"},
+                {STEALTH_ADDRESS,"fx"},
+                {EXT_KEY_HASH,"fek"},
+                {EXT_ACC_HASH,"fea"},
+                {STAKE_ONLY_PKADDR,"fcs"},
             };
 
             for(auto&& p: bech32PrefixesMap)
@@ -653,10 +654,10 @@ public:
         if(mineGenesis)
             FindGenesis("testnet",consensus,genesis,GetTime(),0x1f00ffff,false);
 
-        genesis = CreateGenesisBlockTestNet(1608428301, 2030, 520159231);
+        genesis = CreateGenesisBlockTestNet(1608837508, 9973, 520159231);
         consensus.hashGenesisBlock = genesis.GetHash();
         if(!mineGenesis) {
-           assert(consensus.hashGenesisBlock == uint256S("0000966103633687cbd0d382ce75f5b246662e0c41ffd4f74fd642f3e9720d94"));
+           assert(consensus.hashGenesisBlock == uint256S("000092dc72fbe4df7c5dc1d0aea2531919cb1671b6ca4542e3b3943fbaf02e2c"));
            assert(genesis.hashMerkleRoot == uint256S("a4ac827e3f40b55d69013e74f29fac184dbcd4b5e2f726c4273ffbc8c0779475"));
            assert(genesis.hashWitnessMerkleRoot == uint256S("08917a20ac55e83d7d860b7daf0cb3c25114d00338deab02f77af9eea20c06e1"));
         }
@@ -807,10 +808,10 @@ public:
         if(mineGenesis)
             FindGenesis("regtest",consensus,genesis,GetTime(),545259519,true);
 
-        genesis = CreateGenesisBlockRegTest(1608428301, 2, 545259519);
+        genesis = CreateGenesisBlockRegTest(1608837508, 0, 545259519);
         consensus.hashGenesisBlock = genesis.GetHash();
         if(!mineGenesis) {
-           assert(consensus.hashGenesisBlock == uint256S("6f6c9a25d4565b56d1ebd0210fe1f0b8b0aac7452a7ea6d53152fe4e6b6ef637"));
+           assert(consensus.hashGenesisBlock == uint256S("56161c152e7ce3bed6cadcbd99b5ce4f913d6b4c7abc9801a5b3c27f4d249857"));
            assert(genesis.hashMerkleRoot == uint256S("f89653c7208af2c76a3070d436229fb782acbd065bd5810307995b9982423ce7"));
            assert(genesis.hashWitnessMerkleRoot == uint256S("36b66a1aff91f34ab794da710d007777ef5e612a320e1979ac96e5f292399639"));
         }
